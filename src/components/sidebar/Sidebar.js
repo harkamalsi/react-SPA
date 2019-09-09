@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+import Soundform from '../soundform/Soundform';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Sidebar extends Component {
     return (
       <div className='Sidebar'>
         <h3>This is Sidebar {this.props.name}!</h3>
+        <Soundform/>
       </div>
     );
   }
