@@ -27,48 +27,48 @@ var citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 class Soundform extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {
+            song: '',
+            category: ''
+        };
 
         this.handleChange = this.handleChange.bind(this);
 
     }
 
     handleChange(event){
-        alert('Value Updated: ' + event.target.value);
-        this.setState({value: event.target.value});        
-        console.log(this.state.value);
+        alert('Value Updated: ' + event.target.value + " From: " + event.target.name);
+        this.setState({song: event.target.value, category: event.target.name});        
+        console.log(this.state.song);
+        let audioPlayer = document.getElementById("audioPlayer");
+        audioPlayer.load();
+        
     }
 
     render() {
         return (
             <div className='sound'>
                 <div className='sounds category'>
-                    <h3>Sound</h3>
+                    <h3>Lyd</h3>
                     <form>
                         <label>
                             Nature
-                            <input type="radio" value={natureSounds[Math.floor(Math.random() * this.state.value.length)]} onChange={this.handleChange} />
+                            <input type="radio" value={natureSounds[Math.floor(Math.random() * 4)]} checked={this.state.category == 'nature'} onChange={this.handleChange} name="nature"/>
                         </label>
 
                         <label>
                             Piano
-                            <input type="radio" value={pianoSongs} onChange={this.handleChange}/>
-                        </label>
-
-                        <label>
-                            Sci-fi
-                            <input type="radio" value="sci-fi" onChange={this.handleChange}/>
+                            <input type="radio" value={pianoSongs[Math.floor(Math.random() * 4)]} checked={this.state.category == 'piano'} onChange={this.handleChange} name="piano"/>
                         </label>
 
                         <label>
                             Citylife
-                            <input type="radio" value={citylifeSounds} onChange={this.handleChange}/>
+                            <input type="radio" value={citylifeSounds[Math.floor(Math.random() * 4)]} checked={this.state.category == 'citylife'} onChange={this.handleChange} name="citylife"/>
                         </label>
                     </form>
                 </div>
 
-                <audio controls autoPlay loop>
-                    <source src={this.state.value} type="audio/mpeg"></source>
+                <audio id="audioPlayer" src={this.state.song} type="audio/mpeg" controls loop>
                 </audio>
             </div>
         );
