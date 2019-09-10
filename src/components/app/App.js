@@ -27,10 +27,26 @@ class App extends React.Component {
                 <Tabdisplay onClick={this.handleTabClick} />
                 <Switch>
                   <Route exact path='/' component={Maindisplay} />
-                  <Route exact path='/1' component={Maindisplay} />
-                  <Route exact path='/2' component={Maindisplay} />
-                  <Route exact path='/3' component={Maindisplay} />
-                  <Route exact path='/4' component={Maindisplay} />
+                  <Route
+                    exact
+                    path='/1'
+                    render={props => <Maindisplay {...props} number='1' />}
+                  />
+                  <Route
+                    exact
+                    path='/2'
+                    render={props => <Maindisplay {...props} number='2' />}
+                  />
+                  <Route
+                    exact
+                    path='/3'
+                    render={props => <Maindisplay {...props} number='3' />}
+                  />
+                  <Route
+                    exact
+                    path='/4'
+                    render={props => <Maindisplay {...props} number='4' />}
+                  />
                 </Switch>
               </BrowserRouter>
               <Sidebar />

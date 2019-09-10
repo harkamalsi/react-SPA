@@ -9,7 +9,7 @@ const Maindisplay = props => {
 const WelcomeMessage = props => {
   return (
     <div className='Maindisplay'>
-      <h2>Velkommen{null && `kombinasjonen nr ${props.number}`}!</h2>
+      <h2>Velkommen! {props.number && `Kombinasjon: ${props.number}`}</h2>
       <p>Vennligst velg tre kategorier per medietype i vindu til høyre.</p>
     </div>
   );
