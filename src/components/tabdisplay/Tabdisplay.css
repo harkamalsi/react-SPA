@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+button {
+  border: none;
+}
+
 .combination {
   height: 100px;
   width: 100%;

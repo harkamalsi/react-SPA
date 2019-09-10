@@ -1,6 +1,6 @@
 .Sidebar {
   border: rgb(4, 0, 255) dashed 1px;
-  width: 20vw;
+  width: 25vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

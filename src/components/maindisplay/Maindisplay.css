@@ -1,6 +1,6 @@
 .Maindisplay {
   border: rgb(0, 255, 255) dashed 1px;
-  width: 80vw;
+  width: 70vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
