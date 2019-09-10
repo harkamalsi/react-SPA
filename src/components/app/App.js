@@ -22,9 +22,9 @@ class App extends React.Component {
         </header>
         <main>
           <div className='Box'>
-            <div className='InnerBox'>
-              <BrowserRouter>
-                <Tabdisplay onClick={this.handleTabClick} />
+            <BrowserRouter>
+              <Tabdisplay onClick={this.handleTabClick} />
+              <div className='InnerBox'>
                 <Switch>
                   <Route exact path='/' component={Maindisplay} />
                   <Route
@@ -48,9 +48,9 @@ class App extends React.Component {
                     render={props => <Maindisplay {...props} number='4' />}
                   />
                 </Switch>
-              </BrowserRouter>
-              <Sidebar />
-            </div>
+                <Sidebar />
+              </div>
+            </BrowserRouter>
           </div>
         </main>
         <footer>
