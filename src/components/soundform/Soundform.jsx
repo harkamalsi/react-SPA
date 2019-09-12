@@ -22,48 +22,63 @@ const pianoSongs = [piano1, piano2, piano3, piano4];
 const natureSounds = [nature1, nature2, nature3, nature4];
 const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 
+var category;
 
-
-
-const Soundform = props => {
-    let category = props.category;
+const AudioPlayer = props => {
     let soundTrack = props.soundTrack;
-    
-    let audioPlayer;
+    console.log(category)
+
+    if (category === 'nature') {
+        soundTrack = natureSounds[props.combination];
+    } else if (category === 'piano') {
+        soundTrack = pianoSongs[props.combination];
+    } else if (category === 'citylife') {
+        soundTrack = citylifeSounds[props.combination];
+    }
 
     return (
         <div className='sound'>
-            {console.log(props.file)}
-            <audio id="audioPlayer" src={props.file} type="audio/mpeg" controls loop />;
+            {console.log(soundTrack)}
+            <audio preload="auto" src={soundTrack} type="audio/mpeg" controls loop />;
         </div>
     );
 }
 
 
 
-/*
-<div className='sounds category'>
-                    <h3>Lyd</h3>
-                    <form>
-                        <label>
-                            Nature
-                            <input type="radio" value="nature" onChange={handleChange} name="category" />
-                        </label>
+const Soundform = props => {
+   
 
-                        <label>
-                            Piano
-                            <input type="radio" value="piano" onChange={handleChange} name="category" />
-                        </label>
+    return (
+        <div className='sounds category'>
+            <h3>Lyd</h3>
+            <form>
+                <label>
+                    Nature
+                    <input type="radio" value="nature" onChange={() => {category = "nature"}} name="category" />
+                </label>
 
-                        <label>
-                            Citylife
-                            <input type="radio" value="citylife" onChange={handleChange} name="category" />
-                        </label>
-                    </form>
-                </div>
-                */  
+                <label>
+                    Piano
+                    <input type="radio" value="piano" onChange={() => {category = "piano"}} name="category" />
+                </label>
 
-export default Soundform;
+                <label>
+                    Citylife
+                    <input type="radio" value="citylife" onChange={() => {category = "citylife"}} name="category" />
+                </label>
+            </form>
+        </div >
+    );
+}
+
+
+
+
+export {
+    Soundform,
+    AudioPlayer
+}
 
 
 /*
@@ -82,7 +97,7 @@ class Soundform extends Component {
 
     handleChange(event) {
         let category = event.target.value;
-        var soundTrack; 
+        var soundTrack;
         if (category === "nature"){
             soundTrack = this.getSong(natureSounds);
         } else if (category === "piano"){
@@ -93,7 +108,7 @@ class Soundform extends Component {
         this.setState({ song: soundTrack, category: event.target.value });
 
         console.log(this.state.song);
-        
+
         let audioPlayer = document.getElementById("audioPlayer");
         audioPlayer.load();
     }
