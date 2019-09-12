@@ -13,7 +13,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className='Sidebar'>
-        <h3>This is Sidebar {this.props.name}!</h3>
+        <h3>Kategorier</h3>
         <Soundform/>
       </div>
     );

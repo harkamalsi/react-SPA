@@ -7,8 +7,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
 class App extends React.Component {
-  state = {};
 
+  constructor(props){
+    super(props);
+    this.state = {
+      
+    }
+  }
+  
   handleTabClick = e => {
     return '' && e.target.value;
   };

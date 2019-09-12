@@ -26,20 +26,20 @@ var category;
 
 const AudioPlayer = props => {
     let soundTrack = props.soundTrack;
-    console.log(category)
+    console.log("Category: " + category + " Combination: " + props.combination);
 
     if (category === 'nature') {
-        soundTrack = natureSounds[props.combination];
+        soundTrack = natureSounds[props.combination-1];
     } else if (category === 'piano') {
-        soundTrack = pianoSongs[props.combination];
+        soundTrack = pianoSongs[props.combination-1];
     } else if (category === 'citylife') {
-        soundTrack = citylifeSounds[props.combination];
+        soundTrack = citylifeSounds[props.combination-1];
     }
 
     return (
         <div className='sound'>
             {console.log(soundTrack)}
-            <audio preload="auto" src={soundTrack} type="audio/mpeg" controls loop />;
+            <audio preload="auto" src={soundTrack} type="audio/mpeg" controls loop autoPlay />;
         </div>
     );
 }
@@ -47,10 +47,9 @@ const AudioPlayer = props => {
 
 
 const Soundform = props => {
-   
 
     return (
-        <div className='sounds category'>
+        <div className='catForm'>
             <h3>Lyd</h3>
             <form>
                 <label>
@@ -147,20 +146,4 @@ class Soundform extends Component {
 }
 
 export default Soundform;
-
-
-<label>
-    Nature
-    <input type="radio" value={natureSounds[Math.floor(Math.random() * 4)]} checked={this.state.category === 'nature'} onChange={this.handleChange} name="nature" />
-</label>
-
-    <label>
-        Piano
-        <input type="radio" value={pianoSongs[Math.floor(Math.random() * 4)]} checked={this.state.category === 'piano'} onChange={this.handleChange} name="piano" />
-    </label>
-
-    <label>
-        Citylife
-        <input type="radio" value={citylifeSounds[Math.floor(Math.random() * 4)]} checked={this.state.category === 'citylife'} onChange={this.handleChange} name="citylife" />
-    </label>
 */
