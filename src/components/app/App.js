@@ -1,6 +1,7 @@
 import React from 'react';
 import Maindisplay from '../maindisplay/Maindisplay';
 import Sidebar from '../sidebar/Sidebar';
+import Soundform from '../soundform/Soundform';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
