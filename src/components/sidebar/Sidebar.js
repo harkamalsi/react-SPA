@@ -14,7 +14,6 @@ class Sidebar extends Component {
     return (
       <div className='Sidebar'>
         <h3>This is Sidebar {this.props.name}!</h3>
-        <Soundform/>
       </div>
     );
   }

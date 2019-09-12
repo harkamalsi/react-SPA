@@ -23,17 +23,23 @@ const natureSounds = [nature1, nature2, nature3, nature4];
 const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 
 
+
+
 const Soundform = props => {
     let category = props.category;
     let soundTrack = props.soundTrack;
     
+    let audioPlayer;
+
     return (
         <div className='sound'>
-                {console.log(props.file)}
-                <audio id="audioPlayer" src={props.file} type="audio/mpeg" controls loop/>
+            {console.log(props.file)}
+            <audio id="audioPlayer" src={props.file} type="audio/mpeg" controls loop />;
         </div>
     );
 }
+
+
 
 /*
 <div className='sounds category'>
@@ -58,6 +64,7 @@ const Soundform = props => {
                 */  
 
 export default Soundform;
+
 
 /*
 class Soundform extends Component {
