@@ -23,7 +23,43 @@ const natureSounds = [nature1, nature2, nature3, nature4];
 const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 
 
+const Soundform = props => {
+    let category = props.category;
+    let soundTrack = props.soundTrack;
+    
+    return (
+        <div className='sound'>
+                {console.log(props.file)}
+                <audio id="audioPlayer" src={props.file} type="audio/mpeg" controls loop/>
+        </div>
+    );
+}
 
+/*
+<div className='sounds category'>
+                    <h3>Lyd</h3>
+                    <form>
+                        <label>
+                            Nature
+                            <input type="radio" value="nature" onChange={handleChange} name="category" />
+                        </label>
+
+                        <label>
+                            Piano
+                            <input type="radio" value="piano" onChange={handleChange} name="category" />
+                        </label>
+
+                        <label>
+                            Citylife
+                            <input type="radio" value="citylife" onChange={handleChange} name="category" />
+                        </label>
+                    </form>
+                </div>
+                */  
+
+export default Soundform;
+
+/*
 class Soundform extends Component {
     constructor(props) {
         super(props);
@@ -53,7 +89,6 @@ class Soundform extends Component {
         
         let audioPlayer = document.getElementById("audioPlayer");
         audioPlayer.load();
-
     }
 
     // velger tilfeldig sang fra en av listene
@@ -91,7 +126,7 @@ class Soundform extends Component {
 
 export default Soundform;
 
-/*
+
 <label>
     Nature
     <input type="radio" value={natureSounds[Math.floor(Math.random() * 4)]} checked={this.state.category === 'nature'} onChange={this.handleChange} name="nature" />
