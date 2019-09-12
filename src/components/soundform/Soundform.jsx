@@ -18,9 +18,9 @@ import citylife4 from '../../assets/sounds/citylife/4.mp3';
 
 //music + Math.ceil(Math.random()*4) + '.mp3'
 
-var pianoSongs = [piano1, piano2, piano3, piano4];
-var natureSounds = [nature1, nature2, nature3, nature4];
-var citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
+const pianoSongs = [piano1, piano2, piano3, piano4];
+const natureSounds = [nature1, nature2, nature3, nature4];
+const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 
 
 
@@ -36,13 +36,29 @@ class Soundform extends Component {
 
     }
 
-    handleChange(event){
-        alert('Value Updated: ' + event.target.value + " From: " + event.target.name);
-        this.setState({song: event.target.value, category: event.target.name});        
+
+    handleChange(event) {
+        let category = event.target.value;
+        var soundTrack; 
+        if (category === "nature"){
+            soundTrack = this.getSong(natureSounds);
+        } else if (category === "piano"){
+            soundTrack = this.getSong(pianoSongs);
+        } else {
+            soundTrack = this.getSong(citylifeSounds)
+        }
+        this.setState({ song: soundTrack, category: event.target.value });
+
         console.log(this.state.song);
+        
         let audioPlayer = document.getElementById("audioPlayer");
         audioPlayer.load();
-        
+
+    }
+
+    // velger tilfeldig sang fra en av listene
+    getSong(category){
+        return category[Math.floor(Math.random() * 4)];
     }
 
     render() {
@@ -53,26 +69,41 @@ class Soundform extends Component {
                     <form>
                         <label>
                             Nature
-                            <input type="radio" value={natureSounds[Math.floor(Math.random() * 4)]} checked={this.state.category == 'nature'} onChange={this.handleChange} name="nature"/>
+                            <input type="radio" value="nature" onChange={this.handleChange} name="category" />
                         </label>
 
                         <label>
                             Piano
-                            <input type="radio" value={pianoSongs[Math.floor(Math.random() * 4)]} checked={this.state.category == 'piano'} onChange={this.handleChange} name="piano"/>
+                            <input type="radio" value="piano" onChange={this.handleChange} name="category" />
                         </label>
 
                         <label>
                             Citylife
-                            <input type="radio" value={citylifeSounds[Math.floor(Math.random() * 4)]} checked={this.state.category == 'citylife'} onChange={this.handleChange} name="citylife"/>
+                            <input type="radio" value="citylife" onChange={this.handleChange} name="category" />
                         </label>
                     </form>
                 </div>
-
-                <audio id="audioPlayer" src={this.state.song} type="audio/mpeg" controls loop>
-                </audio>
+                <audio id="audioPlayer" src={this.state.song} type="audio/mpeg" controls loop/>
             </div>
         );
     }
 }
 
 export default Soundform;
+
+/*
+<label>
+    Nature
+    <input type="radio" value={natureSounds[Math.floor(Math.random() * 4)]} checked={this.state.category === 'nature'} onChange={this.handleChange} name="nature" />
+</label>
+
+    <label>
+        Piano
+        <input type="radio" value={pianoSongs[Math.floor(Math.random() * 4)]} checked={this.state.category === 'piano'} onChange={this.handleChange} name="piano" />
+    </label>
+
+    <label>
+        Citylife
+        <input type="radio" value={citylifeSounds[Math.floor(Math.random() * 4)]} checked={this.state.category === 'citylife'} onChange={this.handleChange} name="citylife" />
+    </label>
+*/
