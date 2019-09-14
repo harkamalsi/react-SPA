@@ -5,10 +5,7 @@ import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {};
 
   handleTabClick = e => {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
