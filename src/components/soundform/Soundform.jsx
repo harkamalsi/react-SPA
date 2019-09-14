@@ -14,8 +14,6 @@ import citylife2 from '../../assets/sounds/citylife/2.mp3';
 import citylife3 from '../../assets/sounds/citylife/3.mp3';
 import citylife4 from '../../assets/sounds/citylife/4.mp3';
 
-
-
 //music + Math.ceil(Math.random()*4) + '.mp3'
 
 const pianoSongs = [piano1, piano2, piano3, piano4];
@@ -25,60 +23,78 @@ const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 var category;
 
 const AudioPlayer = props => {
-    let soundTrack = props.soundTrack;
-    console.log("Category: " + category + " Combination: " + props.combination);
+  let soundTrack = props.soundTrack;
+  console.log('Category: ' + category + ' Combination: ' + props.combination);
 
-    if (category === 'nature') {
-        soundTrack = natureSounds[props.combination-1];
-    } else if (category === 'piano') {
-        soundTrack = pianoSongs[props.combination-1];
-    } else if (category === 'citylife') {
-        soundTrack = citylifeSounds[props.combination-1];
-    }
+  if (category === 'nature') {
+    soundTrack = natureSounds[props.combination - 1];
+  } else if (category === 'piano') {
+    soundTrack = pianoSongs[props.combination - 1];
+  } else if (category === 'citylife') {
+    soundTrack = citylifeSounds[props.combination - 1];
+  }
 
-    return (
-        <div className='sound'>
-            {console.log(soundTrack)}
-            <audio preload="auto" src={soundTrack} type="audio/mpeg" controls loop autoPlay />;
-        </div>
-    );
-}
-
-
+  return (
+    <div className='sound'>
+      {console.log(soundTrack)}
+      <audio
+        preload='auto'
+        src={soundTrack}
+        type='audio/mpeg'
+        controls
+        loop
+        autoPlay
+      />
+    </div>
+  );
+};
 
 const Soundform = props => {
+  return (
+    <div className='catForm'>
+      <h3>Lyd</h3>
+      <form>
+        <label>
+          Nature
+          <input
+            type='radio'
+            value='nature'
+            onChange={() => {
+              category = 'nature';
+            }}
+            name='category'
+          />
+        </label>
 
-    return (
-        <div className='catForm'>
-            <h3>Lyd</h3>
-            <form>
-                <label>
-                    Nature
-                    <input type="radio" value="nature" onChange={() => {category = "nature"}} name="category" />
-                </label>
+        <label>
+          Piano
+          <input
+            type='radio'
+            value='piano'
+            onChange={() => {
+              category = 'piano';
+            }}
+            name='category'
+          />
+        </label>
 
-                <label>
-                    Piano
-                    <input type="radio" value="piano" onChange={() => {category = "piano"}} name="category" />
-                </label>
+        <label>
+          Citylife
+          <input
+            type='radio'
+            value='citylife'
+            onChange={() => {
+              category = 'citylife';
+            }}
+            name='category'
+          />
+        </label>
+      </form>
+    </div>
+  );
+};
 
-                <label>
-                    Citylife
-                    <input type="radio" value="citylife" onChange={() => {category = "citylife"}} name="category" />
-                </label>
-            </form>
-        </div >
-    );
-}
-
-
-
-
-export {
-    Soundform,
-    AudioPlayer
-}
-
+export { Soundform, AudioPlayer };
 
 /*
 class Soundform extends Component {
