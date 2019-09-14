@@ -12,10 +12,7 @@ const WelcomeMessage = props => {
     <div className='Maindisplay'>
       <h2>Velkommen! {props.combi && `Kombinasjon: ${props.combi}`}</h2>
       <p>Vennligst velg tre kategorier per medietype i vindu til høyre.</p>
-      <AudioPlayer
-        combination={this.props.number}
-        category={this.props.category}
-      />
+      <AudioPlayer combination={props.number} category={props.category} />
     </div>
   );
 };
