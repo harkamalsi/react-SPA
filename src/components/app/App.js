@@ -10,7 +10,9 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      
+      textCategory : null,
+      pictureCategory : null,
+      soundCategory : null,
     }
   }
   
@@ -18,7 +20,9 @@ class App extends React.Component {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
     this.setState({ comibation: e.target.value });
   };
+  updateTextCategory =(value)=>{
 
+  };
   render() {
     return (
       <div className='App'>
@@ -32,7 +36,7 @@ class App extends React.Component {
             <Tabdisplay onClick={this.handleTabClick} />
             <div className='InnerBox'>
               <Maindisplay combi={this.state.comibation} />
-              <Sidebar />
+              <Sidebar sendTextCategory ={this.updateTextCategory} textCat = {this.state.textCategory}/>
             </div>
           </div>
         </main>

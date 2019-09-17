@@ -16,6 +16,9 @@ class Sidebar extends Component {
     };
     //this.updateTextData = this.updateTextData.bind(this);
   }
+  componentDidUpdate(){
+    this.props.sendTextCategory(this.state.textCategory);
+  }
   updatePictureCategory = (picture) =>{
     this.setState({
       pictureCategory : picture,
@@ -25,6 +28,7 @@ class Sidebar extends Component {
     this.setState({
       textCategory : text,
     });
+
   }
 
   render() {
