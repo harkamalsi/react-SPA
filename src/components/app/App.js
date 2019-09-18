@@ -1,7 +1,7 @@
 import React from 'react';
 import Maindisplay from '../maindisplay/Maindisplay';
 import Sidebar from '../sidebar/Sidebar';
-import Soundform from '../soundform/Soundform';
+import Soundform from '../soundform/AudioPlayer';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
@@ -12,8 +12,8 @@ class App extends React.Component {
       textCategory: null,
       pictureCategory: null,
       soundCategory: null,
-      selectedTab: null
-    };
+      soundTrack: null,
+    }
   }
 
   handleTabClick = e => {
@@ -35,6 +35,8 @@ class App extends React.Component {
       soundCategory: sound
     });
   };
+
+
   render() {
     return (
       <div className='App'>
@@ -47,12 +49,8 @@ class App extends React.Component {
           <div className='Box'>
             <Tabdisplay onClick={this.handleTabClick} />
             <div className='InnerBox'>
-              <Maindisplay combi={this.state.selectedTab} />
-              <Sidebar
-                sendTextCategory={this.updateTextCategory}
-                sendPictureCategory={this.updatePictureCategory}
-                sendSoundCategory={this.updateSoundCategory}
-              />
+              <Maindisplay combi={this.state.combination} soundCategory={this.state.soundCategory} soundTrack={this.state.soundTrack} />
+              <Sidebar sendTextCategory={this.updateTextCategory} sendPictureCategory={this.updatePictureCategory} sendSoundCategory={this.updateSoundCategory} />
             </div>
           </div>
         </main>
