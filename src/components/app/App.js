@@ -6,7 +6,6 @@ import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -19,23 +18,22 @@ class App extends React.Component {
 
   handleTabClick = e => {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
-    this.setState({ combination: e.target.value });
+    this.setState({ selectedTab: e.target.value });
   };
-  updateTextCategory = (text) => {
+  updateTextCategory = text => {
     this.setState({
-      textCategory: text,
-    })
+      textCategory: text
+    });
   };
-  updatePictureCategory = (picture) => {
+  updatePictureCategory = picture => {
     this.setState({
-      pictureCategory: picture,
-    })
+      pictureCategory: picture
+    });
   };
-  updateSoundCategory = (sound) => {
+  updateSoundCategory = sound => {
     this.setState({
-      soundCategory: sound,
-      soundTrack: 1,
-    })
+      soundCategory: sound
+    });
   };
 
 
