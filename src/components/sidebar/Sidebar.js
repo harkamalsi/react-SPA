@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
-import { Soundform } from '../soundform/Soundform';
+import { Soundform } from '../soundform/AudioPlayer';
 import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Maindisplay.css';
-import { AudioPlayer } from '../soundform/Soundform';
+import AudioPlayer  from '../soundform/AudioPlayer';
 
 const Maindisplay = props => {
   return (

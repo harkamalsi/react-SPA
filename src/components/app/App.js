@@ -1,7 +1,7 @@
 import React from 'react';
 import Maindisplay from '../maindisplay/Maindisplay';
 import Sidebar from '../sidebar/Sidebar';
-import Soundform from '../soundform/Soundform';
+import Soundform from '../soundform/AudioPlayer';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
