@@ -20,8 +20,20 @@ class App extends React.Component {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
     this.setState({ comibation: e.target.value });
   };
-  updateTextCategory =(value)=>{
-
+  updateTextCategory=(text)=>{
+    this.setState({
+      textCategory : text,
+    })
+  };
+  updatePictureCategory=(picture)=>{
+    this.setState({
+      pictureCategory : picture,
+    })
+  };
+  updateSoundCategory=(sound)=>{
+    this.setState({
+      soundCategory : sound,
+    })
   };
   render() {
     return (
@@ -36,7 +48,7 @@ class App extends React.Component {
             <Tabdisplay onClick={this.handleTabClick} />
             <div className='InnerBox'>
               <Maindisplay combi={this.state.comibation} />
-              <Sidebar sendTextCategory ={this.updateTextCategory} textCat = {this.state.textCategory}/>
+              <Sidebar sendTextCategory ={this.updateTextCategory} sendPictureCategory ={this.updatePictureCategory} sendSoundCategory ={this.updateSoundCategory}/>
             </div>
           </div>
         </main>
