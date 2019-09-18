@@ -13,7 +13,8 @@ class App extends React.Component {
       pictureCategory: null,
       soundCategory: null,
       soundTrack: null,
-    }
+      selectedTab: null
+    };
   }
 
   handleTabClick = e => {
@@ -36,7 +37,6 @@ class App extends React.Component {
     });
   };
 
-
   render() {
     return (
       <div className='App'>
@@ -49,8 +49,16 @@ class App extends React.Component {
           <div className='Box'>
             <Tabdisplay onClick={this.handleTabClick} />
             <div className='InnerBox'>
-              <Maindisplay combi={this.state.combination} soundCategory={this.state.soundCategory} soundTrack={this.state.soundTrack} />
-              <Sidebar sendTextCategory={this.updateTextCategory} sendPictureCategory={this.updatePictureCategory} sendSoundCategory={this.updateSoundCategory} />
+              <Maindisplay
+                combi={this.state.combination}
+                soundCategory={this.state.soundCategory}
+                soundTrack={this.state.soundTrack}
+              />
+              <Sidebar
+                sendTextCategory={this.updateTextCategory}
+                sendPictureCategory={this.updatePictureCategory}
+                sendSoundCategory={this.updateSoundCategory}
+              />
             </div>
           </div>
         </main>
