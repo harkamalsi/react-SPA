@@ -1,43 +1,18 @@
 import React from 'react';
+import TabChoice from '../ui/Tabchoice';
 import './Tabdisplay.css';
 
-function Tabdisplay(props) {
-  return (
-    <div className='Tabdisplay'>
-      <button
-        className='combination'
-        id='combination1'
-        value={1}
-        onClick={props.onClick}
-      >
-        Kombinasjon1
-      </button>
-      <button
-        className='combination'
-        id='combination2'
-        value={2}
-        onClick={props.onClick}
-      >
-        Kombinasjon2
-      </button>
-      <button
-        className='combination'
-        id='combination3'
-        value={3}
-        onClick={props.onClick}
-      >
-        Kombinasjon3
-      </button>
-      <button
-        className='combination'
-        id='combination4'
-        value={4}
-        onClick={props.onClick}
-      >
-        Kombinasjon4
-      </button>
-    </div>
-  );
-}
+const Tabdisplay = props => {
+  return <div className='Tabdisplay'>{createTabChoices(props)}</div>;
+};
+
+const createTabChoices = props => {
+  let choices = [];
+  for (let i = 1; i <= 4; i++) {
+    choices.push(<TabChoice tabNumber={i} onClick={props.onClick} value={i} />);
+  }
+
+  return choices;
+};
 
 export default Tabdisplay;
