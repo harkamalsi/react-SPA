@@ -1,0 +1,38 @@
+button {
+  border: none;
+}
+
+.combination {
+  height: 100px;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.combination:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+#combination1 {
+  background-color: green;
+}
+
+#combination2 {
+  background-color: palevioletred;
+}
+
+#combination3 {
+  background-color: powderblue;
+}
+
+#combination4 {
+  background-color: orange;
+}
