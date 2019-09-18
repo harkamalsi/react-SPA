@@ -13,28 +13,57 @@ class App extends React.Component {
       textCategory : null,
       pictureCategory : null,
       soundCategory : null,
+      selectedTab :null,
+
+      textData : [],
     }
   }
   
   handleTabClick = e => {
-    // e.target.value will help us decide which comibation to show on the mainDisplay component.
-    this.setState({ comibation: e.target.value });
+    // e.target.value will help us decide which selectedTab to show on the mainDisplay component.
+    this.setState({ selectedTab: e.target.value });
   };
+
   updateTextCategory=(text)=>{
     this.setState({
       textCategory : text,
     })
   };
+
   updatePictureCategory=(picture)=>{
     this.setState({
       pictureCategory : picture,
     })
   };
+
   updateSoundCategory=(sound)=>{
     this.setState({
       soundCategory : sound,
     })
   };
+
+  fetchText(){
+    fetch("../assets/text/christmas.json")
+      .then(res => res.json())
+      .then(
+        (result) =>{
+          console.log("hello");
+          this.setState({
+            textData : result.members,
+          })
+        },
+        (error) =>{
+          console.log(error, "error while loading textdata from server");
+        }
+      )
+  }
+
+  componentWillUpdate(){
+    if (this.state.selectedTab !== null){
+      this.fetchText();
+    }
+    
+  }
   render() {
     return (
       <div className='App'>
