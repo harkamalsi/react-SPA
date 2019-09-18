@@ -7,34 +7,38 @@ import './App.css';
 
 class App extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      textCategory : null,
-      pictureCategory : null,
-      soundCategory : null,
+      textCategory: null,
+      pictureCategory: null,
+      soundCategory: null,
+      soundTrack: null,
     }
   }
-  
+
   handleTabClick = e => {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
-    this.setState({ comibation: e.target.value });
+    this.setState({ combination: e.target.value });
   };
-  updateTextCategory=(text)=>{
+  updateTextCategory = (text) => {
     this.setState({
-      textCategory : text,
+      textCategory: text,
     })
   };
-  updatePictureCategory=(picture)=>{
+  updatePictureCategory = (picture) => {
     this.setState({
-      pictureCategory : picture,
+      pictureCategory: picture,
     })
   };
-  updateSoundCategory=(sound)=>{
+  updateSoundCategory = (sound) => {
     this.setState({
-      soundCategory : sound,
+      soundCategory: sound,
+      soundTrack: 1,
     })
   };
+
+
   render() {
     return (
       <div className='App'>
@@ -47,8 +51,8 @@ class App extends React.Component {
           <div className='Box'>
             <Tabdisplay onClick={this.handleTabClick} />
             <div className='InnerBox'>
-              <Maindisplay combi={this.state.comibation} />
-              <Sidebar sendTextCategory ={this.updateTextCategory} sendPictureCategory ={this.updatePictureCategory} sendSoundCategory ={this.updateSoundCategory}/>
+              <Maindisplay combi={this.state.combination} soundCategory={this.state.soundCategory} soundTrack={this.state.soundTrack} />
+              <Sidebar sendTextCategory={this.updateTextCategory} sendPictureCategory={this.updatePictureCategory} sendSoundCategory={this.updateSoundCategory} />
             </div>
           </div>
         </main>

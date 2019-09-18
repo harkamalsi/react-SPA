@@ -23,15 +23,18 @@ const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 var category;
 
 const AudioPlayer = props => {
-  let soundTrack = props.soundTrack;
-  console.log('Category: ' + category + ' Combination: ' + props.combination);
+  let soundTrack;
+  let soundCategory = props.soundCategory;
 
-  if (category === 'nature') {
-    soundTrack = natureSounds[props.combination - 1];
-  } else if (category === 'piano') {
-    soundTrack = pianoSongs[props.combination - 1];
-  } else if (category === 'citylife') {
-    soundTrack = citylifeSounds[props.combination - 1];
+  console.log('Category: ' + soundCategory + ' Combination: ' + props.soundTrack);
+
+    console.log(soundCategory === 'Nature');
+  if (soundCategory === 'Nature') {
+    soundTrack = natureSounds[props.soundTrack - 1];
+  } else if (soundCategory === 'Piano') {
+    soundTrack = pianoSongs[props.soundTrack - 1];
+  } else if (soundCategory === 'City Life') {
+    soundTrack = citylifeSounds[props.soundTrack - 1];
   }
 
   return (
