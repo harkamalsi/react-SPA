@@ -33,7 +33,8 @@ class App extends React.Component {
   };
   updateSoundCategory = sound => {
     this.setState({
-      soundCategory: sound
+      soundCategory: sound,
+      soundTrack: 1
     });
   };
 
@@ -50,7 +51,7 @@ class App extends React.Component {
             <Tabdisplay onClick={this.handleTabClick} />
             <div className='InnerBox'>
               <Maindisplay
-                combi={this.state.combination}
+                selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
                 soundTrack={this.state.soundTrack}
               />
