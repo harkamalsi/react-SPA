@@ -47,12 +47,19 @@ class App extends React.Component {
     if (localStorage.getItem('combinations') != null) {
       localStorage.removeItem('combinations');
       this.setState({ combinations: [] });
-      console.log(this.state.combinations);
     }
 
-    const combinations = ['test1', 'test2', 'test3'];
-    localStorage.setItem('combinations', JSON.stringify(combinations));
+    const combinations = {
+      selectedTab: this.state.selectedTab,
+      pictureCategory: this.state.pictureCategory,
+      pictureFile: this.state.pictureFile,
+      soundCategory: this.state.soundCategory,
+      soundTrack: this.state.soundTrack,
+      textCategory: this.state.textCategory,
+      textFile: this.state.text
+    };
     this.setState({ combinations });
+    localStorage.setItem('combinations', JSON.stringify(combinations));
   };
 
   getFavorites = () => {
