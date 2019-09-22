@@ -1,43 +1,67 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 
 header {
   background-color: #282c34;
-  display: flex;
   height: 10vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 main {
   min-height: 100vh;
-  flex: 1;
-  padding: 5rem 10rem 0 10rem;
 }
 
-.Box {
-  border: black dashed 1px;
-  height: 60vh;
-  width: 70vw;
-  display: flex;
-  flex-direction: column;
-}
-
-.InnerBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* Parent need height for height=100% to work*/
+.tabs-bar {
+  grid-area: tab;
+  background-color: orange;
   height: 100%;
 }
 
+.maindisp { 
+  grid-area: main;
+  background-color: red;
+}
+
+
+.sidebar-category{
+  grid-area: cat;
+  background-color: aquamarine;
+}
+
+.grid-container{
+  border: black dashed 1px;
+  height: 70vh;
+  width: 100%;
+  /*width: 70vw;*/
+  display:grid; 
+  grid-template-areas: 'tab tab tab'
+    'main main cat';
+
+  grid-template-rows: auto auto;
+    background-color: #2196F3;
+
+
+
+}
+
+.grid-container > div {
+  border: 3px solid black;
+  
+}
+
+
+
+
+
+
 footer {
+  text-align:center;
   background-color: #282c34;
   color: white;
 }

@@ -3,7 +3,7 @@ import TabChoice from '../ui/Tabchoice';
 import './Tabdisplay.css';
 
 const Tabdisplay = props => {
-  return <div className='Tabdisplay'>{createTabChoices(props)}</div>;
+  return <div className='tabdisplay'>{createTabChoices(props)}</div>;
 };
 
 const createTabChoices = props => {

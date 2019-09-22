@@ -4,7 +4,7 @@ import AudioPlayer from '../soundform/AudioPlayer';
 
 const Maindisplay = props => {
   return (
-    <div className='Maindisplay'>
+    <div className='maindisplay'>
       <WelcomeMessage
         selectedTab={props.selectedTab}
         soundCategory={props.soundCategory}

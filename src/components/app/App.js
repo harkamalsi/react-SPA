@@ -68,9 +68,11 @@ class App extends React.Component {
           </div>
         </header>
         <main>
-          <div className='Box'>
-            <Tabdisplay onClick={this.handleTabClick} />
-            <div className='InnerBox'>
+          <div className="grid-container">
+            <div className="tabs-bar">
+              <Tabdisplay onClick={this.handleTabClick} />
+            </div>
+              <div className="maindisp">
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
@@ -79,12 +81,14 @@ class App extends React.Component {
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
               />
+              </div>
+              <div className="sidebar-category">
               <Sidebar
                 sendTextCategory={this.updateTextCategory}
                 sendPictureCategory={this.updatePictureCategory}
                 sendSoundCategory={this.updateSoundCategory}
               />
-            </div>
+              </div>
           </div>
         </main>
         <footer>
