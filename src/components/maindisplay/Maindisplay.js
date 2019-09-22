@@ -11,10 +11,10 @@ const Maindisplay = props => {
         soundTrack={props.soundTrack}
       />
       <div className='favorite-buttons'>
-        <button className='btn delete' onClick={props.deleteFavorite}>
+        {/* <button className='btn delete' onClick={props.deleteFavorite}>
           <h3>Slett favoritt kombinasjon</h3>
-        </button>
-        <button className='btn delete' onClick={props.getFavorite}>
+        </button> */}
+        <button className='btn delete' onClick={props.getFavorites}>
           <h3>Hent favoritt kombinasjon</h3>
         </button>
         <button className='btn favorite' onClick={props.handleFavorite}>

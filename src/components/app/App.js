@@ -44,18 +44,19 @@ class App extends React.Component {
   };
 
   handleFavorite = () => {
+    if (localStorage.getItem('combinations') != null) {
+      localStorage.removeItem('combinations');
+      this.setState({ combinations: [] });
+      console.log(this.state.combinations);
+    }
+
     const combinations = ['test1', 'test2', 'test3'];
     localStorage.setItem('combinations', JSON.stringify(combinations));
     this.setState({ combinations });
   };
 
-  getFavorite = () => {
+  getFavorites = () => {
     console.log(this.state.combinations);
-  };
-
-  deleteFavorite = () => {
-    localStorage.removeItem('combinations');
-    this.setState({ combinations: [] });
   };
 
   render() {
@@ -75,9 +76,8 @@ class App extends React.Component {
                 soundCategory={this.state.soundCategory}
                 soundTrack={this.state.soundTrack}
                 handleFavorite={this.handleFavorite}
-                getFavorite={this.getFavorite}
+                getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
-                combinations={this.state.combinations}
               />
               <Sidebar
                 sendTextCategory={this.updateTextCategory}
