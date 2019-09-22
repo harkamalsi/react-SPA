@@ -10,7 +10,10 @@ const Tabchoice = props => {
         value={props.value}
         onClick={props.onClick}
       >
-        {`Kombinasjon ${props.tabNumber}`}
+        
+        <div><span id="tab-text">Kombinasjon</span> {props.tabNumber}</div>
+        
+
       </button>
     </div>
   );

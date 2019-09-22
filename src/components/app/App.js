@@ -61,12 +61,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='App'>
-        <header>
-          <div>
-            <h1>This is header</h1>
-          </div>
-        </header>
+      <div className='app'>
+        
         <main>
           <div className="grid-container">
             <div className="tabs-bar">
@@ -91,9 +87,6 @@ class App extends React.Component {
               </div>
           </div>
         </main>
-        <footer>
-          <h2>This is footer</h2>
-        </footer>
       </div>
     );
   }
