@@ -38,9 +38,18 @@ class App extends React.Component {
   };
   updateSoundCategory = sound => {
     this.setState({
-      soundCategory: sound,
-      soundTrack: 1
+      soundCategory: sound
     });
+    this.sessionSaveState();
+  };
+
+  sessionSaveState = () => {
+    let arr = [];
+    if (sessionStorage.getItem('Category')) {
+      arr.push(sessionStorage.getItem('Category'));
+    }
+    arr.push(this.state.soundCategory);
+    sessionStorage.setItem('Category', arr);
   };
 
   handleFavorite = () => {
