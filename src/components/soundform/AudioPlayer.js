@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Soundform.css';
 //import music from '../../assets/sounds/';
 import piano1 from '../../assets/sounds/piano/1.mp3';
@@ -20,13 +20,9 @@ const pianoSongs = [piano1, piano2, piano3, piano4];
 const natureSounds = [nature1, nature2, nature3, nature4];
 const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 
-var category;
-
 const AudioPlayer = props => {
   let soundTrack;
   let soundCategory = props.soundCategory;
-
-  console.log('Category: ' + soundCategory + ' Combination: ' + props.soundTrack);
 
   if (soundCategory === 'Nature') {
     soundTrack = natureSounds[props.soundTrack - 1];
@@ -38,7 +34,6 @@ const AudioPlayer = props => {
 
   return (
     <div className='sound'>
-      {console.log(soundTrack)}
       <audio
         preload='auto'
         src={soundTrack}
@@ -51,7 +46,4 @@ const AudioPlayer = props => {
   );
 };
 
-
-
 export default AudioPlayer;
-

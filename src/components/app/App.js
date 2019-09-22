@@ -1,7 +1,6 @@
 import React from 'react';
 import Maindisplay from '../maindisplay/Maindisplay';
 import Sidebar from '../sidebar/Sidebar';
-import Soundform from '../soundform/AudioPlayer';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
@@ -13,9 +12,15 @@ class App extends React.Component {
       pictureCategory: null,
       soundCategory: null,
       soundTrack: null,
-      selectedTab: null
+      selectedTab: null,
+      combinations: null
     };
   }
+
+  componentDidMount = () => {
+    const combinations = JSON.parse(localStorage.getItem('combinations'));
+    this.setState({ combinations });
+  };
 
   handleTabClick = e => {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
@@ -38,6 +43,22 @@ class App extends React.Component {
     });
   };
 
+  handleFavorite = () => {
+    if (localStorage.getItem('combinations') != null) {
+      localStorage.removeItem('combinations');
+      this.setState({ combinations: [] });
+      console.log(this.state.combinations);
+    }
+
+    const combinations = ['test1', 'test2', 'test3'];
+    localStorage.setItem('combinations', JSON.stringify(combinations));
+    this.setState({ combinations });
+  };
+
+  getFavorites = () => {
+    console.log(this.state.combinations);
+  };
+
   render() {
     return (
       <div className='App'>
@@ -54,6 +75,9 @@ class App extends React.Component {
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
                 soundTrack={this.state.soundTrack}
+                handleFavorite={this.handleFavorite}
+                getFavorites={this.getFavorites}
+                deleteFavorite={this.deleteFavorite}
               />
               <Sidebar
                 sendTextCategory={this.updateTextCategory}
