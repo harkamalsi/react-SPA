@@ -11,7 +11,9 @@ class App extends React.Component {
       textCategory: null,
       pictureCategory: null,
       soundCategory: null,
-      soundTrack: null,
+      pictureFile: null,
+      textFile: null,
+      soundFile: null,
       selectedTab: null,
       combinations: null
     };
@@ -40,20 +42,78 @@ class App extends React.Component {
     this.setState({
       soundCategory: sound
     });
-    this.sessionSaveState();
+    this.handleSession();
   };
 
-  sessionSaveState = () => {
-    let arr = [];
-    if (sessionStorage.getItem('Category')) {
-      arr.push(sessionStorage.getItem('Category'));
+  // save the categories chosen in the sidebar
+  handleSession = () => {
+    // pop and push. Stack consisting of two arrays.
+
+    let undoArr = [];
+
+    let categories = {
+      //selectedTab: this.state.selectedTab,
+      soundCategory: this.state.soundCategory,
+      soundFile: this.state.soundFile,
+      textCategory: this.state.textCategory,
+      textFile: this.state.textFile,
+      pictureCategory: this.state.pictureCategory,
+      pictureFile: this.state.pictureFile
+    };
+
+    // categories should be saved in sessioStorage first when they are displayed
+    if (categories.soundCategory !== null) {
+      if (sessionStorage.getItem('categoriesUndo')) {
+        undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
+        undoArr.push(categories);
+        sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
+      } else {
+        undoArr.push(categories);
+        sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
+      }
+
+      console.log('undoStack', undoArr);
     }
-    arr.push(this.state.soundCategory);
-    sessionStorage.setItem('Category', arr);
+  };
+
+  handleUndo = () => {
+    // There must be an undo array after handleSession()
+    let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
+
+    if (!sessionStorage.getItem('categoriesRedo')) {
+      if (undoArr.length > 0) {
+        let redoArr = [undoArr.pop()];
+        sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
+        sessionStorage.setItem('categoriesRedo', JSON.stringify(redoArr));
+        console.log('redoStack', redoArr);
+      }
+    } else {
+      if (undoArr.length > 0) {
+        let redoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
+        redoArr.push(undoArr.pop());
+        sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
+        sessionStorage.setItem('categoriesRedo', JSON.stringify(redoArr));
+        console.log('redoStack', redoArr);
+      }
+    }
+  };
+
+  // NOT FINISHED YET!!!!
+  handleRedo = () => {
+    let redoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
+
+    console.log(redoArr);
+
+    if (redoArr && redoArr.length > 0) {
+      let undoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
+      undoArr.push(redoArr.pop());
+
+      console.log(undoArr);
+    }
   };
 
   handleFavorite = () => {
-    if (localStorage.getItem('combinations') != null) {
+    if (localStorage.getItem('combinations')) {
       localStorage.removeItem('combinations');
       this.setState({ combinations: [] });
     }
@@ -90,12 +150,14 @@ class App extends React.Component {
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
-                soundTrack={this.state.soundTrack}
                 handleFavorite={this.handleFavorite}
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
               />
               <Sidebar
+                onChange={this.handleSession}
+                handleUndo={this.handleUndo}
+                handleRedo={this.handleRedo}
                 sendTextCategory={this.updateTextCategory}
                 sendPictureCategory={this.updatePictureCategory}
                 sendSoundCategory={this.updateSoundCategory}

@@ -1,8 +1,13 @@
-import React from 'react';
-import './Sidebar.css';
+import React, { useEffect } from 'react';
 import ChoiceSelector from '../choiceSelector/ChoiceSelector';
+import './Sidebar.css';
 
 const Sidebar = props => {
+  // is lifecycle method for componentWillUpdate
+  useEffect(() => {
+    props.onChange();
+  });
+
   return (
     <div className='Sidebar'>
       <h3>Kategorier</h3>
@@ -28,6 +33,14 @@ const Sidebar = props => {
         alternative2='Cats'
         alternative3='Rats'
       />
+      <div className='undo-redo'>
+        <i onClick={props.handleUndo} class='material-icons'>
+          undo
+        </i>
+        <i onClick={props.handleRedo} class='material-icons'>
+          redo
+        </i>
+      </div>
     </div>
   );
 };
