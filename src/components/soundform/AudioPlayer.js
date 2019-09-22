@@ -20,8 +20,6 @@ const pianoSongs = [piano1, piano2, piano3, piano4];
 const natureSounds = [nature1, nature2, nature3, nature4];
 const citylifeSounds = [citylife1, citylife2, citylife3, citylife4];
 
-var category;
-
 const AudioPlayer = props => {
   let soundTrack;
   let soundCategory = props.soundCategory;

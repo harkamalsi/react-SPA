@@ -12,7 +12,6 @@ class App extends React.Component {
       textCategory: null,
       pictureCategory: null,
       soundCategory: null,
-      soundTrack: null,
       selectedTab: null
     };
   }
@@ -34,8 +33,17 @@ class App extends React.Component {
   updateSoundCategory = sound => {
     this.setState({
       soundCategory: sound,
-      soundTrack: 1
     });
+    this.sessionSaveState();
+  };
+
+  sessionSaveState = () => {
+    let arr = [];
+    if ( sessionStorage.getItem("Category")){
+      arr.push(sessionStorage.getItem("Category"));
+    };
+    arr.push(this.state.soundCategory);
+    sessionStorage.setItem("Category", arr);
   };
 
   render() {
@@ -53,7 +61,6 @@ class App extends React.Component {
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
-                soundTrack={this.state.soundTrack}
               />
               <Sidebar
                 sendTextCategory={this.updateTextCategory}
