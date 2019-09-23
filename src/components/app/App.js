@@ -4,6 +4,7 @@ import Sidebar from '../sidebar/Sidebar';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
+const url = "https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,10 @@ class App extends React.Component {
       soundCategory: null,
       soundTrack: null,
       selectedTab: null,
-      combinations: null
+      combinations: null,
+
+      textData :null
+
     };
   }
 
@@ -21,6 +25,17 @@ class App extends React.Component {
     const combinations = JSON.parse(localStorage.getItem('combinations'));
     this.setState({ combinations });
   };
+  shouldComponentUpdate(nextProps, nextState){
+    return this.state.textCategory !== nextState.textCategory || this.state.pictureCategory !== nextState.pictureCategory || this.state.soundCategory !== nextState.soundCategory || this.state.selectedTab !== nextState.selectedTab;
+
+  }
+  componentDidUpdate(){
+    
+    this.setState({
+      textData : this.fetchText()
+    });
+    console.log(this.textData)
+  }
 
   handleTabClick = e => {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
@@ -58,6 +73,25 @@ class App extends React.Component {
   getFavorites = () => {
     console.log(this.state.combinations);
   };
+
+  fetchText(){
+    let tmp = []
+    fetch( url + this.state.textCategory.toLowerCase() + ".json")
+      .then(res => res.json())
+      .then(
+        (result) =>{
+          console.log("Data retrieved from server");
+          tmp = result.data;
+          this.setState({
+            textData: result.data
+          })
+        },
+        (error) =>{
+          console.log(error, "error while loading textdata from server");
+        }
+      )
+
+  }
 
   render() {
     return (

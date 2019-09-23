@@ -16,10 +16,10 @@ const Sidebar = props => {
 
       <ChoiceSelector
         sendCategory={props.sendTextCategory}
-        categoryName='Text'
-        alternative1='Christmas'
-        alternative2='Valentine'
-        alternative3='Get Well'
+        categoryName='Tekst'
+        alternative1='Emosjoner'
+        alternative2='Farger'
+        alternative3='Dyr'
       />
       <ChoiceSelector
         sendCategory={props.sendPictureCategory}
