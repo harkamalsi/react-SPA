@@ -66,7 +66,7 @@ class App extends React.Component {
         <main>
           <div className="grid-container">
             <div className="tabs-bar">
-              <Tabdisplay onClick={this.handleTabClick} />
+              <Tabdisplay onClick={this.handleTabClick} selectedTab={this.state.selectedTab} />
             </div>
               <div className="maindisp">
               <Maindisplay

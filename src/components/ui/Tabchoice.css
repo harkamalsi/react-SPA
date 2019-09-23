@@ -15,6 +15,7 @@ button {
   color: white;
   transition: transform 0.3s ease-in-out;
   padding: 0;
+  opacity: 0.3;
 }
 
 .combination:hover {
@@ -36,3 +37,11 @@ button {
 #combination4 {
   background-color: orange;
 }
+
+
+.show{
+  opacity: 1;
+  transform: scale(1.05);
+  
+}
+
