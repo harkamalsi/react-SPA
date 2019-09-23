@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 import './Sidebar.css';
 
 const Sidebar = props => {
-  // is lifecycle method for componentWillUpdate
-  useEffect(() => {
-    props.onChange();
-  });
-
   return (
     <div className='Sidebar'>
       <h3>Kategorier</h3>
