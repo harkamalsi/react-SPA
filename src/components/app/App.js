@@ -15,27 +15,25 @@ class App extends React.Component {
       soundTrack: null,
       selectedTab: null,
       combinations: null,
-
-      textData :null
-
     };
+    this.saved_resources = {}
   }
 
   componentDidMount = () => {
     const combinations = JSON.parse(localStorage.getItem('combinations'));
     this.setState({ combinations });
   };
-  shouldComponentUpdate(nextProps, nextState){
+  /*shouldComponentUpdate(nextProps, nextState){
     return this.state.textCategory !== nextState.textCategory || this.state.pictureCategory !== nextState.pictureCategory || this.state.soundCategory !== nextState.soundCategory || this.state.selectedTab !== nextState.selectedTab;
 
-  }
+  }*/
   componentDidUpdate(){
-    
-    this.setState({
-      textData : this.fetchText()
-    });
-    console.log(this.textData)
-  }
+    if (this.state.selectedTab != null){
+      this.fetchText();
+      console.log(this.saved_resources)
+    }
+    }
+   
 
   handleTabClick = e => {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
@@ -75,21 +73,24 @@ class App extends React.Component {
   };
 
   fetchText(){
-    let tmp = []
-    fetch( url + this.state.textCategory.toLowerCase() + ".json")
-      .then(res => res.json())
-      .then(
-        (result) =>{
-          console.log("Data retrieved from server");
-          tmp = result.data;
-          this.setState({
-            textData: result.data
-          })
-        },
-        (error) =>{
-          console.log(error, "error while loading textdata from server");
-        }
-      )
+    let key = "text_data_" + this.state.textCategory.toLowerCase();
+    if (this.saved_resources[key] === undefined){
+      console.log("Fetching data...")
+      fetch( url + this.state.textCategory.toLowerCase() + ".json")
+        .then(res => res.json())
+        .then(
+          (result) =>{
+            console.log("Data retrieved from server");
+            this.saved_resources[key] = result.data;
+          },
+          (error) =>{
+            console.log(error, "error while loading textdata from server");
+          }
+        )
+      }
+      else{
+        console.log("Data already fetched")
+      }
 
   }
 
