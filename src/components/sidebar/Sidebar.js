@@ -23,8 +23,8 @@ const Sidebar = props => {
       />
       <ChoiceSelector
         sendCategory={props.sendPictureCategory}
-        categoryName='Picture'
-        alternative1='Dogs'
+        categoryName='Bilder'
+        alternative1='Animals'
         alternative2='Cats'
         alternative3='Rats'
       />
