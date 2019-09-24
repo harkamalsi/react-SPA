@@ -2,6 +2,10 @@ import React from 'react';
 import './Sidebar.css';
 import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 
+//Sidebar it´s the parent component of the 3 choiceSelector components that build the gui.
+//It´s a functional component and an interface between the app and the ChoiceSelector componets.
+//It´s main purpouse is to render the Choice Selector and pass down the props for changing state values of App from the ChoiceSelector
+
 const Sidebar = props => {
   return (
     <div className='Sidebar'>
