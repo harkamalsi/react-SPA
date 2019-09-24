@@ -1,7 +1,8 @@
 import React from 'react';
 import './ChoiceSelector.css';
 
-
+//Generic componet for selecting a value between 3 posible choices
+//Since the module is generic
 class ChoiceSelector extends React.Component {
     constructor(props) {
         super(props);
@@ -13,14 +14,16 @@ class ChoiceSelector extends React.Component {
     }
 
     handleChange(e) {
-
+        //On change of the state of the radio buttons, it updates the state of the component and updated the parent component
         this.setState({
             selectedOption: e.target.value,
         });
-        this.props.sendCategory(e.target.value); //bug here, cannot pass this.state.selectedOption because is wrong. To fix
+        this.props.sendCategory(e.target.value);
     }
     
     render() {
+        //Since the module is generic, it needs information about the 3 possible choices and the category text to display.
+        //checked propriety is used to check the radio button that is selected. This makes it an controlled component.
 
         return (
             <div className='choice-form'>
