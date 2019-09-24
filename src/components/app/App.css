@@ -108,7 +108,7 @@ main {
 }
 
 /*bredden til iphone x/8/7/6 = 375px */
-@media only screen and (max-width:376px) and (orientation: portrait) {
+@media only screen and (max-width:376px) and (orientation: portrait)  {
 
   .grid-container{
     grid-template-areas: 'tab' 'main' 'cat';
@@ -116,6 +116,9 @@ main {
     grid-template-columns: auto;
   }
 
+  .sidebar > h3{
+    display: block;
+  }
 
   .sidebar{
     display: inline-block;
