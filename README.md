@@ -26,6 +26,10 @@ Ha knapper som lar brukeren lagre og hente frem favoritt-kombinasjonen, også se
 Lagre sekvensen av kombinasjoner som er valg i en sesjon og la brukeren gå frem og tilbake i historien (sessionstorage)
 
 ### Responsive Web Design
+
+Vi har lagt mye vekt på responsivt design. Utstilligen skaleres og tilpasses etter bredden på skjermen og dens orientasjon. Hvis bredden på skjermen er under 825px, så flyttes sidebaren med kategorivalgene til under utstillingsvinduet (maindisplay). Her blir retningen til valgmulighetene omgjort fra vertikal retning til horisontal, men kun vis skjermbredden er mellom 377px og 825px. Hvis skjermbredden er under 377px, vil valgmulighetene gå tilbake til å vises i vertikal retning. I tillegg endres labelene på tabdisplayet utifra skjermbredde og orientasjon. Når skjermen blir under 825px bred, vil ordet "Kombinasjon" i lablene bli skjult, og kun tabnummeret vises. 
+
+
 Utstillingen skal ha responsiv web design hvor layout, skalering og interaksjonsmuligheter tilpasses type enhet og størrelse på skjerm. Det skal se bra ut og interaksjonen skal fungere både på mobil, pad og pc med skjerm av forskjellig størrelse.
 
 Løsningen skal implementeres med responsiv design som tilpasser seg skjermens størrelse og orientering, og plattform.
