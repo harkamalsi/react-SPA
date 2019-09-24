@@ -4,7 +4,7 @@ import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 
 const Sidebar = props => {
   return (
-    <div className='Sidebar'>
+    <div className='sidebar'>
       <h3>Kategorier</h3>
       <ChoiceSelector
         sendCategory={props.sendSoundCategory}
