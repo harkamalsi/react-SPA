@@ -122,16 +122,14 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className='App'>
-        <header>
-          <div>
-            <h1>This is header</h1>
-          </div>
-        </header>
+      <div className='app'>
+        
         <main>
-          <div className='Box'>
-            <Tabdisplay onClick={this.handleTabClick} />
-            <div className='InnerBox'>
+          <div className="grid-container">
+            <div className="tabs-bar">
+              <Tabdisplay onClick={this.handleTabClick} selectedTab={this.state.selectedTab} />
+            </div>
+              <div className="maindisp">
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
@@ -140,17 +138,16 @@ class App extends React.Component {
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
               />
+              </div>
+              <div className="sidebar-category">
               <Sidebar
                 sendTextCategory={this.updateTextCategory}
                 sendPictureCategory={this.updatePictureCategory}
                 sendSoundCategory={this.updateSoundCategory}
               />
-            </div>
+              </div>
           </div>
         </main>
-        <footer>
-          <h2>This is footer</h2>
-        </footer>
       </div>
     );
   }
