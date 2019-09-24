@@ -1,5 +1,4 @@
 import React from 'react';
-import './Soundform.css';
 //import music from '../../assets/sounds/';
 import piano1 from '../../assets/sounds/piano/1.mp3';
 import piano2 from '../../assets/sounds/piano/2.mp3';

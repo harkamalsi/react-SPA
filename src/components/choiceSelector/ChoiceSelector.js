@@ -1,4 +1,6 @@
 import React from 'react';
+import './ChoiceSelector.css';
+
 //Generic componet for selecting a value between 3 posible choices
 //Since the module is generic
 class ChoiceSelector extends React.Component {
@@ -24,22 +26,22 @@ class ChoiceSelector extends React.Component {
         //checked propriety is used to check the radio button that is selected. This makes it an controlled component.
 
         return (
-            <div className='ChoiceForm'>
+            <div className='choice-form'>
                 <h3>{this.props.categoryName}</h3>
                 <form>
                     <label>
-                        {this.props.alternative1}
                         <input type="radio" checked={this.state.selectedOption === this.props.alternative1} value={this.props.alternative1} onChange={this.handleChange} name="category" />
+                        {this.props.alternative1}
                     </label>
 
                     <label>
-                        {this.props.alternative2}
                         <input type="radio" checked={this.state.selectedOption === this.props.alternative2} value={this.props.alternative2} onChange={this.handleChange} name="category" />
+                        {this.props.alternative2}
                     </label>
 
                     <label>
-                        {this.props.alternative3}
                         <input type="radio" checked={this.state.selectedOption === this.props.alternative3} value={this.props.alternative3} onChange={this.handleChange} name="category" />
+                        {this.props.alternative3}
                     </label>
                 </form>
             </div >

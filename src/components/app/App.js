@@ -16,11 +16,8 @@ class App extends React.Component {
       soundTrack: null,
       //Selected tab value
       selectedTab: null,
-      //Middle storage for local storage favorite combinations
       combinations: null,
     };
-    //Saved resourrces are implemented as a dictionary where the key is been tested at the moment of 
-    //fetching of data
     this.saved_resources = {}
   }
 
@@ -28,7 +25,9 @@ class App extends React.Component {
     const combinations = JSON.parse(localStorage.getItem('combinations'));
     this.setState({ combinations });
   };
-
+  /*shouldComponentUpdate(nextProps, nextState){
+    return this.state.textCategory !== nextState.textCategory || this.state.pictureCategory !== nextState.pictureCategory || this.state.soundCategory !== nextState.soundCategory || this.state.selectedTab !== nextState.selectedTab;
+*/
   componentDidUpdate(){
     //If the component has been updated and a tab is selected, so fetch the data
     if (this.state.selectedTab != null){
@@ -128,16 +127,14 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className='App'>
-        <header>
-          <div>
-            <h1>This is header</h1>
-          </div>
-        </header>
+      <div className='app'>
+        
         <main>
-          <div className='Box'>
-            <Tabdisplay onClick={this.handleTabClick} />
-            <div className='InnerBox'>
+          <div className="grid-container">
+            <div className="tabs-bar">
+              <Tabdisplay onClick={this.handleTabClick} selectedTab={this.state.selectedTab} />
+            </div>
+              <div className="maindisp">
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
@@ -146,17 +143,16 @@ class App extends React.Component {
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
               />
+              </div>
+              <div className="sidebar-category">
               <Sidebar
                 sendTextCategory={this.updateTextCategory}
                 sendPictureCategory={this.updatePictureCategory}
                 sendSoundCategory={this.updateSoundCategory}
               />
-            </div>
+              </div>
           </div>
         </main>
-        <footer>
-          <h2>This is footer</h2>
-        </footer>
       </div>
     );
   }
