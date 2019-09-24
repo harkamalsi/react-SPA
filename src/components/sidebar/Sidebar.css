@@ -6,9 +6,6 @@
 .sidebar {
   display: inline-block;
   border: rgb(4, 0, 255) dashed 1px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  width:100%;
 
 }
