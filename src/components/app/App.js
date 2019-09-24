@@ -4,7 +4,6 @@ import Sidebar from '../sidebar/Sidebar';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
-const url = "https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -12,41 +11,27 @@ class App extends React.Component {
       textCategory: null,
       pictureCategory: null,
       soundCategory: null,
-<<<<<<< HEAD
-      soundTrack: null,
-      selectedTab: null,
-      combinations: null,
-=======
       pictureFilePath: null,
       textFilePath: null,
       soundFilePath: null,
       selectedTab: null,
       combinations: null
->>>>>>> c4852ad9af6dc790cd7f164c81a18af4c5161f6e
     };
-    this.saved_resources = {}
   }
+
+  componentDidUpdate = () => {
+    console.log(
+      this.state.soundCategory,
+      this.state.textCategory,
+      this.state.pictureCategory
+    );
+  };
 
   componentDidMount = () => {
     const combinations = JSON.parse(localStorage.getItem('combinations'));
     this.setState({ combinations });
   };
-<<<<<<< HEAD
-  /*shouldComponentUpdate(nextProps, nextState){
-    return this.state.textCategory !== nextState.textCategory || this.state.pictureCategory !== nextState.pictureCategory || this.state.soundCategory !== nextState.soundCategory || this.state.selectedTab !== nextState.selectedTab;
 
-  }*/
-  componentDidUpdate(){
-    if (this.state.selectedTab != null){
-      this.fetchText();
-      this.fetchPictures();
-      console.log(this.saved_resources)
-    }
-    }
-   
-=======
-
->>>>>>> c4852ad9af6dc790cd7f164c81a18af4c5161f6e
   handleTabClick = e => {
     // e.target.value will help us decide which comibation to show on the mainDisplay component.
     this.setState({ selectedTab: e.target.value });
@@ -72,8 +57,11 @@ class App extends React.Component {
   handleSession = () => {
     // pop and push. Stack consisting of two arrays.
 
-    let undoArr = [];
+    let undoArr = sessionStorage.getItem('categoriesUndo')
+      ? JSON.parse(sessionStorage.getItem('categoriesUndo'))
+      : [];
 
+    // moves that we will maybe get undoed or redoed
     let categories = {
       //selectedTab: this.state.selectedTab,
       soundCategory: this.state.soundCategory,
@@ -84,18 +72,15 @@ class App extends React.Component {
       pictureFilePath: this.state.pictureFilePath
     };
 
-    // categories should be saved in sessioStorage first when they are displayed. soundCategory could also be textCategory or pictureCategory
-    if (
-      (categories.soundCategory,
-      categories.textCategory,
-      categories.pictureCategory)
-    ) {
+    // categories should be saved in sessioStorage first when they are displayed. soundCategory could also be textCategory or pictureCategory.
+    if (categories.soundCategory) {
       if (sessionStorage.getItem('categoriesUndo')) {
-        undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
-        // push the element to the end of undoArr
-        undoArr.push(categories);
-        sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
-        console.log('new categories-element pushed into undoArr');
+        if (categories.soundCategory) {
+          // push the element to the end of undoArr
+          undoArr.push(categories);
+          sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
+          console.log('new categories-element pushed into undoArr');
+        }
       } else {
         // push the element to the end of undoArr
         undoArr.push(categories);
@@ -179,70 +164,6 @@ class App extends React.Component {
     console.log(this.state.combinations);
   };
 
-  handleFavorite = () => {
-    if (localStorage.getItem('combinations') != null) {
-      localStorage.removeItem('combinations');
-      this.setState({ combinations: [] });
-      console.log(this.state.combinations);
-    }
-
-    const combinations = ['test1', 'test2', 'test3'];
-    localStorage.setItem('combinations', JSON.stringify(combinations));
-    this.setState({ combinations });
-  };
-
-  getFavorites = () => {
-    console.log(this.state.combinations);
-  };
-
-  fetchText(){
-    let key = "text_data_" + this.state.textCategory.toLowerCase();
-    if (this.saved_resources[key] === undefined){
-      console.log("Fetching text data...")
-      fetch( url + this.state.textCategory.toLowerCase() + ".json")
-        .then(res => res.json())
-        .then(
-          (result) =>{
-            console.log("Text Data retrieved from server");
-            this.saved_resources[key] = result.data;
-          },
-          (error) =>{
-            console.log(error, "Error while loading textdata from server");
-          }
-        )
-      }
-      else{
-        console.log("Text data already fetched")
-      }
-  }
-  fetchPictures(){
-    let filename = this.state.pictureCategory.toLowerCase() + "_" + this.state.selectedTab;
-    let key = "image_data_" + filename;
-    if (this.saved_resources[key]===undefined){
-      console.log("Fetching Picture data...");
-      console.log(url + filename +".svg");
-      fetch(url + filename +".svg")
-        .then(res => res.text())
-        .then(
-          (result) => {
-            if(result === "404: Not Found\n"){
-              console.log("Picture data not found on Server");
-            }
-            else{
-              console.log("Picture Data retrieved from server with success!");
-              this.saved_resources[key] = result;
-            }
-            
-          },
-          (error) => {
-            console.log(error, "Error while loading picture data from server");
-          }
-        )
-    }
-    else{
-      console.log("Picture data already fetched")
-    }
-  }
   render() {
     return (
       <div className='App'>
@@ -258,10 +179,6 @@ class App extends React.Component {
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
-<<<<<<< HEAD
-                soundTrack={this.state.soundTrack}
-=======
->>>>>>> c4852ad9af6dc790cd7f164c81a18af4c5161f6e
                 handleFavorite={this.handleFavorite}
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
@@ -270,9 +187,9 @@ class App extends React.Component {
                 onChange={this.handleSession}
                 handleUndo={this.handleUndo}
                 handleRedo={this.handleRedo}
-                sendTextCategory={this.updateTextCategory}
-                sendPictureCategory={this.updatePictureCategory}
-                sendSoundCategory={this.updateSoundCategory}
+                updateTextCategory={this.updateTextCategory}
+                updatePictureCategory={this.updatePictureCategory}
+                updateSoundCategory={this.updateSoundCategory}
               />
             </div>
           </div>

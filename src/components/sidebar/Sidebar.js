@@ -1,17 +1,17 @@
-import React from 'react';
-<<<<<<< HEAD
-import './Sidebar.css';
-=======
->>>>>>> c4852ad9af6dc790cd7f164c81a18af4c5161f6e
+import React, { useEffect } from 'react';
 import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 import './Sidebar.css';
 
 const Sidebar = props => {
+  useEffect(() => {
+    props.onChange();
+  });
+
   return (
     <div className='Sidebar'>
       <h3>Kategorier</h3>
       <ChoiceSelector
-        sendCategory={props.sendSoundCategory}
+        sendCategory={props.updateSoundCategory}
         categoryName='Sound'
         alternative1='Nature'
         alternative2='Piano'
@@ -19,28 +19,14 @@ const Sidebar = props => {
       />
 
       <ChoiceSelector
-        sendCategory={props.sendTextCategory}
-<<<<<<< HEAD
-        categoryName='Tekst'
-        alternative1='Emosjoner'
-        alternative2='Farger'
-        alternative3='Dyr'
-      />
-      <ChoiceSelector
-        sendCategory={props.sendPictureCategory}
-        categoryName='Bilder'
-        alternative1='Animals'
-        alternative2='Cats'
-        alternative3='Rats'
-      />
-=======
+        sendCategory={props.updateTextCategory}
         categoryName='Text'
         alternative1='Christmas'
         alternative2='Valentine'
         alternative3='Get Well'
       />
       <ChoiceSelector
-        sendCategory={props.sendPictureCategory}
+        sendCategory={props.updatePictureCategory}
         categoryName='Picture'
         alternative1='Dogs'
         alternative2='Cats'
@@ -54,7 +40,6 @@ const Sidebar = props => {
           redo
         </i>
       </div>
->>>>>>> c4852ad9af6dc790cd7f164c81a18af4c5161f6e
     </div>
   );
 };
