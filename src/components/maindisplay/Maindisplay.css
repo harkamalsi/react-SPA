@@ -20,7 +20,6 @@
   width: auto;
   padding: 1rem;
   border-radius: 25px;
-  text-decoration: none;
   cursor: pointer;
 }
 
@@ -41,15 +40,4 @@
 .favorite:hover {
   background-color: rgb(255, 0, 0, 0.65);
   transition: background-color ease-in-out 150ms;
-}
-
-.delete {
-  background: none;
-  border: solid 2px rgb(255, 0, 0, 0.3);
-  transition: border ease-in-out 150ms;
-}
-
-.delete:hover {
-  border: solid 2px rgb(255, 0, 0, 0.7);
-  transition: border ease-in-out 150ms;
 }
