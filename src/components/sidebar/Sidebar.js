@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 import './Sidebar.css';
 
 const Sidebar = props => {
+  useEffect(() => {
+    props.onChange();
+  });
+
   return (
     <div className='Sidebar'>
       <h3>Kategorier</h3>
       <ChoiceSelector
-        sendCategory={props.sendSoundCategory}
+        sendCategory={props.updateSoundCategory}
         categoryName='Sound'
         alternative1='Nature'
         alternative2='Piano'
@@ -15,14 +19,14 @@ const Sidebar = props => {
       />
 
       <ChoiceSelector
-        sendCategory={props.sendTextCategory}
+        sendCategory={props.updateTextCategory}
         categoryName='Text'
         alternative1='Christmas'
         alternative2='Valentine'
         alternative3='Get Well'
       />
       <ChoiceSelector
-        sendCategory={props.sendPictureCategory}
+        sendCategory={props.updatePictureCategory}
         categoryName='Picture'
         alternative1='Dogs'
         alternative2='Cats'

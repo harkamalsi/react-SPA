@@ -19,6 +19,14 @@ class App extends React.Component {
     };
   }
 
+  componentDidUpdate = () => {
+    console.log(
+      this.state.soundCategory,
+      this.state.textCategory,
+      this.state.pictureCategory
+    );
+  };
+
   componentDidMount = () => {
     const combinations = JSON.parse(localStorage.getItem('combinations'));
     this.setState({ combinations });
@@ -49,8 +57,11 @@ class App extends React.Component {
   handleSession = () => {
     // pop and push. Stack consisting of two arrays.
 
-    let undoArr = [];
+    let undoArr = sessionStorage.getItem('categoriesUndo')
+      ? JSON.parse(sessionStorage.getItem('categoriesUndo'))
+      : [];
 
+    // moves that we will maybe get undoed or redoed
     let categories = {
       //selectedTab: this.state.selectedTab,
       soundCategory: this.state.soundCategory,
@@ -61,18 +72,15 @@ class App extends React.Component {
       pictureFilePath: this.state.pictureFilePath
     };
 
-    // categories should be saved in sessioStorage first when they are displayed. soundCategory could also be textCategory or pictureCategory
-    if (
-      (categories.soundCategory,
-      categories.textCategory,
-      categories.pictureCategory)
-    ) {
+    // categories should be saved in sessioStorage first when they are displayed. soundCategory could also be textCategory or pictureCategory.
+    if (categories.soundCategory) {
       if (sessionStorage.getItem('categoriesUndo')) {
-        undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
-        // push the element to the end of undoArr
-        undoArr.push(categories);
-        sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
-        console.log('new categories-element pushed into undoArr');
+        if (categories.soundCategory) {
+          // push the element to the end of undoArr
+          undoArr.push(categories);
+          sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
+          console.log('new categories-element pushed into undoArr');
+        }
       } else {
         // push the element to the end of undoArr
         undoArr.push(categories);
@@ -179,9 +187,9 @@ class App extends React.Component {
                 onChange={this.handleSession}
                 handleUndo={this.handleUndo}
                 handleRedo={this.handleRedo}
-                sendTextCategory={this.updateTextCategory}
-                sendPictureCategory={this.updatePictureCategory}
-                sendSoundCategory={this.updateSoundCategory}
+                updateTextCategory={this.updateTextCategory}
+                updatePictureCategory={this.updatePictureCategory}
+                updateSoundCategory={this.updateSoundCategory}
               />
             </div>
           </div>
