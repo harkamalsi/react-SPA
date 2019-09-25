@@ -8,25 +8,51 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      textCategory: null,
-      pictureCategory: null,
       soundCategory: null,
-      pictureFilePath: null,
-      textFilePath: null,
       soundFilePath: null,
+      textCategory: null,
+      textFilePath: null,
+      pictureCategory: null,
+      pictureFilePath: null,
       selectedTab: null,
       combinations: null
     };
-    // first undoArr length and then redoArrLength
+
+    this.undoArr = sessionStorage.getItem('categoriesUndo')
+      ? JSON.parse(sessionStorage.getItem('categoriesUndo'))
+      : [];
+
+    this.redoArr = sessionStorage.getItem('categoriesRedo')
+      ? JSON.parse(sessionStorage.getItem('categoriesRedo'))
+      : [];
+  }
+
+  createStartScreenData() {
+    if (this.undoArr.length === 0 && this.state.textCategory !== null) {
+      let welcomeScreenCategories = {
+        soundCategory: this.state.soundCategory,
+        textCategory: this.state.textCategory,
+        pictureCategory: this.state.pictureCategory
+      };
+
+      this.undoArr.push(welcomeScreenCategories);
+    }
   }
 
   componentDidUpdate = () => {
-    console.log(
-      'APP state updated:',
-      this.state.soundCategory,
-      this.state.textCategory,
-      this.state.pictureCategory
-    );
+    if (this.state.selectedTab !== null) {
+      let previousCategory = this.undoArr[this.undoArr.length - 1];
+
+      if (
+        previousCategory.soundCategory !== this.state.soundCategory ||
+        previousCategory.textCategory !== this.state.textCategory ||
+        previousCategory.pictureCategory !== this.state.pictureCategory
+      ) {
+        // change the sesstionStorage and update the state
+        this.handleSession();
+        this.forceUpdate();
+      }
+    }
   };
 
   componentDidMount = () => {
@@ -61,122 +87,71 @@ class App extends React.Component {
   handleSession = () => {
     // pop and push. Stack consisting of two arrays.
 
-    let undoArr = sessionStorage.getItem('categoriesUndo')
-      ? JSON.parse(sessionStorage.getItem('categoriesUndo'))
-      : [];
-
     // moves that we will maybe get undoed or redoed
     let categories = {
-      //selectedTab: this.state.selectedTab,
       soundCategory: this.state.soundCategory,
-      soundFilePath: this.state.soundFilePath,
       textCategory: this.state.textCategory,
-      textFilePath: this.state.textFilePath,
-      pictureCategory: this.state.pictureCategory,
-      pictureFilePath: this.state.pictureFilePath
+      pictureCategory: this.state.pictureCategory
     };
 
-    // categories should be saved in sessioStorage first when they are displayed. soundCategory could also be textCategory or pictureCategory.
-    if (categories.soundCategory) {
-      // push the element to the end of undoArr
-      undoArr.push(categories);
-      sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
-      // empty the redoArr
-      sessionStorage.setItem('categoriesRedo', JSON.stringify([]));
-      console.log(
-        categories.soundCategory,
-        categories.textCategory,
-        categories.pictureCategory,
-        '- pushed into undoArr'
-      );
-    }
-
-    console.log('undoArrStack: ', undoArr);
-    console.log(
-      'RedoArrStack: ',
-      JSON.parse(sessionStorage.getItem('categoriesRedo'))
-    );
+    this.undoArr.push(categories);
+    sessionStorage.setItem('categoriesUndo', JSON.stringify(this.undoArr));
   };
 
   handleUndo = () => {
     // There must be an undo array after handleSession()
-    let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
-    let redoArr = sessionStorage.getItem('categoriesRedo')
-      ? JSON.parse(sessionStorage.getItem('categoriesRedo'))
-      : [];
 
-    if (undoArr && undoArr.length > 0) {
+    if (this.undoArr.length > 1) {
       // pushes the last element of undoArr in redoArr
-      let categoriesItem = undoArr.pop();
-      redoArr.push(categoriesItem);
-      sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
-      sessionStorage.setItem('categoriesRedo', JSON.stringify(redoArr));
-      console.log(
-        categoriesItem.soundCategory,
-        categoriesItem.textCategory,
-        categoriesItem.pictureCategory,
-        '- pushed into redoArr'
-      );
+      this.redoArr.push(this.undoArr.pop());
+
+      // change the state pf the categories. Is used for displaying checkbox value.
+      let previousCategories = this.undoArr[this.undoArr.length - 1];
+
+      this.setState({
+        soundCategory: previousCategories.soundCategory,
+        textCategory: previousCategories.textCategory,
+        pictureCategory: previousCategories.pictureCategory
+      });
+
+      sessionStorage.setItem('categoriesUndo', JSON.stringify(this.undoArr));
+      sessionStorage.setItem('categoriesRedo', JSON.stringify(this.redoArr));
     }
-
-    let undoArr2 = JSON.parse(sessionStorage.getItem('categoriesUndo'));
-    let redoArr2 = JSON.parse(sessionStorage.getItem('categoriesRedo'));
-
-    console.log({ undoArr2 });
-    console.log({ redoArr2 });
   };
 
-  // NOT FINISHED YET!!!!
   handleRedo = () => {
-    let redoArr = sessionStorage.getItem('categoriesRedo')
-      ? JSON.parse(sessionStorage.getItem('categoriesRedo'))
-      : [];
+    if (this.redoArr.length > 0) {
+      this.undoArr.push(this.redoArr.pop());
 
-    if (redoArr && redoArr.length > 0) {
-      let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
-      let categoriesItem = redoArr.pop();
-      undoArr.push(categoriesItem);
-      sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
-      sessionStorage.setItem('categoriesRedo', JSON.stringify(redoArr));
-      console.log(
+      let currentCategories = this.undoArr[this.undoArr.length - 1];
+
+      // change the state pf the categories. Is used for displaying checkbox value.
+      this.setState({
+        soundCategory: currentCategories.soundCategory,
+        textCategory: currentCategories.textCategory,
+        pictureCategory: currentCategories.pictureCategory
+      });
+
+      sessionStorage.setItem('categoriesUndo', JSON.stringify(this.undoArr));
+      sessionStorage.setItem('categoriesRedo', JSON.stringify(this.redoArr));
+    }
+  };
+
+  getCheckboxCategories = () => {
+    //let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
+    let redoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
+
+    let categoriesItem = redoArr ? redoArr[redoArr.length - 1] : null;
+    // console.log(categoriesItem);
+
+    console.log(categoriesItem);
+
+    if (categoriesItem)
+      return [
         categoriesItem.soundCategory,
         categoriesItem.textCategory,
-        categoriesItem.pictureCategory,
-        '- pushed into undoArr'
-      );
-    }
-
-    let undoArr3 = JSON.parse(sessionStorage.getItem('categoriesUndo'));
-    let redoArr3 = JSON.parse(sessionStorage.getItem('categoriesRedo'));
-
-    console.log({ undoArr3 });
-    console.log({ redoArr3 });
-  };
-
-  // Returns true if undoArr is empty and false else
-  isUndoEmpty = () => {
-    let length = sessionStorage.getItem('categoriesUndo')
-      ? JSON.parse(sessionStorage.getItem('categoriesUndo')).length
-      : 0;
-
-    let output = length === 0 ? true : false;
-
-    console.log('undoLengthEmpty: ', output);
-
-    return output;
-  };
-
-  // Returns true if redoArr is empty and false else
-  isRedoEmpty = () => {
-    let length = sessionStorage.getItem('categoriesRedo')
-      ? JSON.parse(sessionStorage.getItem('categoriesRedo')).length
-      : 0;
-
-    let output = length === 0 ? true : false;
-
-    console.log('redoLengthEmpty: ', output);
-
-    return output;
+        categoriesItem.pictureCategory
+      ];
   };
 
   handleFavorite = () => {
@@ -203,6 +178,14 @@ class App extends React.Component {
   };
 
   render() {
+    this.createStartScreenData();
+    console.log(this.undoArr.length, this.redoArr.length);
+    console.log([
+      this.state.soundCategory,
+      this.state.textCategory,
+      this.state.pictureCategory
+    ]);
+
     return (
       <div className='App'>
         <header>
@@ -220,16 +203,22 @@ class App extends React.Component {
                 handleFavorite={this.handleFavorite}
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
+                isWelcomeScreenDisplayed={this.undoArr.length === 1}
               />
               <Sidebar
                 onChange={this.handleSession}
                 handleUndo={this.handleUndo}
                 handleRedo={this.handleRedo}
-                isUndoEmpty={this.isUndoEmpty}
-                isRedoEmpty={this.isRedoEmpty}
+                isUndoEmpty={this.undoArr.length === 1}
+                isRedoEmpty={this.redoArr.length === 0}
                 updateTextCategory={this.updateTextCategory}
                 updatePictureCategory={this.updatePictureCategory}
                 updateSoundCategory={this.updateSoundCategory}
+                getCheckboxCategories={[
+                  this.state.soundCategory,
+                  this.state.textCategory,
+                  this.state.pictureCategory
+                ]}
               />
             </div>
           </div>
