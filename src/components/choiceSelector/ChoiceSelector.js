@@ -18,7 +18,6 @@ class ChoiceSelector extends React.Component {
         selectedOption: this.props.select
       });
     }
-    console.log(this.state.selectedOption);
   };
 
   handleChange(e) {

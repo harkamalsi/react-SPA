@@ -1,33 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 import Button from '../ui/button/Button';
 import './Sidebar.css';
 
 const Sidebar = props => {
-  // works as componentDidUpdate for sidebar
-  const [isUndoDisable, setUndoDisable] = useState(true);
-  const [isRedoDisable, setRedoDisable] = useState(true);
-
-  const [checkBoxCategories, setCheckBoxCategories] = useState(
-    props.getCheckboxCategories
-  );
-
-  useEffect(() => {
-    props.onChange();
-    // console.log('useEffect fired');
-    /* setUndoDisable(props.isUndoEmpty);
-    setRedoDisable(props.isRedoEmpty); */
-
-    /* console.log('undoLengthEmpty: ', isUndoDisable);
-    console.log('redoLengthEmpty: ', isRedoDisable); */
-  }, [props]);
-
-  const handleUndoOnClick = () => {
-    props.handleUndo();
-    setCheckBoxCategories(props.getCheckboxCategories);
-    console.log(props.getCheckboxCategories && props.getCheckboxCategories);
-  };
-
   return (
     <div className='Sidebar'>
       <h3>Kategorier</h3>

@@ -7,7 +7,7 @@ function Button(props) {
       id={props.id}
       className={'btn ' + props.className}
       onClick={props.onClick}
-      disabled={props.handleDisabled()}
+      disabled={props.handleDisabled}
     >
       <div className='inner-btn-container'>
         {true && <i class='material-icons'>{props.icon}</i>}
