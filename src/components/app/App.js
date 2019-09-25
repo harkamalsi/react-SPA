@@ -8,25 +8,32 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      textCategory: null,
-      pictureCategory: null,
       soundCategory: null,
-      pictureFilePath: null,
-      textFilePath: null,
       soundFilePath: null,
+      textCategory: null,
+      textFilePath: null,
+      pictureCategory: null,
+      pictureFilePath: null,
       selectedTab: null,
       combinations: null
     };
-    // first undoArr length and then redoArrLength
+
+    this.undoArr = sessionStorage.getItem('categoriesUndo')
+      ? JSON.parse(sessionStorage.getItem('categoriesUndo'))
+      : [];
+
+    this.redoArr = sessionStorage.getItem('categoriesRedo')
+      ? JSON.parse(sessionStorage.getItem('categoriesRedo'))
+      : [];
   }
 
   componentDidUpdate = () => {
-    console.log(
+    /* console.log(
       'APP state updated:',
       this.state.soundCategory,
       this.state.textCategory,
       this.state.pictureCategory
-    );
+    ); */
   };
 
   componentDidMount = () => {
@@ -77,18 +84,18 @@ class App extends React.Component {
     };
 
     // categories should be saved in sessioStorage first when they are displayed. soundCategory could also be textCategory or pictureCategory.
-    if (categories.soundCategory) {
+    if (this.state.selectedTab !== null) {
       // push the element to the end of undoArr
       undoArr.push(categories);
       sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
       // empty the redoArr
       sessionStorage.setItem('categoriesRedo', JSON.stringify([]));
-      console.log(
+      /* console.log(
         categories.soundCategory,
         categories.textCategory,
         categories.pictureCategory,
         '- pushed into undoArr'
-      );
+      ); */
     }
 
     console.log('undoArrStack: ', undoArr);
@@ -107,26 +114,34 @@ class App extends React.Component {
 
     if (undoArr && undoArr.length > 0) {
       // pushes the last element of undoArr in redoArr
-      let categoriesItem = undoArr.pop();
-      redoArr.push(categoriesItem);
+      redoArr.push(undoArr.pop());
+
+      // change the state pf the categories. Is used for displaying checkbox value.
+      let previousCategories = undoArr[undoArr.length - 1];
+
+      this.setState({
+        soundCategory: previousCategories.soundCategory,
+        textCategory: previousCategories.textCategory,
+        pictureCategory: previousCategories.pictureCategory
+      });
+
       sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
       sessionStorage.setItem('categoriesRedo', JSON.stringify(redoArr));
-      console.log(
+      /* console.log(
         categoriesItem.soundCategory,
         categoriesItem.textCategory,
         categoriesItem.pictureCategory,
         '- pushed into redoArr'
-      );
+      ); */
     }
 
-    let undoArr2 = JSON.parse(sessionStorage.getItem('categoriesUndo'));
+    /* let undoArr2 = JSON.parse(sessionStorage.getItem('categoriesUndo'));
     let redoArr2 = JSON.parse(sessionStorage.getItem('categoriesRedo'));
 
     console.log({ undoArr2 });
-    console.log({ redoArr2 });
+    console.log({ redoArr2 }); */
   };
 
-  // NOT FINISHED YET!!!!
   handleRedo = () => {
     let redoArr = sessionStorage.getItem('categoriesRedo')
       ? JSON.parse(sessionStorage.getItem('categoriesRedo'))
@@ -136,21 +151,29 @@ class App extends React.Component {
       let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
       let categoriesItem = redoArr.pop();
       undoArr.push(categoriesItem);
+
+      /* // change the state pf the categories. Is used for displaying checkbox value.
+      this.setState({
+        soundCategory: categoriesItem.soundCategory,
+        textCategory: categoriesItem.textCategory,
+        pictureCategory: categoriesItem.pictureCategory
+      }); */
+
       sessionStorage.setItem('categoriesUndo', JSON.stringify(undoArr));
       sessionStorage.setItem('categoriesRedo', JSON.stringify(redoArr));
-      console.log(
+      /* console.log(
         categoriesItem.soundCategory,
         categoriesItem.textCategory,
         categoriesItem.pictureCategory,
         '- pushed into undoArr'
-      );
+      ); */
     }
 
-    let undoArr3 = JSON.parse(sessionStorage.getItem('categoriesUndo'));
+    /* let undoArr3 = JSON.parse(sessionStorage.getItem('categoriesUndo'));
     let redoArr3 = JSON.parse(sessionStorage.getItem('categoriesRedo'));
 
     console.log({ undoArr3 });
-    console.log({ redoArr3 });
+    console.log({ redoArr3 }); */
   };
 
   // Returns true if undoArr is empty and false else
@@ -159,11 +182,11 @@ class App extends React.Component {
       ? JSON.parse(sessionStorage.getItem('categoriesUndo')).length
       : 0;
 
-    let output = length === 0 ? true : false;
+    let isUndoEmpty = length === 0 ? true : false;
 
-    console.log('undoLengthEmpty: ', output);
+    // console.log('undoLengthEmpty: ', isUndoEmpty);
 
-    return output;
+    return isUndoEmpty;
   };
 
   // Returns true if redoArr is empty and false else
@@ -172,11 +195,28 @@ class App extends React.Component {
       ? JSON.parse(sessionStorage.getItem('categoriesRedo')).length
       : 0;
 
-    let output = length === 0 ? true : false;
+    let isRedoEmpty = length === 0 ? true : false;
 
-    console.log('redoLengthEmpty: ', output);
+    // console.log('redoLengthEmpty: ', isRedoEmpty);
 
-    return output;
+    return isRedoEmpty;
+  };
+
+  getCheckboxCategories = () => {
+    //let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
+    let redoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
+
+    let categoriesItem = redoArr ? redoArr[redoArr.length - 1] : null;
+    // console.log(categoriesItem);
+
+    console.log(categoriesItem);
+
+    if (categoriesItem)
+      return [
+        categoriesItem.soundCategory,
+        categoriesItem.textCategory,
+        categoriesItem.pictureCategory
+      ];
   };
 
   handleFavorite = () => {
@@ -203,6 +243,11 @@ class App extends React.Component {
   };
 
   render() {
+    console.log([
+      this.state.soundCategory,
+      this.state.textCategory,
+      this.state.pictureCategory
+    ]);
     return (
       <div className='App'>
         <header>
@@ -230,6 +275,11 @@ class App extends React.Component {
                 updateTextCategory={this.updateTextCategory}
                 updatePictureCategory={this.updatePictureCategory}
                 updateSoundCategory={this.updateSoundCategory}
+                getCheckboxCategories={[
+                  this.state.soundCategory,
+                  this.state.textCategory,
+                  this.state.pictureCategory
+                ]}
               />
             </div>
           </div>
