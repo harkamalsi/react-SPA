@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Documentasjon for prosjekt 2
 
-In the project directory, you can run:
+## Gruppe 2
 
-### `npm start`
+## Krav
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### React
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+Løsningen skal baseres på React (og JSX). 
+Bruk ES6 (Javascript) og vis bruk av både komponentene med class og funksjonelle komponenter. Implementere en hesiktsmessig komponentstruktur.
+Bruk kun de ordinære mekanismene i React for å lagre og endre state/data (du skal mao ikke bruke løsninger som redux, mobx eller andre bibliotek for å håndtere tilstand da dette er tema i neste prosjekt).
+UI-komponentene skal implementeres fra bunnen av (uten bruk av andre tredjeparts komponenter).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### AJAX
+Bildene (i svg) og teksten (i json) skal lastes dynamisk med AJAX (Asynchronous JavaScript And XML). Bruk fetch() eller velg tredjeparts javascript-bibliotek for dette. 
+Filene skal lastes kun hvis de benyttes. Dvs. at filer brukt i en kombinasjon først lastes når denne kombinasjonen vises (eksempelvis når en bruker velger denne tabben). Når filen først er lest, så skal innholdet lagres på klienten slik at de ikke blir å lastes flere ganger hvis en bruker blar frem og tilbake i en utstilling. Dette kan dere implementere selv eller dere kan basere dere på caching i webleseren, men da må dere undersøke og dokumentere at det fungerer etter intensjonen.
+Lyd håndterer du med audio-taggen fra HTML5 og da trenger du ikke implementere noe spesifikt for å laste data
 
-### `npm run build`
+### HTML Web Storage
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I applikasjonen skal dere prøve ut og vise bruk av HTML Web Storage - både localstorage og sessionstorage. Eksempelvis kan dere:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Ha knapper som lar brukeren lagre og hente frem favoritt-kombinasjonen, også selv om webleser er avsluttet og startet på nytt (bruk localstorage).
+Lagre sekvensen av kombinasjoner som er valg i en sesjon og la brukeren gå frem og tilbake i historien (sessionstorage)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Responsive Web Design
 
-### `npm run eject`
+Vi har lagt mye vekt på responsivt design. Utstilligen skaleres og tilpasses etter bredden på skjermen og dens orientasjon. Hvis bredden på skjermen er under 825px, så flyttes sidebaren med kategorivalgene til under utstillingsvinduet (maindisplay). Her blir retningen til valgmulighetene omgjort fra vertikal retning til horisontal, men kun vis skjermbredden er mellom 377px og 825px. Hvis skjermbredden er under 377px, vil valgmulighetene gå tilbake til å vises i vertikal retning. I tillegg endres labelene på tabdisplayet utifra skjermbredde og orientasjon. Når skjermen blir under 825px bred, vil ordet "Kombinasjon" i lablene bli skjult, og kun tabnummeret vises. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Utstillingen skal ha responsiv web design hvor layout, skalering og interaksjonsmuligheter tilpasses type enhet og størrelse på skjerm. Det skal se bra ut og interaksjonen skal fungere både på mobil, pad og pc med skjerm av forskjellig størrelse.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Løsningen skal implementeres med responsiv design som tilpasser seg skjermens størrelse og orientering, og plattform.
+Skal skifte layout mellom breddeformat (f.eks. bilde og tekst ved siden av hverandre) og høydeformat (bilde med teksten under f.eks.). Bredde vs. høyde kan også demonstreres med andre elementer enn tekst og bilde.
+Følgende elementer skal være med i løsningen (eventuelt begrunnet i dokumentasjonen hvis det ikke er tatt med)
+Viewport
+Media-queries
+Bilder som skalerer
+Flytende/fleksibel layout
+Dette skal implementeres fra bunnen av uten bruk av eksterne CSS-rammeverk ea.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Node.js og NPM
+PRosjektet baseres på Node og bruk av Node Package Manager (NPM)
+Installer Node.js (inkluderer npm node package manager) på egen maskin
+Bruk pakken create-react-app for å komme i gang (bruk kommandoen "npx create-react-app mittprosjektnav
 
-## Learn More
+### Testing
+Prosjektet skal vise oppsett av og eksempel på testing med Jest - minimum er å ha en snapshottest. Målet med dette kravet er at dere kommer i gang med testing, får erfaring i oppsett og en forståelse av hva vi typisk tester i React-applikasjoner. Vi legger lite vekt på omfanget av testingen.
+Testing av brukergrensesnitt og responsiv design: Gruppa skal beskrive/dokumentere testing på minimum 3 forskjellige enheter hvor det må inngå en mobil (liten skjerm/horisontal + vertikal orientering og en ordinær pc (stor skjerm). 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Installere
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Websiden skal installeres og gjøres tilgjengelig en virtuelle maskin som gruppa får tildelt tildelt. Prosjektet gjøres tilgjenglig som xxxx.idi.ntnu.no/prosjekt2
+Installer Apache web server hvis det ikke finnes på maskinen fra før. Lag en production build som legges under Apache serveren som lytter på port 80. 
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### BRUK AV GIT, KODING
 
-### Analyzing the Bundle Size
+Koden i prosjektet skal være ryddig strukturert, ha fornuftig kommentering og ha navngiving av komponenter, variabler og funksjoner i tråd med anbefalinger (best practise).
+Gruppa skal bruke git i utviklingen. Utviklingen skal dekomponeres i task som hver beskrives kort med en issue. Commits markeres med hvilken issue de bidrar til/løser. Vi bruker gitlab og fagstaben setter opp repositories for gruppene. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Dokumentasjon
+Prosjektet dokumenteres med en README.md i git repositoriet.
+Dokumentasjonen skal diskutere, forklare og vise til alle de viktigste valgene og løsningene på krav til funksjonaltet og krav til teknologi. 800-1000 ord er en fornuftig lengde. 
+Gruppa skal oppsummere den enkeltes bidrag i prosjektet i en egen fil. Noter totalt antall timer og hva den enkelte har hatt som hovedbidrag. Denne leveres i BB (dette er personopplysninger som ingen vil at skal ligge på git ;-)
