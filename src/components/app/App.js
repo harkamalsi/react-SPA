@@ -164,7 +164,7 @@ class App extends React.Component {
                 handleFavorite={this.handleFavorite}
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
-                isWelcomeScreen={this.selectedTab===null}
+                isWelcomeScreen={this.state.selectedTab===null}
                 data = {this.sendDataToVisualize()}
               />
               </div>
