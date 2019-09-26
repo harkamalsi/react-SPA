@@ -11,7 +11,7 @@ const createTabChoices = props => {
   for (let i = 1; i <= 4; i++) {
     choices.push(
       <TabChoice
-        key={i}
+        id={i}
         onClick={props.onClick}
         value={i}
         selectedTab={props.selectedTab}
