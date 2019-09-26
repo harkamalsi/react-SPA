@@ -20,7 +20,11 @@ class App extends React.Component {
       combinations: null,
       saved_resources : {},
     };
-    this.isFetchingPicture = false;
+    this.tmp_fetched_data = {};
+    this.previous_fetched_text_category = null;
+    this.previous_fetched_picture_category = null;
+    this.previous_selected_tab = null;
+
     //this.saved_resources = {}
   }
 
@@ -29,28 +33,51 @@ class App extends React.Component {
     this.setState({ combinations });
   };
 
-  getSnapshotBeforeUpdate(){
-    console.log("doing ");
+   getSnapshotBeforeUpdate(){
+    console.log("after render ");
     //If the component has been updated and a tab is selected, so fetch the data
     if (this.state.selectedTab !== null){
-      console.log("ok");
-      let fetchedTextwithKey = this.fetchText();
-      console.log(fetchedTextwithKey);
-      let fetchedPicturewithKey = this.fetchPictures();
-      console.log(fetchedTextwithKey);
-      let saved_resources_copy = Object.assign({}, this.state.saved_resources);
-      saved_resources_copy[fetchedTextwithKey[0]] = fetchedTextwithKey[1];
-      saved_resources_copy[fetchedPicturewithKey[0]] = fetchedPicturewithKey[1];
-
-        this.setState({
-          saved_resources : saved_resources_copy
-        });
-      
-      
+      console.log("tab selected: " + this.state.selectedTab);
+      console.log("previous tab selected: " + this.previous_selected_tab);
+      console.log(this.previous_selected_tab !== this.state.selectedTab);
+      console.log("previous text cat: " + this.previous_fetched_text_category);
+      console.log("text cat: " + this.state.textCategory);
+      console.log(this.previous_fetched_text_category !== this.state.textCategory);
+      console.log("previous pic cat: " + this.previous_fetched_picture_category);
+      console.log("pic cat: " + this.state.pictureCategory);
+      console.log(this.previous_fetched_picture_category !== this.state.pictureCategory);
+      if(this.previous_fetched_text_category !== this.state.textCategory || this.previous_fetched_picture_category !== this.state.pictureCategory  || this.previous_selected_tab !== this.state.selectedTab){
+        this.fetchText();
+        this.fetchPictures();
       }
+      }
+
+      this.previous_selected_tab = this.state.selectedTab;
+
       return null;
     }
-   
+  updateFetchedData(){
+    console.log(this.tmp_fetched_data);
+    if(Object.keys(this.tmp_fetched_data).length === 2){
+      let saved_resources_copy = Object.assign({}, this.state.saved_resources);
+      if(this.tmp_fetched_data["text"]!==null){
+        saved_resources_copy[this.tmp_fetched_data["text"][0]] = this.tmp_fetched_data["text"][1];
+      }
+      if(this.tmp_fetched_data["picture"]!==null){
+        saved_resources_copy[this.tmp_fetched_data["picture"][0]] = this.tmp_fetched_data["picture"][1];
+      }
+      console.log("updating fetched data");
+      delete this.tmp_fetched_data["text"];
+      delete this.tmp_fetched_data["picture"];
+      console.log(this.tmp_fetched_data);
+      this.previous_fetched_text_category = this.state.textCategory;
+      this.previous_fetched_picture_category = this.state.pictureCategory;
+      this.setState({
+        saved_resources : saved_resources_copy
+      });
+      }
+
+  } 
   handleTabClick = e => {
     // e.target.value will help us decide which combination to show on the mainDisplay component.
     if (e.target.value!== this.state.selectedTab){
@@ -97,40 +124,44 @@ class App extends React.Component {
   };
 //Fetching of text if has not been fetched already
 //The logic works as intended and the behavior can be monitored in the browser console
-  async fetchText(){
+  
+fetchText(){
     let filename = this.state.textCategory.toLowerCase() + "_" + this.state.selectedTab;
     let key = "text_data_" + filename; //The id of the data in the saved resources
     if (this.state.saved_resources[key] === undefined){                   //If data doesn´t exist in the saved resources, fetch
       console.log("Fetching text data...");
-      let response = await fetch( url + filename + ".json") 
-      let data = await response.json()
-      if( response.status === 200){
-        console.log("Text Data retrieved from server");
-        return [key, data];
-      }
-      console.log("error " + response.status);
-      
-        /*.then(res => res.json())
+      fetch( url + filename + ".json") 
+        .then(res => res.json())
         .then(
           (result) =>{
             console.log("Text Data retrieved from server");
-            return [key,[result.title, result.text]];
+            //this.state.saved_resources[key] = [result.title, result.text];
+            /*this.setState({
+              saved_resources : this.state.saved_resources,
+            });*/
+            let tmp_data = [key,[result.title, result.text]];
+            this.tmp_fetched_data["text"]= tmp_data;
+            this.updateFetchedData();
           },
           (error) =>{
             console.log(error, "Error while loading textdata from server"); //catch an error and throw a fail message
           }
-        )*/
+        )
       }
       else{
         console.log("Text data already fetched")
+        let tmp_data = null ;
+        this.tmp_fetched_data["text"]= tmp_data;
+        this.updateFetchedData();
       }
+      //this.tmp_fetched_data["text"]= tmp_data;
+      //this.updateFetchedData();
   }
   //Metod for fetching of pictures, similar behavior of fetchText()
   fetchPictures(){
     //The filename of the picture on server
     let filename = this.state.pictureCategory.toLowerCase() + "_" + this.state.selectedTab; 
-    let key = "image_data_" + filename;
-    console.log(this.state.saved_resources);                                                   
+    let key = "image_data_" + filename;                                                   
     if (this.state.saved_resources[key]===undefined){
       console.log("Fetching Picture data...");
       fetch(url + filename +".svg")
@@ -146,7 +177,9 @@ class App extends React.Component {
               this.setState({
                 saved_resources : this.state.saved_resources,
               });*/
-              return [key,result];
+              let tmp_data = [key,result];
+              this.tmp_fetched_data["picture"] = tmp_data;
+              this.updateFetchedData();
             }
           },
           (error) => {
@@ -156,7 +189,12 @@ class App extends React.Component {
     }
     else{
       console.log("Picture data already fetched")
+      let tmp_data = null;
+      this.tmp_fetched_data["picture"] = tmp_data;
+      this.updateFetchedData();
     }
+    // this.tmp_fetched_data["picture"] = tmp_data;
+    // this.updateFetchedData();
   }
   sendDataToVisualize(){
     if (this.state.selectedTab===null || Object.keys(this.state.saved_resources).length === 0)
@@ -170,7 +208,8 @@ class App extends React.Component {
       return null;
   }
   render() {
-    console.log("hei");
+    //this.previous_selected_tab = this.state.selectedTab;
+    console.log("rendering...");
     return (
       <div className='app'>
         <main>
