@@ -31,7 +31,7 @@ const WelcomeMessage = props => {
   return (
     <div>
       <h2>
-        Velkommen! {props.selectedTab && `Kombinasjon: ${props.selectedTab}`}
+        Velkommen!
       </h2>
       <p>Vennligst velg tre kategorier per medietype i vindu til høyre og trikk på en tab for å lage en kombinasjon.</p>
 
@@ -81,7 +81,6 @@ const Maindisplay = props => {
       <WelcomeMessage
         selectedTab={props.selectedTab}
         soundCategory={props.soundCategory}
-        soundTrack={props.soundTrack}
       />
       <div dangerouslySetInnerHTML={{__html: {picture}}}>
       </div>

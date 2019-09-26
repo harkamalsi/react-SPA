@@ -4,19 +4,26 @@ import Sidebar from '../sidebar/Sidebar';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
-const url = "https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/";
+const url =
+  'https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.undoArr = sessionStorage.getItem('categoriesUndo')
+    ? JSON.parse(sessionStorage.getItem('categoriesUndo'))
+    : [];
+
+  this.redoArr = sessionStorage.getItem('categoriesRedo')
+    ? JSON.parse(sessionStorage.getItem('categoriesRedo'))
+    : [];
+
     this.state = {
       //isWelcomeScreen = true,
       //Selected category
+      soundCategory: null,
       textCategory: null,
       pictureCategory: null,
-      soundCategory: null,
-      soundTrack: null,
-      //Selected tab value
-      selectedTab: null,
+      selectedTab: this.undoArr.length<=1 ? null : 1,
       combinations: null,
       saved_resources : {},
     };
@@ -25,18 +32,43 @@ class App extends React.Component {
     this.previous_fetched_picture_category = null;
     this.previous_selected_tab = null;
 
-    //this.saved_resources = {}
-  }
 
+
+
+  }
   componentDidMount = () => {
     const combinations = JSON.parse(localStorage.getItem('combinations'));
     this.setState({ combinations });
+  };
+
+  createStartScreenData = () => {
+    if (this.undoArr.length === 0 && this.state.textCategory !== null) {
+      let welcomeScreenCategories = {
+        soundCategory: this.state.soundCategory,
+        textCategory: this.state.textCategory,
+        pictureCategory: this.state.pictureCategory
+      };
+
+      this.undoArr.push(welcomeScreenCategories);
+    }
   };
 
    getSnapshotBeforeUpdate(){
     console.log("after render ");
     //If the component has been updated and a tab is selected, so fetch the data
     if (this.state.selectedTab !== null){
+      let previousCategory = this.undoArr[this.undoArr.length - 1];
+
+      if (
+        previousCategory.soundCategory !== this.state.soundCategory ||
+        previousCategory.textCategory !== this.state.textCategory ||
+        previousCategory.pictureCategory !== this.state.pictureCategory
+      ) {
+        // change the sesstionStorage and update the state
+        this.handleSession();
+        //this.forceUpdate();
+      }
+
       console.log("tab selected: " + this.state.selectedTab);
       console.log("previous tab selected: " + this.previous_selected_tab);
       console.log(this.previous_selected_tab !== this.state.selectedTab);
@@ -86,6 +118,7 @@ class App extends React.Component {
       
     }
   };
+
   //Props passed down to sidebar that will update app state with the selected categories
   updateTextCategory = text => {
     if(text !== this.state.textCategory){
@@ -94,6 +127,7 @@ class App extends React.Component {
       });
     }
   };
+
   updatePictureCategory = picture => {
     if(picture!== this.state.pictureCategory){
       this.setState({
@@ -101,6 +135,7 @@ class App extends React.Component {
       });
     }
   };
+
   updateSoundCategory = sound => {
     if(sound!== this.state.soundCategory)
     this.setState({
@@ -108,17 +143,100 @@ class App extends React.Component {
       soundTrack: 1
     });
   };
+  // save the categories chosen in the sidebar in the undo stack
+  handleSession = () => {
+    // pop and push. Stack consisting of two arrays.
+
+    // moves that we will maybe get undoed or redoed
+    let categories = {
+      soundCategory: this.state.soundCategory,
+      textCategory: this.state.textCategory,
+      pictureCategory: this.state.pictureCategory,
+      selectedTab : this.state.selectedTab
+    };
+
+    this.undoArr.push(categories);
+    sessionStorage.setItem('categoriesUndo', JSON.stringify(this.undoArr));
+    this.redoArr = [];
+    sessionStorage.setItem('categoriesRedo', JSON.stringify([]));
+  };
+
+  handleUndo = () => {
+    // There must be an undo array after handleSession()
+
+    if (this.undoArr.length > 1) {
+      // pushes the last element of undoArr in redoArr
+      this.redoArr.push(this.undoArr.pop());
+      // change the state pf the categories. Is used for displaying checkbox value.
+      let previousCategories = this.undoArr[this.undoArr.length - 1];
+
+      this.setState({
+        soundCategory: previousCategories.soundCategory,
+        textCategory: previousCategories.textCategory,
+        pictureCategory: previousCategories.pictureCategory,
+        selectedTab : this.undoArr.length===1 ? null : this.state.selectedTab
+      });
+
+      sessionStorage.setItem('categoriesUndo', JSON.stringify(this.undoArr));
+      sessionStorage.setItem('categoriesRedo', JSON.stringify(this.redoArr));
+    }
+    
+  };
+
+  handleRedo = () => {
+    if (this.redoArr.length > 0) {
+      this.undoArr.push(this.redoArr.pop());
+
+      let currentCategories = this.undoArr[this.undoArr.length - 1];
+
+      // change the state pf the categories. Is used for displaying checkbox value.
+      this.setState({
+        soundCategory: currentCategories.soundCategory,
+        textCategory: currentCategories.textCategory,
+        pictureCategory: currentCategories.pictureCategory,
+        selectedTab : this.undoArr.length!==1 ? 1 : this.state.selectedTab
+      });
+
+      sessionStorage.setItem('categoriesUndo', JSON.stringify(this.undoArr));
+      sessionStorage.setItem('categoriesRedo', JSON.stringify(this.redoArr));
+    }
+  };
+
+  // not used at the moment
+  getCheckboxCategories = () => {
+    //let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
+    let redoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
+
+    let categoriesItem = redoArr ? redoArr[redoArr.length - 1] : null;
+    // console.log(categoriesItem);
+
+    console.log(categoriesItem);
+
+    if (categoriesItem)
+      return [
+        categoriesItem.soundCategory,
+        categoriesItem.textCategory,
+        categoriesItem.pictureCategory
+      ];
+  };
 
   handleFavorite = () => {
-    if (localStorage.getItem('combinations') != null) {
+    if (localStorage.getItem('combinations')) {
       localStorage.removeItem('combinations');
       this.setState({ combinations: [] });
     }
 
-    const combinations = ['test1', 'test2', 'test3'];
-    localStorage.setItem('combinations', JSON.stringify(combinations));
+    const combinations = {
+      selectedTab: this.state.selectedTab,
+      pictureCategory: this.state.pictureCategory,
+      soundCategory: this.state.soundCategory,
+      textCategory: this.state.textCategory,
+    };
+
     this.setState({ combinations });
+    localStorage.setItem('combinations', JSON.stringify(combinations));
   };
+
 
   getFavorites = () => {
   };
@@ -143,8 +261,8 @@ fetchText(){
             this.tmp_fetched_data["text"]= tmp_data;
             this.updateFetchedData();
           },
-          (error) =>{
-            console.log(error, "Error while loading textdata from server"); //catch an error and throw a fail message
+          error => {
+            console.log(error, 'Error while loading textdata from server'); //catch an error and throw a fail message
           }
         )
       }
@@ -158,7 +276,7 @@ fetchText(){
       //this.updateFetchedData();
   }
   //Metod for fetching of pictures, similar behavior of fetchText()
-  fetchPictures(){
+  fetchPictures = () => {
     //The filename of the picture on server
     let filename = this.state.pictureCategory.toLowerCase() + "_" + this.state.selectedTab; 
     let key = "image_data_" + filename;                                                   
@@ -182,8 +300,8 @@ fetchText(){
               this.updateFetchedData();
             }
           },
-          (error) => {
-            console.log(error, "Error while loading picture data from server");
+          error => {
+            console.log(error, 'Error while loading picture data from server');
           }
         )
     }
@@ -208,34 +326,47 @@ fetchText(){
       return null;
   }
   render() {
+    this.createStartScreenData();
     //this.previous_selected_tab = this.state.selectedTab;
     console.log("rendering...");
     return (
       <div className='app'>
         <main>
-          <div className="grid-container">
-            <div className="tabs-bar">
-              <Tabdisplay onClick={this.handleTabClick} selectedTab={this.state.selectedTab} />
+          <div className='grid-container'>
+            <div className='tabs-bar'>
+              <Tabdisplay
+                onClick={this.handleTabClick}
+                selectedTab={this.state.selectedTab}
+              />
             </div>
-              <div className="maindisp">
+            <div className='maindisp'>
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
-                soundTrack={this.state.soundTrack}
                 handleFavorite={this.handleFavorite}
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
-                isWelcomeScreen={this.state.selectedTab===null}
                 data = {this.sendDataToVisualize()}
+                isWelcomeScreen={this.state.selectedTab ===null}
               />
-              </div>
-              <div className="sidebar-category">
+            </div>
+            <div className='sidebar-category'>
               <Sidebar
-                sendTextCategory={this.updateTextCategory}
-                sendPictureCategory={this.updatePictureCategory}
-                sendSoundCategory={this.updateSoundCategory}
+                onChange={this.handleSession}
+                handleUndo={this.handleUndo}
+                handleRedo={this.handleRedo}
+                isUndoEmpty={this.undoArr.length === 1}
+                isRedoEmpty={this.redoArr.length === 0}
+                updateTextCategory={this.updateTextCategory}
+                updatePictureCategory={this.updatePictureCategory}
+                updateSoundCategory={this.updateSoundCategory}
+                getCheckboxCategories={[
+                  this.state.soundCategory,
+                  this.state.textCategory,
+                  this.state.pictureCategory
+                ]}
               />
-              </div>
+            </div>
           </div>
         </main>
       </div>
