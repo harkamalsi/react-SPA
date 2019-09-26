@@ -21,27 +21,6 @@ it('renders without crashing', () => {
 });
 
 
-/*
-
-test('my first test', () => {
-    const component = renderer.create(
-        <AudioPlayer 
-            soundCategory="Nature"
-            soundTrack="1" 
-        />);
-    
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-
-    //component.root.findByType('button').props.onClick();
-    console.log(component.root);
-    
-    console.log(tree.children[0].props.src);
-    console.log(tree.children[0].props);
-    expect(tree).toMatchSnapshot();
-}); */
-
-
 describe('Testing app', () => {
 
   it('renders correctly', () => {
@@ -51,9 +30,6 @@ describe('Testing app', () => {
 
 
   it('Tab click updates app state "selectedTab', () => {
-    //const component = renderer.create(<App />);
-    //let tree = component.toJSON();
-    //expect(tree).toMatchSnapshot();
 
     Enzyme.configure({ adapter: new Adapter() });
     const componentEnzyme = mount(<App />);
@@ -80,9 +56,6 @@ describe('Testing app', () => {
   });
 
   it('Tab click to update audioplayer', () => {
-   //// const component = renderer.create(<App />);
-    //let tree = component.toJSON();
-    //expect(tree).toMatchSnapshot();
 
 
     Enzyme.configure({ adapter: new Adapter() });
@@ -119,10 +92,6 @@ describe('Testing app', () => {
 
 
   it('Categorychange updates appstate "soundCategory', () => {
-    //const component = renderer.create(<App />);
-    //let tree = component.toJSON();
-    //expect(tree).toMatchSnapshot();
-
 
     Enzyme.configure({ adapter: new Adapter() });
 
@@ -147,57 +116,5 @@ describe('Testing app', () => {
   }
 
   );
-  //let audioPlayer = component.root.findByProps({ className: "soundPlayer" });
-
-
-  //console.log(componentEnzyme.state('selectedTab'));
-
-
-  //console.log(audioPlayer.props.src);
-
-  //tabButton.simulate('click', {e: {target: {value: 1}}});
-
-  /*
-  
-  
-  
-  console.log(componentEnzyme.state('soundCategory'));
-  componentEnzyme.find('soundPlayer').update();
-
-  let audioP = component.root.findByProps({ className: "soundPlayer" });
-
-  console.log(audioP.props);
-  console.log(componentEnzyme.prop('src'))
-
-
-  */
-
-
-  //console.log(component.root.children[0].children[0].children[0]);
-  // console.log("0============================================================");
-  //console.log(component.root.findAllByType('button')[0].props.onClick());
-  // console.log(component.root.findByProps({ id: "combination1" }).props.onClick());
-
-  /*
-console.log("1============================================================");
-console.log(tree);
-console.log("2============================================================");
-console.log(tree.children)
-console.log("3============================================================");
-console.log(tree.children[0])
-console.log("4============================================================");
-console.log(tree.children[0].children)
-console.log("5============================================================");
-console.log(tree.children[0].children[0].children)
-console.log("6============================================================");
-console.log(tree.children[0].children[0].children[0].props)
-console.log("7============================================================");
-console.log(tree.children[0].children[0].children[1].props)
-console.log("8============================================================");
-console.log(tree.children[0].children[0].children[2].props)
-  */
-
-  //console.log(tree.children[0].props.src);
-  //console.log(tree.children[0].props);
 
 });
