@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 
 .app {
   width: 100%;
-  min-height: 100vh;  
+  min-height: 100vh;
   padding: 100px;
 }
 
@@ -22,25 +22,25 @@ main {
   height: 100%;
 }
 
-.maindisp { 
+.maindisp {
   grid-area: main;
   /*background-color: red;*/
   height: 100%;
 }
 
 
-.sidebar-category{
+.sidebar-category {
   grid-area: cat;
- /* background-color: aquamarine;*/
+  /* background-color: aquamarine;*/
   height: 100%;
 }
 
-.grid-container{
+.grid-container {
   border: black dashed 1px;
   height: 100%;
   width: 100%;
   /*width: 70vw;*/
-  display:grid; 
+  display: grid;
   grid-template-areas: 'tab tab tab'
     'main main cat';
 
@@ -52,17 +52,17 @@ main {
 
 }
 
-.grid-container > div {
+.grid-container>div {
   padding: 0;
   margin: 0;
 }
 
-@media only screen and (max-width: 825px){
+@media only screen and (max-width: 825px) {
   .app {
     padding: 0;
     counter-reset: tabnr;
   }
-  
+
 
   /* hides text in the tab buttons*/
   .combination {
@@ -78,54 +78,54 @@ main {
 }
 
 
-@media only screen and (max-width:825px) and (min-width:376px), 
-(orientation: landscape) and (max-width:825px) and (min-width:376px){
+@media only screen and (max-width:825px) and (min-width:376px),
+(orientation: landscape) and (max-width:825px) and (min-width:376px) {
 
-  .grid-container{
-    grid-template-areas: 'tab' 'main' 'cat';
+  .grid-container {
+    grid-template-areas: 'tab''main''cat';
     grid-template-rows: 15vh 85vh auto;
     grid-template-columns: auto;
   }
 
-  .sidebar > h3{
-    display:none;
+  .sidebar>h3 {
+    display: none;
   }
 
-  .sidebar{
+  .sidebar {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
 
-  
-  form > label{
+
+  form>label {
     padding: 15px;
-    
+
   }
 
 
 }
 
 /*bredden til iphone x/8/7/6 = 375px */
-@media only screen and (max-width:376px) and (orientation: portrait)  {
+@media only screen and (max-width:376px) and (orientation: portrait) {
 
-  .grid-container{
-    grid-template-areas: 'tab' 'main' 'cat';
+  .grid-container {
+    grid-template-areas: 'tab''main''cat';
     grid-template-rows: 15vh 85vh auto;
     grid-template-columns: auto;
   }
 
-  .sidebar > h3{
+  .sidebar>h3 {
     display: block;
   }
 
-  .sidebar{
+  .sidebar {
     display: inline-block;
     padding-left: 10px;
   }
 
-  form > label{
+  form>label {
     padding: 15px;
   }
 
