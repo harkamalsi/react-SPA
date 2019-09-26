@@ -34,6 +34,7 @@ const AudioPlayer = props => {
   return (
     <div className='sound'>
       <audio
+        className='soundPlayer'
         preload='auto'
         src={soundTrack}
         type='audio/mpeg'

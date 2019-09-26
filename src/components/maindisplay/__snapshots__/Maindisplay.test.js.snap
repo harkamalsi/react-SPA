@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly  1`] = `
+<div
+  className="maindisplay"
+>
+  <div>
+    <h2>
+      Velkommen! 
+    </h2>
+    <p>
+      Vennligst velg tre kategorier per medietype i vindu til høyre.
+    </p>
+    <div
+      className="sound"
+    >
+      <audio
+        autoPlay={true}
+        className="soundPlayer"
+        controls={true}
+        loop={true}
+        preload="auto"
+        type="audio/mpeg"
+      />
+    </div>
+  </div>
+  <div
+    className="favorite-buttons"
+  >
+    <button
+      className="btn delete"
+    >
+      <h3>
+        Hent favoritt kombinasjon
+      </h3>
+    </button>
+    <button
+      className="btn favorite"
+    >
+      <h3>
+        Lagre Kombinasjon
+      </h3>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders correctly when passing multiple props 1`] = `
+<div
+  className="maindisplay"
+>
+  <div>
+    <h2>
+      Velkommen! 
+      Kombinasjon: 1
+    </h2>
+    <p>
+      Vennligst velg tre kategorier per medietype i vindu til høyre.
+    </p>
+    <div
+      className="sound"
+    >
+      <audio
+        autoPlay={true}
+        className="soundPlayer"
+        controls={true}
+        loop={true}
+        preload="auto"
+        src="1.mp3"
+        type="audio/mpeg"
+      />
+    </div>
+  </div>
+  <div
+    className="favorite-buttons"
+  >
+    <button
+      className="btn delete"
+    >
+      <h3>
+        Hent favoritt kombinasjon
+      </h3>
+    </button>
+    <button
+      className="btn favorite"
+    >
+      <h3>
+        Lagre Kombinasjon
+      </h3>
+    </button>
+  </div>
+</div>
+`;
