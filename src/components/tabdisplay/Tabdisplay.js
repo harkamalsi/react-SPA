@@ -1,5 +1,5 @@
 import React from 'react';
-import TabChoice from '../ui/Tabchoice';
+import TabChoice from '../ui/tabchoice/Tabchoice';
 import './Tabdisplay.css';
 
 const Tabdisplay = props => {
