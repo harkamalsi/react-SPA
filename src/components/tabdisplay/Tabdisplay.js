@@ -9,7 +9,14 @@ const Tabdisplay = props => {
 const createTabChoices = props => {
   let choices = [];
   for (let i = 1; i <= 4; i++) {
-    choices.push(<TabChoice tabNumber={i} onClick={props.onClick} value={i} selectedTab={props.selectedTab} />);
+    choices.push(
+      <TabChoice
+        key={i}
+        onClick={props.onClick}
+        value={i}
+        selectedTab={props.selectedTab}
+      />
+    );
   }
 
   return choices;
