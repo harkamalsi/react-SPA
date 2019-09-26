@@ -3,9 +3,13 @@ import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 import Button from '../ui/button/Button';
 import './Sidebar.css';
 
+//Sidebar it´s the parent component of the 3 choiceSelector components that build the gui.
+//It´s a functional component and an interface between the app and the ChoiceSelector componets.
+//It´s main purpouse is to render the Choice Selector and pass down the props for changing state values of App from the ChoiceSelector
+
 const Sidebar = props => {
   return (
-    <div className='Sidebar'>
+    <div className='sidebar'>
       <h3>Kategorier</h3>
       <ChoiceSelector
         sendCategory={props.updateSoundCategory}
@@ -15,7 +19,6 @@ const Sidebar = props => {
         alternative3='City Life'
         select={props.getCheckboxCategories && props.getCheckboxCategories[0]}
       />
-
       <ChoiceSelector
         sendCategory={props.updateTextCategory}
         categoryName='Text'
@@ -50,26 +53,6 @@ const Sidebar = props => {
           icon={'redo'}
           text={'Gjenta'}
         />
-        {/* <button
-          id='undo'
-          className='undo-redo-btn'
-          // disable the undo button if the length is <= 1. We don't want to undo the first default move; the first element is the default move.
-          onClick={props.handleUndo}
-          disabled={isUndoEmpty}
-        >
-          <i class='material-icons'>undo</i>
-          Angre
-        </button>
-        <button
-          id='redo'
-          className='undo-redo-btn'
-          // disable the redo button if the length is == 0. Then there is nothing to redo.
-          onClick={props.handleRedo}
-          disabled={isRedoEmpty}
-        >
-          <i class='material-icons'>redo</i>
-          Gjenta
-        </button> */}
       </div>
     </div>
   );

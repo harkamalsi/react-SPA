@@ -1,4 +1,10 @@
-.Sidebar {
+.sidebar>h3 {
+  font-size: 1.7rem;
+  padding-bottom: 20px;
+}
+
+.sidebar {
+  display: inline-block;
   border: rgb(4, 0, 255) dashed 1px;
   width: 25vw;
   display: flex;
@@ -26,4 +32,5 @@
 
 .undo-redo-btn:focus {
   outline: none;
+  width: 100%;
 }

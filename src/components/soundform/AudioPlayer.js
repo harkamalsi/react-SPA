@@ -1,5 +1,4 @@
 import React from 'react';
-import './Soundform.css';
 //import music from '../../assets/sounds/';
 import piano1 from '../../assets/sounds/piano/1.mp3';
 import piano2 from '../../assets/sounds/piano/2.mp3';
@@ -13,6 +12,7 @@ import citylife1 from '../../assets/sounds/citylife/1.mp3';
 import citylife2 from '../../assets/sounds/citylife/2.mp3';
 import citylife3 from '../../assets/sounds/citylife/3.mp3';
 import citylife4 from '../../assets/sounds/citylife/4.mp3';
+import './Soundform.css';
 
 //music + Math.ceil(Math.random()*4) + '.mp3'
 
