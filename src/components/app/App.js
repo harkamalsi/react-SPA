@@ -13,7 +13,6 @@ class App extends React.Component {
       textCategory: null,
       pictureCategory: null,
       soundCategory: null,
-      soundTrack: null,
       //Selected tab value
       selectedTab: null,
       combinations: null,
@@ -54,7 +53,6 @@ class App extends React.Component {
   updateSoundCategory = sound => {
     this.setState({
       soundCategory: sound,
-      soundTrack: 1
     });
   };
 
@@ -138,7 +136,6 @@ class App extends React.Component {
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
-                soundTrack={this.state.soundTrack}
                 handleFavorite={this.handleFavorite}
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}

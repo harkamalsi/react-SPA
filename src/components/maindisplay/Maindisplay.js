@@ -8,7 +8,6 @@ const Maindisplay = props => {
       <WelcomeMessage
         selectedTab={props.selectedTab}
         soundCategory={props.soundCategory}
-        soundTrack={props.soundTrack}
       />
       <div className='favorite-buttons'>
         {/* <button className='btn delete' onClick={props.deleteFavorite}>
