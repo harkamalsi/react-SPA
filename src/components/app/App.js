@@ -4,7 +4,8 @@ import Sidebar from '../sidebar/Sidebar';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
 
-const url = "https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/";
+const url =
+  'https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,12 +28,10 @@ class App extends React.Component {
       ? JSON.parse(sessionStorage.getItem('categoriesRedo'))
       : [];
 
-    this.saved_resources = {}
-  }
-  
+    this.saved_resources = {};
   }
 
-  createStartScreenData() {
+  createStartScreenData = () => {
     if (this.undoArr.length === 0 && this.state.textCategory !== null) {
       let welcomeScreenCategories = {
         soundCategory: this.state.soundCategory,
@@ -42,7 +41,7 @@ class App extends React.Component {
 
       this.undoArr.push(welcomeScreenCategories);
     }
-  }
+  };
 
   componentDidUpdate = () => {
     if (this.state.selectedTab !== null) {
@@ -58,6 +57,12 @@ class App extends React.Component {
         this.forceUpdate();
       }
     }
+
+    //If the component has been updated and a tab is selected, so fetch the data
+    if (this.state.selectedTab != null) {
+      this.fetchText();
+      this.fetchPictures();
+    }
   };
 
   componentDidMount = () => {
@@ -65,14 +70,6 @@ class App extends React.Component {
     this.setState({ combinations });
   };
 
-  componentDidUpdate = () => {
-    //If the component has been updated and a tab is selected, so fetch the data
-    if (this.state.selectedTab != null){
-      this.fetchText();
-      this.fetchPictures();
-    }
-  }
-   
   handleTabClick = e => {
     // e.target.value will help us decide which combination to show on the mainDisplay component.
     this.setState({ selectedTab: e.target.value });
@@ -80,21 +77,15 @@ class App extends React.Component {
 
   //Props passed down to sidebar that will update app state with the selected categories
   updateTextCategory = text => {
-    this.setState({
-      textCategory: text
-    });
+    this.setState({ textCategory: text });
   };
 
   updatePictureCategory = picture => {
-    this.setState({
-      pictureCategory: picture
-    });
+    this.setState({ pictureCategory: picture });
   };
 
   updateSoundCategory = sound => {
-    this.setState({
-      soundCategory: sound
-    });
+    this.setState({ soundCategory: sound });
   };
 
   // save the categories chosen in the sidebar in the undo stack
@@ -151,6 +142,7 @@ class App extends React.Component {
     }
   };
 
+  // not used at the moment
   getCheckboxCategories = () => {
     //let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
     let redoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
@@ -183,94 +175,87 @@ class App extends React.Component {
       textCategory: this.state.textCategory,
       textFilePath: this.state.text
     };
-    this.setState({ combinations });
-    localStorage.setItem('combinations', JSON.stringify(combinations));
-  handleFavorite = () => {
-    if (localStorage.getItem('combinations') != null) {
-      localStorage.removeItem('combinations');
-      this.setState({ combinations: [] });
-      console.log(this.state.combinations);
-    }
 
-    const combinations = ['test1', 'test2', 'test3'];
-    localStorage.setItem('combinations', JSON.stringify(combinations));
     this.setState({ combinations });
+    localStorage.setItem('combinations', JSON.stringify(combinations));
   };
 
   getFavorites = () => {
     console.log(this.state.combinations);
   };
 
-//Fetching of text if has not been fetched already
-//The logic works as intended and the behavior can be monitored in the browser console
-  fetchText(){
-    let key = "text_data_" + this.state.textCategory.toLowerCase(); //The id of the data in the saved resources
-    if (this.saved_resources[key] === undefined){                   //If data doesn´t exist in the saved resources, fetch
-      console.log("Fetching text data...")
-      fetch( url + this.state.textCategory.toLowerCase() + ".json") 
+  //Fetching of text if has not been fetched already
+  //The logic works as intended and the behavior can be monitored in the browser console
+  fetchText = () => {
+    let key = 'text_data_' + this.state.textCategory.toLowerCase(); //The id of the data in the saved resources
+    if (this.saved_resources[key] === undefined) {
+      //If data doesn´t exist in the saved resources, fetch
+      console.log('Fetching text data...');
+      fetch(url + this.state.textCategory.toLowerCase() + '.json')
         .then(res => res.json())
         .then(
-          (result) =>{
-            console.log("Text Data retrieved from server");
+          result => {
+            console.log('Text Data retrieved from server');
             this.saved_resources[key] = result.data;
           },
-          (error) =>{
-            console.log(error, "Error while loading textdata from server"); //catch an error and throw a fail message
+          error => {
+            console.log(error, 'Error while loading textdata from server'); //catch an error and throw a fail message
           }
-        )
-      }
-      else{
-        console.log("Text data already fetched")
-      }
-  }
+        );
+    } else {
+      console.log('Text data already fetched');
+    }
+  };
+
   //Metod for fetching of pictures, similar behavior of fetchText()
-  fetchPictures(){
+  fetchPictures = () => {
     //The filename of the picture on server
-    let filename = this.state.pictureCategory.toLowerCase() + "_" + this.state.selectedTab; 
-    let key = "image_data_" + filename;                                                   
-    if (this.saved_resources[key]===undefined){
-      console.log("Fetching Picture data...");
+    let filename =
+      this.state.pictureCategory.toLowerCase() + '_' + this.state.selectedTab;
+    let key = 'image_data_' + filename;
+    if (this.saved_resources[key] === undefined) {
+      console.log('Fetching Picture data...');
       //console.log(url + filename +".svg");
-      fetch(url + filename +".svg")
+      fetch(url + filename + '.svg')
         .then(res => res.text())
         .then(
-          (result) => {
-            if(result === "404: Not Found\n"){
-              console.log("Picture data not found on Server");
-            }
-            else{
-              console.log("Picture Data retrieved from server with success!");
+          result => {
+            if (result === '404: Not Found\n') {
+              console.log('Picture data not found on Server');
+            } else {
+              console.log('Picture Data retrieved from server with success!');
               this.saved_resources[key] = result;
             }
-            
           },
-          (error) => {
-            console.log(error, "Error while loading picture data from server");
+          error => {
+            console.log(error, 'Error while loading picture data from server');
           }
-        )
+        );
+    } else {
+      console.log('Picture data already fetched');
     }
-    else{
-      console.log("Picture data already fetched")
-    }
-  }
+  };
+
   render() {
     this.createStartScreenData();
     console.log(this.undoArr.length, this.redoArr.length);
     console.log([
-      this.state.soundCategory,
+      this.state.soundCateory,
       this.state.textCategory,
       this.state.pictureCategory
     ]);
 
     return (
       <div className='app'>
-        
         <main>
-          <div className="grid-container">
-            <div className="tabs-bar">
-              <Tabdisplay onClick={this.handleTabClick} selectedTab={this.state.selectedTab} />
+          <div className='grid-container'>
+            <div className='tabs-bar'>
+              <Tabdisplay
+                onClick={this.handleTabClick}
+                selectedTab={this.state.selectedTab}
+              />
             </div>
-              <div className="maindisp">
+            <div className='maindisp'>
               <Maindisplay
                 selectedTab={this.state.selectedTab}
                 soundCategory={this.state.soundCategory}
@@ -278,11 +263,9 @@ class App extends React.Component {
                 getFavorites={this.getFavorites}
                 deleteFavorite={this.deleteFavorite}
                 isWelcomeScreenDisplayed={this.undoArr.length === 1}
-                // is the following required?
-                soundTrack={this.state.soundTrack}
               />
-              </div>
-              <div className="sidebar-category">
+            </div>
+            <div className='sidebar-category'>
               <Sidebar
                 onChange={this.handleSession}
                 handleUndo={this.handleUndo}
@@ -298,7 +281,7 @@ class App extends React.Component {
                   this.state.pictureCategory
                 ]}
               />
-              </div>
+            </div>
           </div>
         </main>
       </div>

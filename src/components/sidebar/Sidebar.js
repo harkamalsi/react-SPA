@@ -38,7 +38,6 @@ const Sidebar = props => {
       <div className='undo-redo-buttons'>
         <Button
           id='undo'
-          // disable the undo button if the length is <= 1. We don't want to undo the first default move; the first element is the default move.
           onClick={props.handleUndo}
           handleDisabled={props.isUndoEmpty}
           icon={'undo'}
@@ -47,7 +46,6 @@ const Sidebar = props => {
 
         <Button
           id='redo'
-          // disable the undo button if the length is <= 1. We don't want to undo the first default move; the first element is the default move.
           onClick={props.handleRedo}
           handleDisabled={props.isRedoEmpty}
           icon={'redo'}

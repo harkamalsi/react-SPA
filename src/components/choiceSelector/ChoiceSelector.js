@@ -7,11 +7,21 @@ class ChoiceSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: this.props.alternative1
+      selectedOption: this.props.select
+        ? this.props.select
+        : this.props.alternative1
     };
     this.handleChange = this.handleChange.bind(this);
     this.props.sendCategory(this.state.selectedOption);
   }
+
+  componentDidUpdate = () => {
+    if (this.state.selectedOption !== this.props.select) {
+      this.setState({
+        selectedOption: this.props.select
+      });
+    }
+  };
 
   handleChange(e) {
     //On change of the state of the radio buttons, it updates the state of the component and updated the parent component
