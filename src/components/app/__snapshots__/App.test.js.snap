@@ -168,7 +168,7 @@ exports[`Testing app renders correctly 1`] = `
             className="choice-form"
           >
             <h3>
-              Tekst
+              Text
             </h3>
             <form>
               <label>
@@ -177,9 +177,9 @@ exports[`Testing app renders correctly 1`] = `
                   name="category"
                   onChange={[Function]}
                   type="radio"
-                  value="Emosjoner"
+                  value="Christmas"
                 />
-                Emosjoner
+                Christmas
               </label>
               <label>
                 <input
@@ -187,9 +187,9 @@ exports[`Testing app renders correctly 1`] = `
                   name="category"
                   onChange={[Function]}
                   type="radio"
-                  value="Farger"
+                  value="Valentine"
                 />
-                Farger
+                Valentine
               </label>
               <label>
                 <input
@@ -197,9 +197,9 @@ exports[`Testing app renders correctly 1`] = `
                   name="category"
                   onChange={[Function]}
                   type="radio"
-                  value="Dyr"
+                  value="Get Well"
                 />
-                Dyr
+                Get Well
               </label>
             </form>
           </div>
@@ -207,7 +207,7 @@ exports[`Testing app renders correctly 1`] = `
             className="choice-form"
           >
             <h3>
-              Bilder
+              Picture
             </h3>
             <form>
               <label>
@@ -216,9 +216,9 @@ exports[`Testing app renders correctly 1`] = `
                   name="category"
                   onChange={[Function]}
                   type="radio"
-                  value="Animals"
+                  value="Dogs"
                 />
-                Animals
+                Dogs
               </label>
               <label>
                 <input
@@ -241,6 +241,48 @@ exports[`Testing app renders correctly 1`] = `
                 Rats
               </label>
             </form>
+          </div>
+          <div
+            className="undo-redo-buttons"
+          >
+            <button
+              className="btn undefined"
+              disabled={true}
+              id="undo"
+              onClick={[Function]}
+            >
+              <div
+                className="inner-btn-container"
+              >
+                <i
+                  class="material-icons"
+                >
+                  undo
+                </i>
+                <span>
+                  Angre
+                </span>
+              </div>
+            </button>
+            <button
+              className="btn undefined"
+              disabled={true}
+              id="redo"
+              onClick={[Function]}
+            >
+              <div
+                className="inner-btn-container"
+              >
+                <i
+                  class="material-icons"
+                >
+                  redo
+                </i>
+                <span>
+                  Gjenta
+                </span>
+              </div>
+            </button>
           </div>
         </div>
       </div>
