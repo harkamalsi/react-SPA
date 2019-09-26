@@ -3,7 +3,6 @@ import Maindisplay from '../maindisplay/Maindisplay';
 import Sidebar from '../sidebar/Sidebar';
 import Tabdisplay from '../tabdisplay/Tabdisplay';
 import './App.css';
-import { file } from '@babel/types';
 
 const url = "https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/";
 class App extends React.Component {
@@ -21,6 +20,7 @@ class App extends React.Component {
       combinations: null,
       saved_resources : {},
     };
+    this.isFetchingPicture = false;
     //this.saved_resources = {}
   }
 
@@ -30,29 +30,52 @@ class App extends React.Component {
   };
 
   getSnapshotBeforeUpdate(){
+    console.log("doing ");
     //If the component has been updated and a tab is selected, so fetch the data
     if (this.state.selectedTab !== null){
-      this.fetchText();
-      this.fetchPictures();
+      console.log("ok");
+      let fetchedTextwithKey = this.fetchText();
+      console.log(fetchedTextwithKey);
+      let fetchedPicturewithKey = this.fetchPictures();
+      console.log(fetchedTextwithKey);
+      let saved_resources_copy = Object.assign({}, this.state.saved_resources);
+      saved_resources_copy[fetchedTextwithKey[0]] = fetchedTextwithKey[1];
+      saved_resources_copy[fetchedPicturewithKey[0]] = fetchedPicturewithKey[1];
+
+        this.setState({
+          saved_resources : saved_resources_copy
+        });
+      
+      
+      }
+      return null;
     }
-  }
    
   handleTabClick = e => {
     // e.target.value will help us decide which combination to show on the mainDisplay component.
-    this.setState({ selectedTab: e.target.value });
+    if (e.target.value!== this.state.selectedTab){
+      this.setState(
+        { selectedTab: e.target.value });
+      
+    }
   };
   //Props passed down to sidebar that will update app state with the selected categories
   updateTextCategory = text => {
-    this.setState({
-      textCategory: text
-    });
+    if(text !== this.state.textCategory){
+      this.setState({
+        textCategory: text
+      });
+    }
   };
   updatePictureCategory = picture => {
-    this.setState({
-      pictureCategory: picture
-    });
+    if(picture!== this.state.pictureCategory){
+      this.setState({
+        pictureCategory: picture
+      });
+    }
   };
   updateSoundCategory = sound => {
+    if(sound!== this.state.soundCategory)
     this.setState({
       soundCategory: sound,
       soundTrack: 1
@@ -63,7 +86,6 @@ class App extends React.Component {
     if (localStorage.getItem('combinations') != null) {
       localStorage.removeItem('combinations');
       this.setState({ combinations: [] });
-      console.log(this.state.combinations);
     }
 
     const combinations = ['test1', 'test2', 'test3'];
@@ -72,30 +94,32 @@ class App extends React.Component {
   };
 
   getFavorites = () => {
-    console.log(this.state.combinations);
   };
 //Fetching of text if has not been fetched already
 //The logic works as intended and the behavior can be monitored in the browser console
-  fetchText(){
+  async fetchText(){
     let filename = this.state.textCategory.toLowerCase() + "_" + this.state.selectedTab;
     let key = "text_data_" + filename; //The id of the data in the saved resources
     if (this.state.saved_resources[key] === undefined){                   //If data doesn´t exist in the saved resources, fetch
       console.log("Fetching text data...");
-      console.log(url + filename + ".json");
-      fetch( url + filename + ".json") 
-        .then(res => res.json())
+      let response = await fetch( url + filename + ".json") 
+      let data = await response.json()
+      if( response.status === 200){
+        console.log("Text Data retrieved from server");
+        return [key, data];
+      }
+      console.log("error " + response.status);
+      
+        /*.then(res => res.json())
         .then(
           (result) =>{
             console.log("Text Data retrieved from server");
-            this.state.saved_resources[key] = [result.title, result.text];
-            this.setState({
-              saved_resources : this.state.saved_resources,
-            });
+            return [key,[result.title, result.text]];
           },
           (error) =>{
             console.log(error, "Error while loading textdata from server"); //catch an error and throw a fail message
           }
-        )
+        )*/
       }
       else{
         console.log("Text data already fetched")
@@ -105,10 +129,10 @@ class App extends React.Component {
   fetchPictures(){
     //The filename of the picture on server
     let filename = this.state.pictureCategory.toLowerCase() + "_" + this.state.selectedTab; 
-    let key = "image_data_" + filename;                                                   
+    let key = "image_data_" + filename;
+    console.log(this.state.saved_resources);                                                   
     if (this.state.saved_resources[key]===undefined){
       console.log("Fetching Picture data...");
-      //console.log(url + filename +".svg");
       fetch(url + filename +".svg")
         .then(res => res.text())
         .then(
@@ -118,10 +142,11 @@ class App extends React.Component {
             }
             else{
               console.log("Picture Data retrieved from server with success!");
-              this.state.saved_resources[key] = result;
+              /*this.state.saved_resources[key] = result;
               this.setState({
                 saved_resources : this.state.saved_resources,
-              });
+              });*/
+              return [key,result];
             }
           },
           (error) => {
@@ -134,13 +159,10 @@ class App extends React.Component {
     }
   }
   sendDataToVisualize(){
-    console.log(Object.keys(this.state.saved_resources).length);
     if (this.state.selectedTab===null || Object.keys(this.state.saved_resources).length === 0)
       return null;
-    console.log(this.state.saved_resources);
     let picture_data = this.state.saved_resources["image_data_" + this.state.pictureCategory.toLowerCase() + "_" + this.state.selectedTab];
     let text_data = this.state.saved_resources["text_data_" + this.state.textCategory.toLowerCase() + "_" + this.state.selectedTab];
-    console.log([picture_data, text_data]);
 
     if(picture_data !== undefined && text_data !== undefined){
       return [picture_data, text_data];}
@@ -148,9 +170,9 @@ class App extends React.Component {
       return null;
   }
   render() {
+    console.log("hei");
     return (
       <div className='app'>
-        
         <main>
           <div className="grid-container">
             <div className="tabs-bar">

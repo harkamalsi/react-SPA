@@ -1,7 +1,7 @@
 import React from 'react';
 import './Maindisplay.css';
 import AudioPlayer from '../soundform/AudioPlayer';
-
+import loading from './loading.svg'
 /*
 class Maindisplay extends React.Component{
 
@@ -49,14 +49,18 @@ const Maindisplay = props => {
   )
   else if (props.data === null)
     return(
-      <div></div>
+      <div>
+        <div className="loadingText">Laster inn data...</div>
+        <div className="loading"> <img src={loading} alt=""/></div>
+      </div>
+
     )
     else{ 
   return(
     <div>
-    <div dangerouslySetInnerHTML ={{__html: props.data[1][0]}}></div>
-    <div dangerouslySetInnerHTML ={{__html: props.data[0]}}></div>
-    <div dangerouslySetInnerHTML ={{__html: props.data[1][1]}}></div>
+    <div className ="title" dangerouslySetInnerHTML ={{__html: props.data[1][0]}}></div>
+    <div className="picture" dangerouslySetInnerHTML ={{__html: props.data[0]}}></div>
+    <div className="Text" dangerouslySetInnerHTML ={{__html: props.data[1][1]}}></div>
     <AudioPlayer
         soundTrack={props.selectedTab}
         soundCategory={props.soundCategory}
