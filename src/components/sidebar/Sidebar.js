@@ -29,8 +29,8 @@ const Sidebar = props => {
         sendCategory={props.sendPictureCategory}
         categoryName='Bilder'
         alternative1='Animals'
-        alternative2='Cats'
-        alternative3='Rats'
+        alternative2='Aliens'
+        alternative3='Vehicle'
       />
     </div>
   );
