@@ -5,7 +5,9 @@ const Tabchoice = props => {
   return (
     <div className='tabchoice'>
       <button
-        className={`combination${props.selectedTab == props.id ? ' show' : ''}`}
+        className={`combination${
+          props.selectedTab === props.id ? ' show' : ''
+        }`}
         id={`combination${props.id}`}
         value={props.value}
         onClick={props.onClick}
