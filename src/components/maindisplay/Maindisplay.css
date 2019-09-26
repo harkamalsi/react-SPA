@@ -1,6 +1,7 @@
-.Maindisplay {
+.maindisplay {
   border: rgb(0, 255, 255) dashed 1px;
-  width: 70vw;
+  height: 100%;
+  width: 100%;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
@@ -12,15 +13,14 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .btn {
   height: 50px;
   width: auto;
-  padding: 1rem;
+  padding: 5px;
   border-radius: 25px;
-  text-decoration: none;
   cursor: pointer;
 }
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Tabdisplay from './Tabdisplay';
+import ChoiceSelector from './choiceSelector';
 
 
 
 it('renders correctly ', () => {
-    const tree = renderer.create(<Tabdisplay/>).toJSON();
+    const tree = renderer.create(<ChoiceSelector sendCategory={()=> 0}/>).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
