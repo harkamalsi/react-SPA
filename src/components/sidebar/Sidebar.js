@@ -22,17 +22,17 @@ const Sidebar = props => {
       <ChoiceSelector
         sendCategory={props.updateTextCategory}
         categoryName='Text'
-        alternative1='Christmas'
-        alternative2='Valentine'
-        alternative3='Get Well'
+        alternative1='Emosjoner'
+        alternative2='Farger'
+        alternative3='Dyr'
         select={props.getCheckboxCategories && props.getCheckboxCategories[1]}
       />
       <ChoiceSelector
+        categoryName='Bilder'
+        alternative1='Animals'
+        alternative2='Aliens'
+        alternative3='Vehicle'
         sendCategory={props.updatePictureCategory}
-        categoryName='Picture'
-        alternative1='Dogs'
-        alternative2='Cats'
-        alternative3='Rats'
         select={props.getCheckboxCategories && props.getCheckboxCategories[2]}
       />
       <div className='undo-redo-buttons'>
