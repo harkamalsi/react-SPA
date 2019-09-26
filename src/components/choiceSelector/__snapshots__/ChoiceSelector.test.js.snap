@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly  1`] = `
+<div
+  className="choice-form"
+>
+  <h3 />
+  <form>
+    <label>
+      <input
+        checked={true}
+        name="category"
+        onChange={[Function]}
+        type="radio"
+      />
+    </label>
+    <label>
+      <input
+        checked={true}
+        name="category"
+        onChange={[Function]}
+        type="radio"
+      />
+    </label>
+    <label>
+      <input
+        checked={true}
+        name="category"
+        onChange={[Function]}
+        type="radio"
+      />
+    </label>
+  </form>
+</div>
+`;
