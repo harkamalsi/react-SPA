@@ -157,11 +157,11 @@ Lyd håndterer du med audio-taggen fra HTML5 og da trenger du ikke implementere 
 
 I prosjektet benyttes localstorage for å kunne lagre og hente en favoritt kombinasjon. Localstorage lar oss hente og vise data selv etter nettleser er avsluttet og startet på nytt.  Sessionstorage er brukt for å kunne implementere angre-gjenta funksjonaliteten for en bestemt «session». 
 
-Det er ingen slett-favoritt knapp, dersom en velger å lagre en ny favoritt kombinasjon vil den forrige overskrives. Gruppen valgte å implementere disable-knapp funksjonalitet. Det er ikke mulig å hente en favoritt kombinasjon dersom det finnes ingen favoritt kombinasjon, og det er heller ikke mulig å sette en dersom en bruker ikke har en kombinasjon som vises på skjermen. En tilsvarende disable-knapp logikk for angre-gjenta funksjonalitet er også implementert.
+Det er ingen slett-favoritt knapp, dersom en velger å lagre en ny favoritt kombinasjon vil den forrige overskrives. Gruppen valgte å implementere disable-knapp funksjonalitet. Det er ikke mulig å hente en favoritt kombinasjon dersom det ikke finnes en favoritt kombinasjon, og det er heller ikke mulig å sette en favoritt kombinasjon dersom en bruker ikke har en kombinasjon som vises på skjermen. En tilsvarende disable-knapp logikk for angre-gjenta funksjonaliteten er også implementert.
 
 ### Server
 
-Websiden kjøres på en Apache web server. Vi lagde en production build, og lastet den opp til serveren. 
+Websiden kjøres på en Apache web server. Vi lagde en production build med `npm run build`, og lastet den opp til serveren sammen med svg og tekst filer. 
 
 ### Inspirasjon og kilder
 Tabdisplay design er inspirert fra itdagene.no. SVG filene er hentet fra https://publicdomainvectors.org/, og musikk filene er hentet fra https://freesound.org/. 
