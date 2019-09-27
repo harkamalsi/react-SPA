@@ -26,7 +26,8 @@ class App extends React.Component {
       pictureCategory: null,
       selectedTab: this.undoArr.length <= 1 ? null : 1,
       combinations: null,
-      saved_resources: {}
+      saved_resources: {},
+      isFavoriteSaved: localStorage.getItem('combinations') !== null
     };
     this.tmp_fetched_data = {};
     this.previous_fetched_text_category = null;
@@ -228,30 +229,44 @@ class App extends React.Component {
   };
 
   handleFavorite = () => {
-    if (localStorage.getItem('combinations')) {
+    /* if (localStorage.getItem('combinations')) {
       localStorage.removeItem('combinations');
       this.setState({ combinations: [] });
-    }
+    } */
 
-    const combinations = {
+    let previousCombination = JSON.parse(localStorage.getItem('combinations'));
+
+    const combination = {
       selectedTab: this.state.selectedTab,
       soundCategory: this.state.soundCategory,
       textCategory: this.state.textCategory,
       pictureCategory: this.state.pictureCategory
     };
 
-    // this.setState({ combinations });
-    localStorage.setItem('combinations', JSON.stringify(combinations));
+    if (JSON.stringify(previousCombination) !== JSON.stringify(combination)) {
+      localStorage.setItem('combinations', JSON.stringify(combination));
+      this.setState({
+        isFavoriteSaved: true
+      });
+    }
   };
 
   getFavorite = () => {
-    let combinations = JSON.parse(localStorage.getItem('combinations'));
-    if (combinations) {
+    let newCombination = JSON.parse(localStorage.getItem('combinations'));
+
+    const combination = {
+      selectedTab: this.state.selectedTab,
+      soundCategory: this.state.soundCategory,
+      textCategory: this.state.textCategory,
+      pictureCategory: this.state.pictureCategory
+    };
+
+    if (JSON.stringify(combination) !== JSON.stringify(newCombination)) {
       this.setState({
-        selectedTab: combinations.selectedTab,
-        pictureCategory: combinations.pictureCategory,
-        soundCategory: combinations.soundCategory,
-        textCategory: combinations.textCategory
+        selectedTab: newCombination.selectedTab,
+        pictureCategory: newCombination.pictureCategory,
+        soundCategory: newCombination.soundCategory,
+        textCategory: newCombination.textCategory
       });
     }
   };
@@ -394,9 +409,10 @@ class App extends React.Component {
             </div>
             <div className='favorite'>
               <Favorite
-                showFavorite={this.state.selectedTab !== null}
                 handleFavorite={this.handleFavorite}
                 getFavorite={this.getFavorite}
+                isFavoriteSaved={this.state.isFavoriteSaved}
+                showHandleFavorite={this.state.selectedTab === null}
               />
             </div>
           </div>
