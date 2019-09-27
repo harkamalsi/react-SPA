@@ -31,7 +31,7 @@ main {
 
 .sidebar-category {
   grid-area: cat;
-  /* background-color: aquamarine;*/
+  /* background-color: aquamarine; */
   height: 100%;
 }
 
@@ -83,11 +83,11 @@ main {
 
   .grid-container {
     grid-template-areas: 'tab''main''cat';
-    grid-template-rows: 15vh 85vh auto;
+    grid-template-rows: 15vh auto auto;
     grid-template-columns: auto;
   }
 
-  .sidebar>h3 {
+  .sidebar > h3 {
     display: none;
   }
 
@@ -95,11 +95,20 @@ main {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
   }
 
+/*   .undo-redo-buttons {
+    position:absolute;    
+  }
 
-  form>label {
+  #undo{
+    margin-right: 300px;
+  }
+ */
+
+
+  form > label {
     padding: 15px;
 
   }
