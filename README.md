@@ -6,30 +6,6 @@
 
 ## Dokumentasjon
 
-### React
-
-Sytemet er bygget på React, og bruker ES6 med både classer og funksjonelle komponenter. 
-Komponentstruktur:
-
-
-
-
-
-
-
-
-Løsningen skal baseres på React (og JSX). 
-Bruk ES6 (Javascript) og vis bruk av både komponentene med class og funksjonelle komponenter. Implementere en hesiktsmessig komponentstruktur.
-Bruk kun de ordinære mekanismene i React for å lagre og endre state/data (du skal mao ikke bruke løsninger som redux, mobx eller andre bibliotek for å håndtere tilstand da dette er tema i neste prosjekt).
-UI-komponentene skal implementeres fra bunnen av (uten bruk av andre tredjeparts komponenter).
-
-
-### Innhold og funksjonalitet
-- Hvorfor er det default verdier på kategorier ved førstegangsbesøk?
-- Hvorfor ikke submitbutton ved valg av kategorier?
-- Hvordan fungerer angreknappene/favoritt?
-- Hvordan fetches data? Lagres lokalt? Hentes på nytt hver gang?...
-
 
 ### Komponentstruktur
 
@@ -43,7 +19,7 @@ UI-komponentene skal implementeres fra bunnen av (uten bruk av andre tredjeparts
                                          AudioPlayer
 
 
-Galleriets design er basert på malen som ble oppgitt i oppgaveteksten. Klassekomponenten `App` ligger øverset i komponenthierarkiet og styrer logikken for fetching og loading av data, og bestemmer hva som skal vises. `Tabdisplay`, `Maindisplay` og `Sidebar` er barnekomponenter av `App` og mottar propvalues fra denne. `Tabdisplay` er en funksjonell komponent som har i oppgave å opprette `TabChoice` og returnere disse. `TabChoice` er også en funksjonel lkomponent som returnerer en knapp som lar brukeren velge hvilken kombinasjon som skal vises.
+Galleriets design er basert på malen som ble oppgitt i oppgaveteksten. Klassekomponenten `App` ligger øverset i komponenthierarkiet og styrer logikken for fetching og loading av data, og bestemmer hva som skal vises. `Tabdisplay`, `Maindisplay` og `Sidebar` er barnekomponenter av `App` og mottar propvalues fra denne. `Tabdisplay` er en funksjonell komponent som har i oppgave å opprette `TabChoice` og returnere disse. `TabChoice` er også en funksjonell komponent som returnerer en knapp som lar brukeren velge hvilken kombinasjon som skal vises.
 
 `Maindisplay` er en funksjonell komponent, og dens oppgave er å bruke propsvalues fra `App` og rendere enten `WelcomeMessage`, loading screen eller data. `WelcomeMessage` er også en funksjonell komponent som gir en velkomstmelding til brukeren hvis ingen kategorier er valgt. Når `WelcomeMessage` ikke vises, vil data og `AudioPlayer` renderes. AudioPlayer, som også er en funksjonell komponent, holder styr på lyden som skal spilles. 
 
@@ -129,6 +105,32 @@ Galleriet består av 4 hovedkomponenter, mens logikken for fetching og lagring a
         - `icon`
         - `text`
 
+### React
+
+Sytemet er bygget på React, og bruker ES6 med både classer og funksjonelle komponenter. Vi brukte npx create-react-app for å komme i gang med prosjektet. Muligheten for å kunne velge kombinasjoner ble løst i `TabDisplay` komponenten, og sammen med logikk i `App` ble data vist i `Maindisplay`. Dersom det er ingen data å vise så vises det bare en velkomstekst.
+Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres, vi mente at denne løsningen vil ikke bryte interaksjons-flyt. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativ ofte. 
+
+
+
+
+
+
+
+
+
+Løsningen skal baseres på React (og JSX). 
+Bruk ES6 (Javascript) og vis bruk av både komponentene med class og funksjonelle komponenter. Implementere en hesiktsmessig komponentstruktur.
+Bruk kun de ordinære mekanismene i React for å lagre og endre state/data (du skal mao ikke bruke løsninger som redux, mobx eller andre bibliotek for å håndtere tilstand da dette er tema i neste prosjekt).
+UI-komponentene skal implementeres fra bunnen av (uten bruk av andre tredjeparts komponenter).
+
+
+### Innhold og funksjonalitet
+- Hvorfor er det default verdier på kategorier ved førstegangsbesøk?
+- Hvorfor ikke submitbutton ved valg av kategorier?
+- Hvordan fungerer angreknappene/favoritt?
+- Hvordan fetches data? Lagres lokalt? Hentes på nytt hver gang?...
+
+
 
 ### Responsive Web Design
 
@@ -197,4 +199,4 @@ Dokumentasjonen skal diskutere, forklare og vise til alle de viktigste valgene o
 Gruppa skal oppsummere den enkeltes bidrag i prosjektet i en egen fil. Noter totalt antall timer og hva den enkelte har hatt som hovedbidrag. Denne leveres i BB (dette er personopplysninger som ingen vil at skal ligge på git ;-)
 
 ### Inspirasjon og kilder
-Tabdisplay er inspirert fra itdagene.no, og alle svg- og lyd-filene er hentet fra internett.
+Tabdisplay er inspirert fra itdagene.no. SVG er hentet fra https://publicdomainvectors.org/, og musikk er hentet fra https://freesound.org/. 
