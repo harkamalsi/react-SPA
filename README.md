@@ -161,15 +161,10 @@ Lyd håndterer du med audio-taggen fra HTML5 og da trenger du ikke implementere 
 
 ### HTML Web Storage
 
-I prosjektet benyttes localstorage for å kunne lagre og hente en favoritt kombinasjon. Sessionstorage er brukt for å kunne implementere angre-gjenta funksjonaliteten. 
+I prosjektet benyttes localstorage for å kunne lagre og hente en favoritt kombinasjon. Localstorage lar oss hente og vise data selv etter nettleser er avsluttet og startet på nytt.  Sessionstorage er brukt for å kunne implementere angre-gjenta funksjonaliteten for en bestemt «session». 
 
-Local Web Storage brukes til "angre" og "gjenta"....
-Sessions Web Stroage brukes til lagre og hente faavorittkombinasjoner...   
+Det er ingen slett-favoritt knapp, dersom en velger å lagre en ny favoritt kombinasjon vil den forrige overskrives. Gruppen valgte å implementere disable-knapp funksjonalitet. Det er ikke mulig å hente en favoritt kombinasjon dersom det finnes ingen favoritt kombinasjon, og det er heller ikke mulig å sette en dersom en bruker ikke har en kombinasjon som vises på skjermen. En tilsvarende disable-knapp logikk for angre-gjenta funksjonalitet er også implementert.   
 
-
-I applikasjonen skal dere prøve ut og vise bruk av HTML Web Storage - både localstorage og sessionstorage. Eksempelvis kan dere:
-Ha knapper som lar brukeren lagre og hente frem favoritt-kombinasjonen, også selv om webleser er avsluttet og startet på nytt (bruk localstorage).
-Lagre sekvensen av kombinasjoner som er valg i en sesjon og la brukeren gå frem og tilbake i historien (sessionstorage)
 
 
 ### Node.js og NPM
