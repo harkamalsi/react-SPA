@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly  1`] = `
+<div
+  className="tabchoice"
+>
+  <button
+    className="combination show"
+    id="combinationundefined"
+  >
+    Kombinasjon 
+  </button>
+</div>
+`;
+
+exports[`renders correctly when passing props 1`] = `
+<div
+  className="tabchoice"
+>
+  <button
+    className="combination show"
+    id="combinationundefined"
+    value="1"
+  >
+    Kombinasjon 
+  </button>
+</div>
+`;
