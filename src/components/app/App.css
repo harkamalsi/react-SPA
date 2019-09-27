@@ -30,6 +30,7 @@ main {
 
 .sidebar-category {
   grid-area: cat;
+  /* background-color: aquamarine; */
   height: 100%;
 }
 
@@ -87,7 +88,7 @@ main {
 
   .grid-container {
     grid-template-areas: 'tab''main''cat';
-    grid-template-rows: 15vh 85vh auto;
+    grid-template-rows: 15vh auto auto;
     grid-template-columns: auto;
   }
 
@@ -99,8 +100,17 @@ main {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
   }
+
+  /*   .undo-redo-buttons {
+    position:absolute;    
+  }
+
+  #undo{
+    margin-right: 300px;
+  }
+ */
 
 
   form>label {

@@ -50,7 +50,7 @@ class App extends React.Component {
     }
   };
 
-  getSnapshotBeforeUpdate() {
+  componentDidUpdate() {
     console.log('after render ');
     //If the component has been updated and a tab is selected, so fetch the data
     if (this.state.selectedTab !== null) {
@@ -93,7 +93,7 @@ class App extends React.Component {
 
     this.previous_selected_tab = this.state.selectedTab;
 
-    return null;
+    //return null;
   }
   updateFetchedData() {
     console.log(this.tmp_fetched_data);
