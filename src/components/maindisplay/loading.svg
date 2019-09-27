@@ -51,11 +51,4 @@
 </g>
 <g>
 </g>
-<animateTransform id="rotation" attributeName="transform"
-                          attributeType="XML"
-                          type="rotate"
-                          from="0 0 0"
-                          to="360 0 0"
-                          dur="2"
-                          repeatCount="undefined"/>
 </svg>

@@ -22,7 +22,7 @@ const Maindisplay = props => {
     return (
       <div>
         <div className='text'>Laster inn data...</div>
-        <div className='picture'>
+        <div className='loading'>
           {' '}
           <img src={loading} alt='' />
         </div>
