@@ -148,7 +148,9 @@ Dette skal implementeres fra bunnen av uten bruk av eksterne CSS-rammeverk ea.
 
 
 ### Testing 
-Bruker Jest snapshot og Enzyme for simulere endringer som clicks og formupdates. Tester består blant annet av å simulere et click på `tabChoice` og teste at den tilhørende `tabChoice` verdien blir sendt opp til `App`-komponenten og dermed ned til `AudioPlayer` som vil endre lydfil. Dette gjøres ved å teste stateverdien `selectedTab` i `App`, og at `src` for HTML-elementet `audio`har blitt oppdatert til den tilhørende filen. 
+Bruker Jest snapshot og Enzyme for simulere endringer som clicks og form updates. Tester består blant annet med å simulere et click på `tabChoice` og teste at den tilhørende `tabChoice` verdien blir sendt opp til `App`-komponenten og dermed ned til `AudioPlayer` som vil endre lydfil. Dette gjøres ved å teste stateverdien `selectedTab` i `App`, og at `src` for HTML-elementet `audio`har blitt oppdatert til den tilhørende filen. 
+
+Testing av brukergrensesnittet og responsive web design er gjort manuelt. Gruppen brukte hver sine enheter for å teste designet. Det ble testet på pc og mobil med både vertikal og horisontal orientering av skjermen. På denne måten avdekket vi ulike bugs og fikset dem fort løpende.
 
 
 
@@ -193,3 +195,6 @@ Gruppa skal bruke git i utviklingen. Utviklingen skal dekomponeres i task som hv
 Prosjektet dokumenteres med en README.md i git repositoriet.
 Dokumentasjonen skal diskutere, forklare og vise til alle de viktigste valgene og løsningene på krav til funksjonaltet og krav til teknologi. 800-1000 ord er en fornuftig lengde. 
 Gruppa skal oppsummere den enkeltes bidrag i prosjektet i en egen fil. Noter totalt antall timer og hva den enkelte har hatt som hovedbidrag. Denne leveres i BB (dette er personopplysninger som ingen vil at skal ligge på git ;-)
+
+### Inspirasjon og kilder
+Tabdisplay er inspirert fra itdagene.no, og alle svg- og lyd-filene er hentet fra internett.
