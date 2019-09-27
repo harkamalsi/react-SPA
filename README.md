@@ -1,4 +1,3 @@
-
 # IT2810 - Gruppe 2 - Prosjekt 2 
 
 
@@ -36,10 +35,10 @@ UI-komponentene skal implementeres fra bunnen av (uten bruk av andre tredjeparts
 
 
                                             App
-                            /                |              \
-                    Tabdisplay           Maindisplay        Sidebar
-                        /                    |              /      \
-                    TabChoice          WelcomeMessage     Button   ChoiceSelector
+                            /                |              \                               \
+                    Tabdisplay           Maindisplay        Sidebar                         Favorite
+                        /                    |              /      \                        /
+                    TabChoice          WelcomeMessage     Button   ChoiceSelector           Button
                                              |
                                          AudioPlayer
 
