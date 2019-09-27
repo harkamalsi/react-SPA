@@ -33,7 +33,7 @@ main {
 
 .favorite {
   grid-area: fav;
-  min-height: 10vh;
+  height: 100%;
 }
 
 .grid-container {
@@ -117,7 +117,7 @@ main {
 }
 
 /*bredden til iphone x/8/7/6 = 375px */
-@media only screen and (max-width:510px) and (orientation: portrait) {
+@media only screen and (max-width:695px) and (orientation: portrait) {
 
   .grid-container {
     grid-template-areas: 'tab''main''fav''cat';
@@ -132,6 +132,17 @@ main {
   .sidebar {
     display: inline-block;
     padding-left: 10px;
+  }
+
+
+  .undo-redo-buttons {
+    display: block;
+    width: auto;    
+    margin-right: 75px;
+  }
+
+  #undo{
+    margin-right: 10px;
   }
 
   form>label {
