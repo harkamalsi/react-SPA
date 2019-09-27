@@ -103,14 +103,17 @@ main {
     justify-content: center;
   }
 
-  /*   .undo-redo-buttons {
-    position:absolute;    
+  .undo-redo-buttons {
+    display: block;
+    width: auto;    
+    margin-right: 75px;
   }
 
   #undo{
-    margin-right: 300px;
+    margin-right: 10px;
   }
- */
+ 
+ 
 
 
   form>label {
