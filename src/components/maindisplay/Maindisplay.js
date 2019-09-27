@@ -5,7 +5,7 @@ import loading from './loading.svg';
 
 const WelcomeMessage = props => {
   return (
-    <div>
+    <div className='welcomemsg'>
       <h2>Velkommen!</h2>
       <p>
         Vennligst velg tre kategorier per medietype i vindu til høyre og trykk

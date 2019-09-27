@@ -7,7 +7,6 @@
 
 .app {
   width: 100%;
-  min-height: 100vh;
   padding: 100px;
 }
 
@@ -26,6 +25,7 @@ main {
   grid-area: main;
   /*background-color: red;*/
   height: 100%;
+  min-height: 45vh;
 }
 
 .sidebar-category {
@@ -36,7 +36,7 @@ main {
 
 .favorite {
   grid-area: fav;
-  /* background-color: aquamarine; */
+  min-height: 10vh;
 }
 
 .grid-container {
@@ -115,7 +115,6 @@ main {
 
   form>label {
     padding: 15px;
-
   }
 
 

@@ -11,6 +11,23 @@ const Sidebar = props => {
   return (
     <div className='sidebar'>
       <h3>Kategorier</h3>
+      <div className='undo-redo-buttons'>
+        <Button
+          id='undo'
+          onClick={props.handleUndo}
+          handleDisabled={props.isUndoEmpty}
+          icon={'undo'}
+          text={'Angre'}
+        />
+
+        <Button
+          id='redo'
+          onClick={props.handleRedo}
+          handleDisabled={props.isRedoEmpty}
+          icon={'redo'}
+          text={'Gjenta'}
+        />
+      </div>
       <ChoiceSelector
         sendCategory={props.updateSoundCategory}
         categoryName='Sound'
@@ -35,23 +52,6 @@ const Sidebar = props => {
         sendCategory={props.updatePictureCategory}
         select={props.getCheckboxCategories && props.getCheckboxCategories[2]}
       />
-      <div className='undo-redo-buttons'>
-        <Button
-          id='undo'
-          onClick={props.handleUndo}
-          handleDisabled={props.isUndoEmpty}
-          icon={'undo'}
-          text={'Angre'}
-        />
-
-        <Button
-          id='redo'
-          onClick={props.handleRedo}
-          handleDisabled={props.isRedoEmpty}
-          icon={'redo'}
-          text={'Gjenta'}
-        />
-      </div>
     </div>
   );
 };

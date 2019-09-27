@@ -9,6 +9,21 @@
   align-items: center;
 }
 
+.welcomemsg {
+  height: 100%;
+  padding: 0 2rem;
+  line-height: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.welcomemsg h2 {
+  margin-bottom: 1rem;
+}
+
+
 .title {
   font-size: 1.7rem;
   text-align: center;
@@ -39,6 +54,7 @@
   max-width: 50vw;
   max-height: 50vh;
 }
+
 .loading {
   margin-left: auto;
   margin-right: auto;
@@ -47,12 +63,26 @@
   justify-content: center;
   width: 120px;
   height: 120px;
-  -webkit-animation:spin 4s linear infinite;
-  -moz-animation:spin 4s linear infinite;
-  animation:spin 4s linear infinite;
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
 }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
- 
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
