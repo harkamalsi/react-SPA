@@ -197,5 +197,4 @@ Dokumentasjonen skal diskutere, forklare og vise til alle de viktigste valgene o
 Gruppa skal oppsummere den enkeltes bidrag i prosjektet i en egen fil. Noter totalt antall timer og hva den enkelte har hatt som hovedbidrag. Denne leveres i BB (dette er personopplysninger som ingen vil at skal ligge på git ;-)
 
 ### Inspirasjon og kilder
-Tabdisplay er inspirert fra itdagene.no
-Alle svg- og lyd-filene er hentet fra internett.
+Tabdisplay er inspirert fra itdagene.no, og alle svg- og lyd-filene er hentet fra internett.
