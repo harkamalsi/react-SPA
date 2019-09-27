@@ -152,7 +152,7 @@ Dette skal implementeres fra bunnen av uten bruk av eksterne CSS-rammeverk ea.
 ### Testing 
 Bruker Jest snapshot og Enzyme for simulere endringer som clicks og form updates. Tester består blant annet med å simulere et click på `tabChoice` og teste at den tilhørende `tabChoice` verdien blir sendt opp til `App`-komponenten og dermed ned til `AudioPlayer` som vil endre lydfil. Dette gjøres ved å teste stateverdien `selectedTab` i `App`, og at `src` for HTML-elementet `audio`har blitt oppdatert til den tilhørende filen. 
 
-Testing av brukergrensesnittet og responsive web design er gjort manuelt. Gruppen brukte hver sine enheter for å teste designet. Det ble testet på pc og mobil med både vertikal og horisontal orientering av skjermen. På denne måten avdekket vi ulike bugs og fikset dem fort løpende.
+Testing av brukergrensesnittet og responsive web design er gjort manuelt. Gruppen brukte hver sine enheter for å teste designet. Det ble testet på pc og mobil med både vertikal og horisontal orientering av skjermen. På denne måten avdekket vi ulike bugs og fikset dem fort løpende. Prosjektet ble testet på følgende nettlesere på pc: Google Chrome, Mozilla FireFox, Safari og Microsoft Edge. Løsningen fungere på alle de fire. 
 
 
 
