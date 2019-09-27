@@ -47,12 +47,6 @@ const Maindisplay = props => {
           soundTrack={props.selectedTab}
           soundCategory={props.soundCategory}
         />
-        <button className='btn delete' onClick={props.getFavorites}>
-          <h3>Hent favoritt kombinasjon</h3>
-        </button>
-        <button className='btn favorite' onClick={props.handleFavorite}>
-          <h3>Lagre Kombinasjon</h3>
-        </button>
       </div>
     );
   }
