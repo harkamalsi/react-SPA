@@ -176,3 +176,21 @@ Websiden kjøres på en Apache web server. Vi lagde en production build, og last
 
 ### Inspirasjon og kilder
 Tabdisplay design er inspirert fra itdagene.no. SVG filene er hentet fra https://publicdomainvectors.org/, og musikk filene er hentet fra https://freesound.org/. 
+
+
+
+
+## Git-konvensjoner 
+
+### Branches
+
+*  master: vi oppdaterer kun ved deployment 
+
+*  dev: utviklings branch. Denne oppdateres jevnlig, hver gang når en feature er ferdig
+
+*  feat/feature-name: er en branch som brukes for å lage forberede funksjonalitet av en feature
+
+*  design/area-name: en branch som brukes for å skrive design kode for en feature
+
+  
+
