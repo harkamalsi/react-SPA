@@ -8,7 +8,7 @@ exports[`renders correctly  1`] = `
     className="inner-btn-container"
   >
     <i
-      class="material-icons"
+      className="material-icons"
     />
     <span />
   </div>
