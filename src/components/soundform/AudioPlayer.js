@@ -23,11 +23,11 @@ const AudioPlayer = props => {
   let soundTrack;
   let soundCategory = props.soundCategory;
 
-  if (soundCategory === 'Nature') {
+  if (soundCategory === 'Naturen') {
     soundTrack = natureSounds[props.soundTrack - 1];
   } else if (soundCategory === 'Piano') {
     soundTrack = pianoSongs[props.soundTrack - 1];
-  } else if (soundCategory === 'City Life') {
+  } else if (soundCategory === 'By liv') {
     soundTrack = citylifeSounds[props.soundTrack - 1];
   }
 

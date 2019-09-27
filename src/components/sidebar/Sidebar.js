@@ -30,15 +30,15 @@ const Sidebar = props => {
       <h3>Kategorier</h3>
       <ChoiceSelector
         sendCategory={props.updateSoundCategory}
-        categoryName='Sound'
-        alternative1='Nature'
+        categoryName='Lyd'
+        alternative1='Naturen'
         alternative2='Piano'
-        alternative3='City Life'
+        alternative3='By liv'
         select={props.getCheckboxCategories && props.getCheckboxCategories[0]}
       />
       <ChoiceSelector
         sendCategory={props.updateTextCategory}
-        categoryName='Text'
+        categoryName='Tekst'
         alternative1='Emosjoner'
         alternative2='Farger'
         alternative3='Dyr'
@@ -46,9 +46,9 @@ const Sidebar = props => {
       />
       <ChoiceSelector
         categoryName='Bilder'
-        alternative1='Animals'
-        alternative2='Aliens'
-        alternative3='Vehicle'
+        alternative1='Dyr'
+        alternative2='Biler'
+        alternative3='Utenomjordisk'
         sendCategory={props.updatePictureCategory}
         select={props.getCheckboxCategories && props.getCheckboxCategories[2]}
       />

@@ -36,12 +36,6 @@ class App extends React.Component {
     this.previous_fetched_picture_category = null;
     this.previous_selected_tab = null;
   }
-  //Run right after component is mounted
-  //componentDidMount = () => {
-    //
-    //const favoriteCombination = JSON.parse(localStorage.getItem('favoriteCombination'));
-   // this.setState({ favoriteCombination });
-  //};
 
   //It creats a welcome screen combination data and pushes it in the undo stack
   createStartScreenData = () => {
