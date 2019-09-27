@@ -142,7 +142,7 @@ Vi har utviklet utstillingen med tanke på «responsive web design». Utstilling
 
 Det har blitt utført testing under hele utviklingsprosessen. Vi har benyttet oss av Jest sin snapshottesting, og Enzyme for å simulere brukerinteraksjoner med appen. Med Enzyme har vi for eksempel testet at komponenter oppfører seg riktig ved et klikk på `tabChoice`. Da skal den tilhørende `tabChoice`-verdien blir sendt opp til `App`-komponenten og dermed ned til `AudioPlayer`, som vil endre lydfil. Testen sjekker stateverdien `selectedTab` i App, og at `src` for HTML-elementet audio har blitt oppdatert til den tilhørende filen, ved klikk. Snapshottestingen har gått ut på å ta en snapshot av alle komponentene, og deretter sørge for at snapshotene matcher underveis i utviklingen.
 
-Testing av brukergrensesnittet og dens responsivitet er gjort manuelt. Vi har testet på ulike enheter, som iPad, iPhone 6S, Huawei Mate 10 Pro og laptop. På denne måten avdekket vi ulike bugs og fikset dem fort løpende, og sørget for at designet ser bra ut og at interaksjonen fungerer slik den skal, i både landskap- og portrettmodus. Prosjektet ble testet på følgende nettlesere på pc: Google Chrome, Mozilla FireFox, Safari og Microsoft Edge. Løsningen fungere på alle de fire. 
+Testing av brukergrensesnittet og dens responsivitet er gjort manuelt. Vi har testet på ulike enheter, som iPad, iPhone 6S, Huawei Mate 10 Pro og laptop. På denne måten avdekket vi ulike bugs og fikset dem fort løpende, og sørget for at designet ser bra ut og at interaksjonen fungerer slik den skal, i både landskap- og portrettmodus. Prosjektet ble testet på følgende nettlesere på pc: Google Chrome, Mozilla FireFox, Safari og Microsoft Edge. Løsningen fungerer på alle de fire. 
 
 
 
