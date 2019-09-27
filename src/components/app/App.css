@@ -87,8 +87,8 @@ main {
 (orientation: landscape) and (max-width:825px) and (min-width:376px) {
 
   .grid-container {
-    grid-template-areas: 'tab''main''cat';
-    grid-template-rows: 15vh auto auto;
+    grid-template-areas: 'tab''main''fav''cat';
+    grid-template-rows: 15vh auto auto auto;
     grid-template-columns: auto;
   }
 
@@ -125,8 +125,8 @@ main {
 @media only screen and (max-width:376px) and (orientation: portrait) {
 
   .grid-container {
-    grid-template-areas: 'tab''main''cat';
-    grid-template-rows: 15vh 85vh auto;
+    grid-template-areas: 'tab''main''fav''cat';
+    grid-template-rows: 10vh auto auto auto;
     grid-template-columns: auto;
   }
 
