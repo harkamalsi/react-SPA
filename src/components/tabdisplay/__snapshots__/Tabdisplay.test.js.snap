@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly  1`] = `
+<div
+  className="tabdisplay"
+>
+  <div
+    className="tabchoice"
+  >
+    <button
+      className="combination"
+      id="combination1"
+      value={1}
+    >
+      Kombinasjon 
+      1
+    </button>
+  </div>
+  <div
+    className="tabchoice"
+  >
+    <button
+      className="combination"
+      id="combination2"
+      value={2}
+    >
+      Kombinasjon 
+      2
+    </button>
+  </div>
+  <div
+    className="tabchoice"
+  >
+    <button
+      className="combination"
+      id="combination3"
+      value={3}
+    >
+      Kombinasjon 
+      3
+    </button>
+  </div>
+  <div
+    className="tabchoice"
+  >
+    <button
+      className="combination"
+      id="combination4"
+      value={4}
+    >
+      Kombinasjon 
+      4
+    </button>
+  </div>
+</div>
+`;

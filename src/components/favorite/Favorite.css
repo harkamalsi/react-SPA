@@ -1,0 +1,33 @@
+.favorite-buttons {
+  
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.favorite-set {
+  background-color: rgb(255, 0, 0, 0.4);
+  transition: background-color ease-in-out 150ms;
+}
+
+.favorite-set:hover {
+  background-color: rgb(255, 0, 0, 0.65);
+  transition: background-color ease-in-out 150ms;
+}
+
+.favorite-get {
+  background: none;
+  border: solid 2px rgb(255, 0, 0, 0.3);
+  transition: border ease-in-out 150ms;
+}
+
+.favorite-get:hover {
+  border: solid 2px rgb(255, 0, 0, 0.7);
+  transition: border ease-in-out 150ms;
+}
+
+.favorite-get:disabled {
+  cursor: auto;
+  border: solid 2px rgb(255, 0, 0, 0.3);
+}

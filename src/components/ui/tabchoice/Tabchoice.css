@@ -1,0 +1,48 @@
+button {
+  border: none;
+}
+
+.tabchoice {
+  width: 100%;
+}
+
+.combination {
+  height: 100%;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+  padding: 0;
+  opacity: 0.3;
+}
+
+.combination:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+#combination1 {
+  background-color: green;
+}
+
+#combination2 {
+  background-color: palevioletred;
+}
+
+#combination3 {
+  background-color: powderblue;
+}
+
+#combination4 {
+  background-color: orange;
+}
+
+
+.show{
+  opacity: 1 !important;
+  transform: scale(1.05);
+  
+}
+
