@@ -4,7 +4,7 @@
 [Link til prosjektet på ntnu sin server](http://it2810-02.idi.ntnu.no/prosjekt2/ "Prosjekt 2 Gruppe 2 Galleri")
 
 ## Forhåndskrav
-For å kjøre prosjektet lokalt trengs Node.js og NPM, NPM følger med når en laster ned Node.js: https://nodejs.org/en/download/
+For å kjøre prosjektet lokalt, trengs Node.js og NPM. NPM følger med når en laster ned Node.js: https://nodejs.org/en/download/
 
 ## Installering
 1.  Først må prosjektet klones. Tast følgende i terminalen for å klone prosjektet: `git clone https://gitlab.stud.idi.ntnu.no/IT2810-H19/teams/team-2/project-2.git` 
@@ -28,9 +28,9 @@ For å kjøre prosjektet lokalt trengs Node.js og NPM, NPM følger med når en l
                                          AudioPlayer
 
 
-Galleriets design er basert på malen som ble oppgitt i oppgaveteksten. Klassekomponenten `App` ligger øverset i komponenthierarkiet og styrer logikken for fetching og loading av data, og bestemmer hva som skal vises. `Tabdisplay`, `Maindisplay`, `Sidebar` og `Favorite` er barnekomponenter av `App` og mottar propvalues fra denne. `Tabdisplay` er en funksjonell komponent som har i oppgave å opprette `TabChoice` og returnere disse. `TabChoice` er også en funksjonell komponent som returnerer en knapp som lar brukeren velge hvilken kombinasjon som skal vises.
+Gallerietsdesign er basert på malen som ble oppgitt i oppgaveteksten. Klassekomponenten `App` ligger øverset i komponenthierarkiet, og styrer logikken for fetching og loading av data, og bestemmer hva som skal vises. `Tabdisplay`, `Maindisplay`, `Sidebar` og `Favorite` er barnekomponenter av `App`, og mottar propvalues fra denne. `Tabdisplay` er en funksjonell komponent som har i oppgave å opprette `TabChoice` og returnere disse. `TabChoice` er også en funksjonell komponent som returnerer en knapp som lar brukeren velge hvilken kombinasjon som skal vises.
 
-`Maindisplay` er en funksjonell komponent, og dens oppgave er å bruke propsvalues fra `App` og rendre enten `WelcomeMessage`, loading screen eller data. `WelcomeMessage` er også en funksjonell komponent som gir en velkomst melding til brukeren hvis ingen kombinasjon er valgt enda. Når `WelcomeMessage` ikke vises, vil data og `AudioPlayer` renderes. AudioPlayer, som også er en funksjonell komponent, holder styr på lyden som skal spilles. 
+`Maindisplay` er en funksjonell komponent, og dens oppgave er å bruke propvalues fra `App` og rendre enten `WelcomeMessage`, loading screen eller data. `WelcomeMessage` er også en funksjonell komponent som gir en velkomst melding til brukeren hvis ingen kombinasjon er valgt. Når `WelcomeMessage` ikke vises, vil data og `AudioPlayer` renderes. AudioPlayer, som også er en funksjonell komponent, holder styr på lyden som skal spilles. 
 
 `Sidebar` er en funksjonell komponent som holder forms for valg av kategorier. Den renderer `ChoiceSelector` og `Button`. `ChoiceSelector` er en klasse, og returnerer en form som lar bruker velge kategori. `Button` returnerer en knapp, som i `Sidebar` lar brukeren angre og gjenta sine handlinger. I `Favorite` rendres to `Button` som sørger for hente og lagring av favoritt kombinasjoner.
 
@@ -126,9 +126,9 @@ Sytemet er bygget på React, og bruker ES6 med både klasser og funksjonelle kom
 
 ### Innhold og funksjonalitet
 
-Muligheten for å kunne velge kombinasjoner ble løst i `TabDisplay` komponenten, og sammen med logikk i `App` ble data vist i `Maindisplay`.
-Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativ ofte. 
-Lagring og hente av favoritt kombinasjoner, og angre-gjenta funksjonalitet ble implementert ved hjelp av html web storage. For mer informasjon se [HTML Web Storage](#HTML-Web-Storage) lenger nede.
+Muligheten for å kunne velge kombinasjoner ble løst i `TabDisplay` komponenten, og sammen med logikk i `App` blir data vist i `Maindisplay`.
+Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativt ofte. 
+Lagring og henting av favoritt kombinasjoner, og angre-gjenta-funksjonalitet ble implementert ved hjelp av HTML Web Storage. For mer informasjon se [HTML Web Storage](#HTML-Web-Storage) lenger nede.
 
 
 
@@ -149,21 +149,21 @@ Testing av brukergrensesnittet og dens responsivitet er gjort manuelt. Vi har te
 
 ### AJAX
 
-For fetching av data ble det benyttet det integrerte fetch() api-et i javascript. Dette skjer asynkronisk i parallell med utføring av resten av koden i react, som er veldig nyting med at den ikke stopper utførelsen av appen, men gjorde det vanskeligere å bestemme når appen skulle rendre. Løsningen ble å implementere 2 funksjoner, fetchText() og fetchPicture(), som vil kalle en felles funksjon, updateFetchedData(). Den siste skal sjekke at begge fetch funksjoner er ferdige før app-state oppdateres. Dette begrenset unødvendig re-render og sperret for ugyldig tilstander, for eksempel at ` Maindisplay ` har nytt tekst, men ikke nytt bilde. For å unngå unødvendig fetch blir forrige fetched data sammenligne med nåværende app state, og i tillegg sjekker om det finnes data i saved_resources. Ved å gjøre det slik unngår vi blant annet å ikke laste inn filer på nytt dersom de samme kombinasjoner velges på nytt. 
+For fetching av data ble det integrerte fetch() API-et i Javascript benyttet. Dette skjer asynkronisk i parallell med utføring av resten av koden i React, som er veldig nyttig, fordi den ikke stopper utførelsen av appen. Men dette gjorde det vanskeligere å bestemme når appen skulle rendres. Løsningen ble å implementere 2 funksjoner, fetchText() og fetchPicture(), som vil kalle en felles funksjon, updateFetchedData(). Den siste skal sjekke at begge fetch-funksjonene er ferdige før app-state oppdateres. Dette begrenset unødvendig re-rendering, og hindret ugyldig tilstander, som for eksempel at ` Maindisplay ` har ny tekst, men ikke nytt bilde. For å unngå unødvendig fetch, blir forrige fetched data sammenlignet med nåværende app state, og i tillegg sjekket om det finnes data i saved_resources. Ved å gjøre det slik unngår vi blant annet å ikke laste inn filer på nytt dersom de samme kombinasjonene velges på nytt. 
 
 
 ### HTML Web Storage
 
-I prosjektet benyttes localstorage for å kunne lagre og hente en favoritt kombinasjon. Localstorage lar oss hente og vise data selv etter nettleser er avsluttet og startet på nytt.  Sessionstorage er brukt for å kunne implementere angre-gjenta funksjonaliteten for en bestemt «session». 
+I prosjektet benyttes localstorage for å kunne lagre og hente en favorittkombinasjon. Localstorage lar oss hente og vise data, selv etter nettleser er avsluttet og startet på nytt. Sessionstorage er brukt for å kunne implementere angre-gjenta-funksjonaliteten for en bestemt «session». 
 
-Det er ingen slett-favoritt knapp, dersom en velger å lagre en ny favoritt kombinasjon vil den forrige overskrives. Gruppen valgte å implementere disable-knapp funksjonalitet. Det er ikke mulig å hente en favoritt kombinasjon dersom det ikke finnes en favoritt kombinasjon, og det er heller ikke mulig å sette en favoritt kombinasjon dersom en bruker ikke har en kombinasjon som vises på skjermen. En tilsvarende disable-knapp logikk for angre-gjenta funksjonaliteten er også implementert.
+Det er ingen slett-favoritt knapp. Dersom en velger å lagre en ny favorittkombinasjon, vil den forrige overskrives. Gruppen valgte å implementere disable-knapp-funksjonalitet. Det er ikke mulig å hente en favorittkombinasjon dersom det ikke finnes en favorittkombinasjon, og det er heller ikke mulig å sette en favorittkombinasjon dersom en bruker ikke har en kombinasjon som vises på skjermen. En tilsvarende disable-knapp logikk for angre-gjenta-funksjonaliteten er også implementert.
 
 ### Server
 
-Websiden kjøres på en Apache web server. Vi lagde en production build med `npm run build`, og lastet den opp til serveren sammen med svg og tekst filer. 
+Websiden kjøres på en Apache Web server. Vi lagde en production build med `npm run build`, og lastet den opp til serveren sammen med SVG- og tekstfiler. 
 
 ### Inspirasjon og kilder
-Tabdisplay design er inspirert fra itdagene.no. SVG filene er hentet fra https://publicdomainvectors.org/, og musikk filene er hentet fra https://freesound.org/. 
+Tabdisplay design er inspirert fra itdagene.no. SVG-filene er hentet fra https://publicdomainvectors.org/, og lydfilene er hentet fra https://freesound.org/. 
 
 
 
@@ -172,13 +172,13 @@ Tabdisplay design er inspirert fra itdagene.no. SVG filene er hentet fra https:/
 
 ### Branches
 
-*  master: vi oppdaterer kun ved deployment 
+*  master: oppdateres kun ved deployment 
 
-*  dev: utviklings branch. Denne oppdateres jevnlig, hver gang når en feature er ferdig
+*  dev: utviklings-branch. Denne oppdateres jevnlig, hver gang en feature er ferdig
 
-*  feat/feature-name: er en branch som brukes for å lage forberede funksjonalitet av en feature
+*  feat/feature-name: en branch som brukes for å lage forbedret funksjonalitet av en feature
 
-*  design/area-name: en branch som brukes for å skrive design kode for en feature
+*  design/area-name: en branch som brukes for kode som omhandler design for en feature
 
   
 
