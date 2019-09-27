@@ -5,7 +5,7 @@
 
 .sidebar {
   display: inline-block;
-  border: rgb(4, 0, 255) dashed 1px;
+  /*border: rgb(4, 0, 255) dashed 1px;*/
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -40,7 +40,7 @@ main {
 }
 
 .grid-container {
-  border: black dashed 1px;
+  /*border: black dashed 1px;*/
   height: 100%;
   width: 100%;
   /*width: 70vw;*/

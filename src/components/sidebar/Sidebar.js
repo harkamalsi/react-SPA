@@ -10,7 +10,6 @@ import './Sidebar.css';
 const Sidebar = props => {
   return (
     <div className='sidebar'>
-      <h3>Kategorier</h3>
       <div className='undo-redo-buttons'>
         <Button
           id='undo'
@@ -28,6 +27,7 @@ const Sidebar = props => {
           text={'Gjenta'}
         />
       </div>
+      <h3>Kategorier</h3>
       <ChoiceSelector
         sendCategory={props.updateSoundCategory}
         categoryName='Sound'
