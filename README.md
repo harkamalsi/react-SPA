@@ -121,15 +121,16 @@ Galleriet består altså av 4 hovedkomponenter, og logikken for fetching og lagr
 
 ### React
 
-Sytemet er bygget på React, og bruker ES6 med både klasser og funksjonelle komponenter. Vi brukte npx create-react-app for å komme i gang med prosjektet. Muligheten for å kunne velge kombinasjoner ble løst i `TabDisplay` komponenten, og sammen med logikk i `App` ble data vist i `Maindisplay`.
-Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativ ofte. 
+Sytemet er bygget på React, og bruker ES6 med både klasser og funksjonelle komponenter. Vi brukte npx create-react-app for å komme i gang med prosjektet. 
 
 
 ### Innhold og funksjonalitet
-- Hvorfor er det default verdier på kategorier ved førstegangsbesøk?
-- Hvorfor ikke submitbutton ved valg av kategorier?
-- Hvordan fungerer angreknappene/favoritt?
-- Hvordan fetches data? Lagres lokalt? Hentes på nytt hver gang?...
+
+Muligheten for å kunne velge kombinasjoner ble løst i `TabDisplay` komponenten, og sammen med logikk i `App` ble data vist i `Maindisplay`.
+Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativ ofte. 
+Lagring og hente av favoritt kombinasjoner, og angre-gjenta funksjonalitet ble implementert ved hjelp av html web storage. For mer informasjon se [HTML Web Storage](#HTML-Web-Storage) lenger nede.
+
+
 
 
 
