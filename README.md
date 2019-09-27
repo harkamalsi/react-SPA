@@ -135,25 +135,14 @@ Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres, vi
 
 ### Responsive Web Design
 
-Vi har lagt mye vekt på responsivt design. Utstilligen skaleres og tilpasses etter bredden på skjermen og dens orientasjon. Hvis bredden på skjermen er under 825px, så flyttes sidebaren med kategorivalgene til under utstillingsvinduet (maindisplay). Her blir retningen til valgmulighetene omgjort fra vertikal retning til horisontal, men kun vis skjermbredden er mellom 377px og 825px. Hvis skjermbredden er under 377px, vil valgmulighetene gå tilbake til å vises i vertikal retning. I tillegg endres labelene på tabdisplayet utifra skjermbredde og orientasjon. Når skjermen blir under 825px bred, vil ordet "Kombinasjon" i lablene bli skjult, og kun tabnummeret vises. 
-
-
-Utstillingen skal ha responsiv web design hvor layout, skalering og interaksjonsmuligheter tilpasses type enhet og størrelse på skjerm. Det skal se bra ut og interaksjonen skal fungere både på mobil, pad og pc med skjerm av forskjellig størrelse.
-
-Løsningen skal implementeres med responsiv design som tilpasser seg skjermens størrelse og orientering, og plattform.
-Skal skifte layout mellom breddeformat (f.eks. bilde og tekst ved siden av hverandre) og høydeformat (bilde med teksten under f.eks.). Bredde vs. høyde kan også demonstreres med andre elementer enn tekst og bilde.
-Følgende elementer skal være med i løsningen (eventuelt begrunnet i dokumentasjonen hvis det ikke er tatt med)
-Viewport
-Media-queries
-Bilder som skalerer
-Flytende/fleksibel layout
-Dette skal implementeres fra bunnen av uten bruk av eksterne CSS-rammeverk ea.
+Vi har utviklet utstillingen med tanke på «responsive web design». Utstillingen skaleres og tilpasses etter bredden på skjermen og dens orientasjon. For å oppnå dette har vi brukt viewport, media-queries, CSS Grid, Flexbox, relative størrelsesenheter, og vi har ikke brukt eksterne rammeverk. Hvis bredden på skjermen er under 825px, så flyttes sidebaren med kategorivalgene til under utstillingsvinduet (maindisplay). Her blir retningen til valgmulighetene omgjort fra vertikal retning til horisontal. I tillegg vil teksten i tabdisplay bli omgjort fra «Kombinasjon 1» «Kombinasjon 2» etc. til å kun vise tabnummer, altså «1», «2» etc. for å spare plass. Når skjermbildet blir under 696px og enheten er i portrettmodus, blir kategorivalgene omgjort til vertikale igjen, fremdeles plassert under utstillingsvinduet. Men hvis den er i landskapsmodus, forblir kategorivalgene horisontale, helt til skjermens bredde blir mindre enn dens høyde. I tillegg skaleres bildene og teksten ut ifra bredden og høyden på skjermen. 
 
 
 ### Testing 
-Bruker Jest snapshot og Enzyme for simulere endringer som clicks og form updates. Tester består blant annet med å simulere et click på `tabChoice` og teste at den tilhørende `tabChoice` verdien blir sendt opp til `App`-komponenten og dermed ned til `AudioPlayer` som vil endre lydfil. Dette gjøres ved å teste stateverdien `selectedTab` i `App`, og at `src` for HTML-elementet `audio`har blitt oppdatert til den tilhørende filen. 
 
-Testing av brukergrensesnittet og responsive web design er gjort manuelt. Gruppen brukte hver sine enheter for å teste designet. Det ble testet på pc og mobil med både vertikal og horisontal orientering av skjermen. På denne måten avdekket vi ulike bugs og fikset dem fort løpende. Prosjektet ble testet på følgende nettlesere på pc: Google Chrome, Mozilla FireFox, Safari og Microsoft Edge. Løsningen fungere på alle de fire. 
+Det har blitt utført testing under hele utviklingsprosessen. Vi har benyttet oss av Jest sin snapshottesting, og Enzyme for å simulere brukerinteraksjoner med appen. Med Enzyme har vi for eksempel testet at komponenter oppfører seg riktig ved et klikk på `tabChoice`. Da skal den tilhørende `tabChoice`-verdien blir sendt opp til `App`-komponenten og dermed ned til `AudioPlayer`, som vil endre lydfil. Testen sjekker stateverdien `selectedTab` i App, og at `src` for HTML-elementet audio har blitt oppdatert til den tilhørende filen, ved klikk. Snapshottestingen har gått ut på å ta en snapshot av alle komponentene, og deretter sørge for at snapshotene matcher underveis i utviklingen.
+
+Testing av brukergrensesnittet og dens responsivitet er gjort manuelt. Vi har testet på ulike enheter, som iPad, iPhone 6S, Huawei Mate 10 Pro og laptop. På denne måten avdekket vi ulike bugs og fikset dem fort løpende, og sørget for at designet ser bra ut og at interaksjonen fungerer slik den skal, i både landskap- og portrettmodus. Prosjektet ble testet på følgende nettlesere på pc: Google Chrome, Mozilla FireFox, Safari og Microsoft Edge. Løsningen fungere på alle de fire. 
 
 
 
