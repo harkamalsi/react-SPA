@@ -149,6 +149,8 @@ Testing av brukergrensesnittet og dens responsivitet er gjort manuelt. Vi har te
 
 ### AJAX
 
+For fetching av data ble det benyttet det integrerte fetch() api-et i javascript. Dette skjer asynkronisk i parallell med utføring av resten av koden i react, som er veldig nyting med at den ikke stopper utførelsen av appen, men gjorde det vanskeligere å bestemme når appen skulle rendre. Løsningen ble å implementere 2 funksjoner, fetchText() og fetchPicture(), som vil kalle en felles funksjon, updateFetchedData(). Den siste skal sjekke at begge fetch funksjoner er ferdige før app-state oppdateres. Dette begrenset unødvendig re-render og sperret for ugyldig tilstander, for eksempel at ` Maindisplay ` har nytt tekst, men ikke nytt bilde. For å unngå unødvendig fetch blir forrige fetched data sammenligne med nåværende app state, og i tillegg sjekker om det finnes data i saved_resources. Ved å gjøre det slik unngår vi å laste inn filer på nytt dersom de samme kombinasjoner velges på nytt. 
+
 
 Bildene (i svg) og teksten (i json) skal lastes dynamisk med AJAX (Asynchronous JavaScript And XML). Bruk fetch() eller velg tredjeparts javascript-bibliotek for dette. 
 Filene skal lastes kun hvis de benyttes. Dvs. at filer brukt i en kombinasjon først lastes når denne kombinasjonen vises (eksempelvis når en bruker velger denne tabben). Når filen først er lest, så skal innholdet lagres på klienten slik at de ikke blir å lastes flere ganger hvis en bruker blar frem og tilbake i en utstilling. Dette kan dere implementere selv eller dere kan basere dere på caching i webleseren, men da må dere undersøke og dokumentere at det fungerer etter intensjonen.
