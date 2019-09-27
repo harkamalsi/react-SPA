@@ -161,4 +161,4 @@ Det er ingen slett-favoritt knapp, dersom en velger å lagre en ny favoritt komb
 Websiden kjøres på en Apache web server. Vi lagde en production build, og lastet den opp til serveren. 
 
 ### Inspirasjon og kilder
-Tabdisplay er inspirert fra itdagene.no. SVG er hentet fra https://publicdomainvectors.org/, og musikk er hentet fra https://freesound.org/. 
+Tabdisplay design er inspirert fra itdagene.no. SVG filene er hentet fra https://publicdomainvectors.org/, og musikk filene er hentet fra https://freesound.org/. 
