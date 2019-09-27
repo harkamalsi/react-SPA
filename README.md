@@ -20,10 +20,10 @@ For å kjøre prosjektet lokalt trengs Node.js og NPM, NPM følger med når en l
 
 
                                             App
-                            /                |              \                               \
-                    Tabdisplay           Maindisplay        Sidebar                         Favorite
-                        /                    |              /      \                        /
-                    TabChoice          WelcomeMessage     Button   ChoiceSelector           Button
+                            /                |              \                          \
+                    Tabdisplay           Maindisplay        Sidebar                    Favorite
+                        /                    |              /      \                      \
+                    TabChoice          WelcomeMessage     Button   ChoiceSelector         Button
                                              |
                                          AudioPlayer
 
