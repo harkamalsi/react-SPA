@@ -1,0 +1,6 @@
+.favorite-buttons {
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

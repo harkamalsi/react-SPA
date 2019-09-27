@@ -9,13 +9,6 @@
   align-items: center;
 }
 
-.favorite-buttons {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
 .btn {
   height: 50px;
   width: auto;
@@ -33,23 +26,23 @@
   padding: 0;
 }
 
-.favorite {
+.favorite-set {
   background-color: rgb(255, 0, 0, 0.4);
   transition: background-color ease-in-out 150ms;
 }
 
-.favorite:hover {
+.favorite-set:hover {
   background-color: rgb(255, 0, 0, 0.65);
   transition: background-color ease-in-out 150ms;
 }
 
-.delete {
+.favorite-get {
   background: none;
   border: solid 2px rgb(255, 0, 0, 0.3);
   transition: border ease-in-out 150ms;
 }
 
-.delete:hover {
+.favorite-get:hover {
   border: solid 2px rgb(255, 0, 0, 0.7);
   transition: border ease-in-out 150ms;
 }

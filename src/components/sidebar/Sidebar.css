@@ -15,23 +15,8 @@
 }
 
 .undo-redo-buttons {
-  font-weight: bold;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-.undo-redo-btn {
-  padding: 0.3rem 1rem;
-  border-radius: 25px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.undo-redo-btn:focus {
-  outline: none;
-  width: 100%;
 }
