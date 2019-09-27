@@ -121,8 +121,8 @@ Galleriet består altså av 4 hovedkomponenter, og logikken for fetching og lagr
 
 ### React
 
-Sytemet er bygget på React, og bruker ES6 med både klasser og funksjonelle komponenter. Vi brukte npx create-react-app for å komme i gang med prosjektet. Muligheten for å kunne velge kombinasjoner ble løst i `TabDisplay` komponenten, og sammen med logikk i `App` ble data vist i `Maindisplay`. Dersom det er ingen data å vise så vises det bare en velkomstekst.
-Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres, vi mente at denne løsningen vil ikke bryte interaksjons-flyt. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativ ofte. 
+Sytemet er bygget på React, og bruker ES6 med både klasser og funksjonelle komponenter. Vi brukte npx create-react-app for å komme i gang med prosjektet. Muligheten for å kunne velge kombinasjoner ble løst i `TabDisplay` komponenten, og sammen med logikk i `App` ble data vist i `Maindisplay`.
+Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativ ofte. 
 
 
 ### Innhold og funksjonalitet
