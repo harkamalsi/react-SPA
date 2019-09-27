@@ -23,7 +23,6 @@ main {
 .maindisp {
   grid-area: main;
   height: 100%;
-  min-height: 45vh;
 }
 
 .sidebar-category {
