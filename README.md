@@ -25,7 +25,7 @@ Galleriets design er basert på malen som ble oppgitt i oppgaveteksten. Klasseko
 
 `Sidebar` er en funksjonell komponent som holder forms for valg av kategorier. Den renderer `ChoiceSelector` og `Button`. `ChoiceSelector` er en klasse, og returnerer en form som lar bruker velge kategori. `Button` returnerer en knapp, som i `Sidebar` lar brukeren angre og gjenta sine handlinger.
 
-Galleriet består av 4 hovedkomponenter, mens logikken for fetching og lagring av data ligger i komponenten `App`.  
+Galleriet består av 4 hovedkomponenter, og logikken for fetching og lagring av data ligger i komponenten `App`.  
 
 
 - App
