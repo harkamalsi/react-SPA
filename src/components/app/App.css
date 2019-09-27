@@ -28,11 +28,15 @@ main {
   height: 100%;
 }
 
-
 .sidebar-category {
   grid-area: cat;
   /* background-color: aquamarine; */
   height: 100%;
+}
+
+.favorite {
+  grid-area: fav;
+  /* background-color: aquamarine; */
 }
 
 .grid-container {
@@ -42,9 +46,10 @@ main {
   /*width: 70vw;*/
   display: grid;
   grid-template-areas: 'tab tab tab'
-    'main main cat';
+    'main main cat'
+    'fav fav cat';
 
-  grid-template-rows: 15vh auto;
+  grid-template-rows: 15vh auto 7vh;
   grid-template-columns: auto auto 18vw;
   /*background-color: #2196F3;*/
   padding: 0;
@@ -87,7 +92,7 @@ main {
     grid-template-columns: auto;
   }
 
-  .sidebar > h3 {
+  .sidebar>h3 {
     display: none;
   }
 
@@ -98,7 +103,7 @@ main {
     justify-content: center;
   }
 
-/*   .undo-redo-buttons {
+  /*   .undo-redo-buttons {
     position:absolute;    
   }
 
@@ -108,7 +113,7 @@ main {
  */
 
 
-  form > label {
+  form>label {
     padding: 15px;
 
   }
