@@ -3,6 +3,15 @@
 
 [Link til prosjektet på ntnu sin server](http://it2810-02.idi.ntnu.no/prosjekt2/ "Prosjekt 2 Gruppe 2 Galleri")
 
+## Forhåndskrav
+For å kjøre prosjektet lokalt trengs Node.js og NPM, NPM følger med når en laster ned Node.js: https://nodejs.org/en/download/
+
+## Installering
+1.  Først kan prosjektet klones. Tast følgende i terminaled for å klone prosjektet: `git clone https://gitlab.stud.idi.ntnu.no/IT2810-H19/teams/team-2/project-2.git` 
+2.  Gå deretter inn i den klonede mappen ved å skrive følgende i terminalen: `cd "mappenavn"`
+3.  Skriv `npm start` i terminalen for å starte prosjektet
+
+
 
 ## Dokumentasjon
 
@@ -38,11 +47,13 @@ Galleriet består av 4 hovedkomponenter, og logikken for fetching og lagring av 
         - `combinations` 
         - `saved_resources`
         - `isFavoriteSaved`
+
 - Tabdisplay    
     - Funksjonell
     - Props:
         - `onClick` 
         - `selectedTab`
+    
 - Maindisplay
     - Funksjonell
     - Props
@@ -50,6 +61,7 @@ Galleriet består av 4 hovedkomponenter, og logikken for fetching og lagring av 
         - `soundCategory`
         - `data`
         - `isWelcomeScreenDisplayed`
+    
 - Sidebar
     - Funksjonell
     - Props
@@ -61,6 +73,7 @@ Galleriet består av 4 hovedkomponenter, og logikken for fetching og lagring av 
         - `updatePictureCategory`
         - `updateSoundCategory`
         - `getCheckboxCategories`
+    
 - Favorite
     - Funksjonell
     - Props
@@ -68,7 +81,7 @@ Galleriet består av 4 hovedkomponenter, og logikken for fetching og lagring av 
         - `getFavorite`
         - `isFavoriteSaved`
         - `showHandleFavorite`
-        - 
+        
 - TabChoice
     - Funksjonell
     - Props
@@ -76,6 +89,7 @@ Galleriet består av 4 hovedkomponenter, og logikken for fetching og lagring av 
         - `onClick`
         - `value`
         - `selectedTab` 
+        
 - WelcomeMessage
     - Funksjonell
     
