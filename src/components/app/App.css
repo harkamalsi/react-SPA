@@ -99,15 +99,6 @@ main {
     justify-content: center;
   }
 
-<<<<<<< Updated upstream
-  form>label {
-    padding: 15px;
-  }
-}
-
-/*breadth of iphone x/8/7/6 = 375px */
-@media only screen and (max-width:376px) and (orientation: portrait) {
-=======
   .undo-redo-buttons {
     display: block;
     width: auto;    
@@ -127,7 +118,6 @@ main {
 
 /*bredden til iphone x/8/7/6 = 375px */
 @media only screen and (max-width:510px) and (orientation: portrait) {
->>>>>>> Stashed changes
 
   .grid-container {
     grid-template-areas: 'tab''main''fav''cat';
