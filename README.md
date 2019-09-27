@@ -111,19 +111,6 @@ Sytemet er bygget på React, og bruker ES6 med både classer og funksjonelle kom
 Ny utstilling har vi valgt å generere dynamisk hver gang en kategori endres, vi mente at denne løsningen vil ikke bryte interaksjons-flyt. Når det gjelder ui-komponenter så valgte vi lage `ChoiceSelector`, `Button` og `Tabchoice`. Med disse ui-komponentene kunne vi gjenbruke kode siden de brukes relativ ofte. 
 
 
-
-
-
-
-
-
-
-Løsningen skal baseres på React (og JSX). 
-Bruk ES6 (Javascript) og vis bruk av både komponentene med class og funksjonelle komponenter. Implementere en hesiktsmessig komponentstruktur.
-Bruk kun de ordinære mekanismene i React for å lagre og endre state/data (du skal mao ikke bruke løsninger som redux, mobx eller andre bibliotek for å håndtere tilstand da dette er tema i neste prosjekt).
-UI-komponentene skal implementeres fra bunnen av (uten bruk av andre tredjeparts komponenter).
-
-
 ### Innhold og funksjonalitet
 - Hvorfor er det default verdier på kategorier ved førstegangsbesøk?
 - Hvorfor ikke submitbutton ved valg av kategorier?
@@ -167,36 +154,11 @@ Lyd håndterer du med audio-taggen fra HTML5 og da trenger du ikke implementere 
 
 I prosjektet benyttes localstorage for å kunne lagre og hente en favoritt kombinasjon. Localstorage lar oss hente og vise data selv etter nettleser er avsluttet og startet på nytt.  Sessionstorage er brukt for å kunne implementere angre-gjenta funksjonaliteten for en bestemt «session». 
 
-Det er ingen slett-favoritt knapp, dersom en velger å lagre en ny favoritt kombinasjon vil den forrige overskrives. Gruppen valgte å implementere disable-knapp funksjonalitet. Det er ikke mulig å hente en favoritt kombinasjon dersom det finnes ingen favoritt kombinasjon, og det er heller ikke mulig å sette en dersom en bruker ikke har en kombinasjon som vises på skjermen. En tilsvarende disable-knapp logikk for angre-gjenta funksjonalitet er også implementert.   
+Det er ingen slett-favoritt knapp, dersom en velger å lagre en ny favoritt kombinasjon vil den forrige overskrives. Gruppen valgte å implementere disable-knapp funksjonalitet. Det er ikke mulig å hente en favoritt kombinasjon dersom det finnes ingen favoritt kombinasjon, og det er heller ikke mulig å sette en dersom en bruker ikke har en kombinasjon som vises på skjermen. En tilsvarende disable-knapp logikk for angre-gjenta funksjonalitet er også implementert.
 
+### Server
 
-
-### Node.js og NPM
-PRosjektet baseres på Node og bruk av Node Package Manager (NPM)
-Installer Node.js (inkluderer npm node package manager) på egen maskin
-Bruk pakken create-react-app for å komme i gang (bruk kommandoen "npx create-react-app mittprosjektnav
-
-### Testing
-Prosjektet skal vise oppsett av og eksempel på testing med Jest - minimum er å ha en snapshottest. Målet med dette kravet er at dere kommer i gang med testing, får erfaring i oppsett og en forståelse av hva vi typisk tester i React-applikasjoner. Vi legger lite vekt på omfanget av testingen.
-Testing av brukergrensesnitt og responsiv design: Gruppa skal beskrive/dokumentere testing på minimum 3 forskjellige enheter hvor det må inngå en mobil (liten skjerm/horisontal + vertikal orientering og en ordinær pc (stor skjerm). 
-
-### Installere
-
-Websiden skal installeres og gjøres tilgjengelig en virtuelle maskin som gruppa får tildelt tildelt. Prosjektet gjøres tilgjenglig som xxxx.idi.ntnu.no/prosjekt2
-Installer Apache web server hvis det ikke finnes på maskinen fra før. Lag en production build som legges under Apache serveren som lytter på port 80. 
-
-
-### BRUK AV GIT, KODING
-
-Koden i prosjektet skal være ryddig strukturert, ha fornuftig kommentering og ha navngiving av komponenter, variabler og funksjoner i tråd med anbefalinger (best practise).
-Gruppa skal bruke git i utviklingen. Utviklingen skal dekomponeres i task som hver beskrives kort med en issue. Commits markeres med hvilken issue de bidrar til/løser. Vi bruker gitlab og fagstaben setter opp repositories for gruppene. 
-
-
-
-### Dokumentasjon
-Prosjektet dokumenteres med en README.md i git repositoriet.
-Dokumentasjonen skal diskutere, forklare og vise til alle de viktigste valgene og løsningene på krav til funksjonaltet og krav til teknologi. 800-1000 ord er en fornuftig lengde. 
-Gruppa skal oppsummere den enkeltes bidrag i prosjektet i en egen fil. Noter totalt antall timer og hva den enkelte har hatt som hovedbidrag. Denne leveres i BB (dette er personopplysninger som ingen vil at skal ligge på git ;-)
+Websiden kjøres på en Apache web server. Vi lagde en production build, og lastet den opp til serveren. 
 
 ### Inspirasjon og kilder
 Tabdisplay er inspirert fra itdagene.no. SVG er hentet fra https://publicdomainvectors.org/, og musikk er hentet fra https://freesound.org/. 
