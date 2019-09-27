@@ -1,4 +1,3 @@
-
 # IT2810 - Gruppe 2 - Prosjekt 2 
 
 
@@ -36,31 +35,33 @@ UI-komponentene skal implementeres fra bunnen av (uten bruk av andre tredjeparts
 
 
                                             App
-                            /                |              \
-                    Tabdisplay           Maindisplay        Sidebar
-                        /                    |              /      \
-                    TabChoice          WelcomeMessage     Button   ChoiceSelector
+                            /                |              \                               \
+                    Tabdisplay           Maindisplay        Sidebar                         Favorite
+                        /                    |              /      \                        /
+                    TabChoice          WelcomeMessage     Button   ChoiceSelector           Button
                                              |
                                          AudioPlayer
 
 
-Galleriets design er basert på malen som ble oppgitt i oppgaveteksten. Klassekomponenten `App` ligger øverset i komponenthierarkiet og styrer logikken for fetching og loading av data, og bestemmer hva som skal vises. `Tabdisplay`, `Maindisplay` og `Sidebar` er  barnekomponenter av `App` og mottar propvalues fra denne. `Tabdisplay` er en funksjonell komponent som har i oppgave å opprette `TabChoice` og returnere disse. `TabChoice` er også en funksjonel lkomponent som returnerer en knapp som lar brukeren velge hvilken kombinasjon som skal vises. `Maindisplay` er en funksjonell komponent, og dens oppgave er å holde kunsten, som gjøres ved å rendere `WelcomeMessage`. `WelcomeMessage` er også en funksjonell komponent som gir en velkomstmelding til brukeren hvis ingen kategorier er valgt. `WelcomeMessage`renderer også `AudioPlayer`, som er en funksjonell komponent som holder styr på lyden som skal spilles. 
-`Sidebar` er en funksjonel lkomponent som holder forms for valg av kategorier. Den renderer/oppretter `ChoiceSelector` og `Button`. `ChoiceSelector` er en klasse, og returnerer en form som lar bruker velge kategori.`Button` returnerer en knapp, som i `sidebar` lar brukeren angre og gjenta. 
+Galleriets design er basert på malen som ble oppgitt i oppgaveteksten. Klassekomponenten `App` ligger øverset i komponenthierarkiet og styrer logikken for fetching og loading av data, og bestemmer hva som skal vises. `Tabdisplay`, `Maindisplay` og `Sidebar` er barnekomponenter av `App` og mottar propvalues fra denne. `Tabdisplay` er en funksjonell komponent som har i oppgave å opprette `TabChoice` og returnere disse. `TabChoice` er også en funksjonel lkomponent som returnerer en knapp som lar brukeren velge hvilken kombinasjon som skal vises.
 
-Galleriet består av 3 hovedkomponenter, mens logikken for fetching og loading av data ligger i komponenten App.  
+`Maindisplay` er en funksjonell komponent, og dens oppgave er å bruke propsvalues fra `App` og rendere enten `WelcomeMessage`, loading screen eller data. `WelcomeMessage` er også en funksjonell komponent som gir en velkomstmelding til brukeren hvis ingen kategorier er valgt. Når `WelcomeMessage` ikke vises, vil data og `AudioPlayer` renderes. AudioPlayer, som også er en funksjonell komponent, holder styr på lyden som skal spilles. 
+
+`Sidebar` er en funksjonell komponent som holder forms for valg av kategorier. Den renderer `ChoiceSelector` og `Button`. `ChoiceSelector` er en klasse, og returnerer en form som lar bruker velge kategori. `Button` returnerer en knapp, som i `Sidebar` lar brukeren angre og gjenta sine handlinger.
+
+Galleriet består av 4 hovedkomponenter, mens logikken for fetching og lagring av data ligger i komponenten `App`.  
 
 
 - App
     - Klasse
     - States
         - `soundCategory` 
-        - `soundFilePath` 
         - `textCategory`
-        - `textFilePath` 
         - `pictureCategory` 
-        - `pictureFilePath` 
         - `selectedTab` 
         - `combinations` 
+        - `saved_resources`
+        - `isFavoriteSaved`
 - Tabdisplay    
     - Funksjonell
     - Props:
@@ -71,15 +72,11 @@ Galleriet består av 3 hovedkomponenter, mens logikken for fetching og loading a
     - Props
         - `selectedTab`
         - `soundCategory`
-        - `handleFavorite`
-        - `getFavorites`
-        - `deleteFavorite`
+        - `data`
         - `isWelcomeScreenDisplayed`
 - Sidebar
     - Funksjonell
     - Props
-        - `onChange`
-        - `onChange`
         - `handleUndo`
         - `handleRedo`
         - `isUndoEmpty`
@@ -88,6 +85,14 @@ Galleriet består av 3 hovedkomponenter, mens logikken for fetching og loading a
         - `updatePictureCategory`
         - `updateSoundCategory`
         - `getCheckboxCategories`
+- Favorite
+    - Funksjonell
+    - Props
+        - `handleFavorite`
+        - `getFavorite`
+        - `isFavoriteSaved`
+        - `showHandleFavorite`
+        - 
 - TabChoice
     - Funksjonell
     - Props
@@ -97,9 +102,7 @@ Galleriet består av 3 hovedkomponenter, mens logikken for fetching og loading a
         - `selectedTab` 
 - WelcomeMessage
     - Funksjonell
-    - Props
-        - `selectedTab`
-        - `soundCategory`
+    
 - AudioPlayer
     - Funksjonell
     - Props
@@ -120,6 +123,7 @@ Galleriet består av 3 hovedkomponenter, mens logikken for fetching og loading a
     - Funksjonell
     - Props 
         - `id`
+        - `className`
         - `onClick`
         - `handleDisabled`
         - `icon`
@@ -156,6 +160,8 @@ Filene skal lastes kun hvis de benyttes. Dvs. at filer brukt i en kombinasjon f�
 Lyd håndterer du med audio-taggen fra HTML5 og da trenger du ikke implementere noe spesifikt for å laste data
 
 ### HTML Web Storage
+
+I prosjektet benyttes localstorage for å kunne lagre og hente en favoritt kombinasjon. Sessionstorage er brukt for å kunne implementere angre-gjenta funksjonaliteten. 
 
 Local Web Storage brukes til "angre" og "gjenta"....
 Sessions Web Stroage brukes til lagre og hente faavorittkombinasjoner...   
