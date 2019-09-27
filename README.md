@@ -7,8 +7,8 @@
 For å kjøre prosjektet lokalt trengs Node.js og NPM, NPM følger med når en laster ned Node.js: https://nodejs.org/en/download/
 
 ## Installering
-1.  Først kan prosjektet klones. Tast følgende i terminaled for å klone prosjektet: `git clone https://gitlab.stud.idi.ntnu.no/IT2810-H19/teams/team-2/project-2.git` 
-2.  Gå deretter inn i den klonede mappen ved å skrive følgende i terminalen: `cd "mappenavn"`
+1.  Først må prosjektet klones. Tast følgende i terminalen for å klone prosjektet: `git clone https://gitlab.stud.idi.ntnu.no/IT2810-H19/teams/team-2/project-2.git` 
+2.  Gå deretter inn i den klonede mappen ved å skrive følgende i terminalen: `cd project-2`
 3.  Skriv `npm start` i terminalen for å starte prosjektet
 
 
