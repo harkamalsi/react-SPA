@@ -5,8 +5,8 @@ import Tabdisplay from '../tabdisplay/Tabdisplay';
 import Favorite from '../favorite/Favorite';
 import './App.css';
 
-const url =
-  'https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/';
+//const url =
+//  'https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -281,7 +281,7 @@ class App extends React.Component {
     if (this.state.saved_resources[key] === undefined) {
       //If data doesn´t exist in the saved resources, fetch
       console.log('Fetching text data...');
-      fetch(url + filename + '.json')
+      fetch("../prosjekt2/assets/text/"  + filename + '.json')
         .then(res => res.json())
         .then(
           result => {
@@ -315,7 +315,7 @@ class App extends React.Component {
     let key = 'image_data_' + filename;
     if (this.state.saved_resources[key] === undefined) {
       console.log('Fetching Picture data...');
-      fetch(url + filename + '.svg')
+      fetch("../prosjekt2/assets/images/" + filename + '.svg')
         .then(res => res.text())
         .then(
           result => {
