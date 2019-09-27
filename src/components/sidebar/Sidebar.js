@@ -3,7 +3,7 @@ import ChoiceSelector from '../choiceSelector/ChoiceSelector';
 import Button from '../ui/button/Button';
 import './Sidebar.css';
 
-//Sidebar it´s the parent component of the 3 choiceSelector components that build the gui.
+//Sidebar it´s the parent component of the 3 choiceSelector components and undo redo buttons that build the gui.
 //It´s a functional component and an interface between the app and the ChoiceSelector componets.
 //It´s main purpouse is to render the Choice Selector and pass down the props for changing state values of App from the ChoiceSelector
 

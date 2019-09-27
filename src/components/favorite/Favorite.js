@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../ui/button/Button';
 import './Favorite.css';
 
+//Functional component container for set of favourite Get and Set components
 function Favorite(props) {
-  const [toggleGetFavorite, setToggleGetFavorite] = useState(
-    localStorage.getItem('combinations') !== null
-  );
 
   const showButtons = () => {
     return (

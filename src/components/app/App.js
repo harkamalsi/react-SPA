@@ -5,11 +5,10 @@ import Tabdisplay from '../tabdisplay/Tabdisplay';
 import Favorite from '../favorite/Favorite';
 import './App.css';
 
-//const url =
-//  'https://raw.githubusercontent.com/Emanuele96/prosjekt2_data/master/';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    //Initializing undo and redo stacks with elements from session storage, empty if none.
     this.undoArr = sessionStorage.getItem('categoriesUndo')
       ? JSON.parse(sessionStorage.getItem('categoriesUndo'))
       : [];
@@ -19,26 +18,32 @@ class App extends React.Component {
       : [];
 
     this.state = {
-      //isWelcomeScreen = true,
-      //Selected category
       soundCategory: null,
       textCategory: null,
       pictureCategory: null,
+      //selected tab number, set to null if welcome screen is visualized
       selectedTab: this.undoArr.length <= 1 ? null : 1,
-      combinations: null,
+      favoriteCombination: JSON.parse(localStorage.getItem('favoriteCombination')),
       saved_resources: {},
-      isFavoriteSaved: localStorage.getItem('combinations') !== null
+      //True if a saved combination is found in local storage
+      isFavoriteSaved: localStorage.getItem('favoriteCombination') !== null
     };
+    //In order to limit unecessary renders of App, a tmp array is used to store fetched data from 
+    //asynchronics fetch functions until both are finished and then update state with tmp data.
     this.tmp_fetched_data = {};
+    //Previous fetched values used to evaluate the need for a new fetch for data.
     this.previous_fetched_text_category = null;
     this.previous_fetched_picture_category = null;
     this.previous_selected_tab = null;
   }
-  componentDidMount = () => {
-    const combinations = JSON.parse(localStorage.getItem('combinations'));
-    this.setState({ combinations });
-  };
+  //Run right after component is mounted
+  //componentDidMount = () => {
+    //
+    //const favoriteCombination = JSON.parse(localStorage.getItem('favoriteCombination'));
+   // this.setState({ favoriteCombination });
+  //};
 
+  //It creats a welcome screen combination data and pushes it in the undo stack
   createStartScreenData = () => {
     if (this.undoArr.length === 0 && this.state.textCategory !== null) {
       let welcomeScreenCategories = {
@@ -50,21 +55,20 @@ class App extends React.Component {
       this.undoArr.push(welcomeScreenCategories);
     }
   };
-
+  
   componentDidUpdate() {
-    console.log('after render ');
     //If the component has been updated and a tab is selected, so fetch the data
     if (this.state.selectedTab !== null) {
-      let previousCategory = this.undoArr[this.undoArr.length - 1];
-
+      //Compare the previous categories in the undo stack with categories in state (visualizing)
+      //and if one of them is different, push the set of categories in the stack (= new combination to visualize)
+      let previousCategories = this.undoArr[this.undoArr.length - 1];
       if (
-        previousCategory.soundCategory !== this.state.soundCategory ||
-        previousCategory.textCategory !== this.state.textCategory ||
-        previousCategory.pictureCategory !== this.state.pictureCategory
+        previousCategories.soundCategory !== this.state.soundCategory ||
+        previousCategories.textCategory !== this.state.textCategory ||
+        previousCategories.pictureCategory !== this.state.pictureCategory
       ) {
         // change the sesstionStorage and update the state
         this.handleSession();
-        //this.forceUpdate();
       }
 
       console.log('tab selected: ' + this.state.selectedTab);
@@ -82,6 +86,7 @@ class App extends React.Component {
       console.log(
         this.previous_fetched_picture_category !== this.state.pictureCategory
       );
+      //Evaluate the need of fetching data
       if (
         this.previous_fetched_text_category !== this.state.textCategory ||
         this.previous_fetched_picture_category !== this.state.pictureCategory ||
@@ -91,13 +96,10 @@ class App extends React.Component {
         this.fetchPictures();
       }
     }
-
     this.previous_selected_tab = this.state.selectedTab;
-
-    //return null;
   }
+  //Called after the complete run of both fetchText and fetchPicture. It then update the state with the new fetched data.
   updateFetchedData() {
-    console.log(this.tmp_fetched_data);
     if (Object.keys(this.tmp_fetched_data).length === 2) {
       let saved_resources_copy = Object.assign({}, this.state.saved_resources);
       if (this.tmp_fetched_data['text'] !== null) {
@@ -121,8 +123,9 @@ class App extends React.Component {
       });
     }
   }
+  //called at each tabclick
   handleTabClick = e => {
-    // e.target.value will help us decide which combination to show on the mainDisplay component.
+    // Updates selected tab in state if changed from previous state.
     if (e.target.value !== this.state.selectedTab) {
       this.setState({ selectedTab: e.target.value });
     }
@@ -152,18 +155,15 @@ class App extends React.Component {
         soundTrack: 1
       });
   };
-  // save the categories chosen in the sidebar in the undo stack
-  handleSession = () => {
-    // pop and push. Stack consisting of two arrays.
 
-    // moves that we will maybe get undoed or redoed
+  // save the categories chosen in the sidebar in the undo stack on change
+  handleSession = () => {
     let categories = {
       soundCategory: this.state.soundCategory,
       textCategory: this.state.textCategory,
       pictureCategory: this.state.pictureCategory,
       selectedTab: this.state.selectedTab
     };
-
     this.undoArr.push(categories);
     sessionStorage.setItem('categoriesUndo', JSON.stringify(this.undoArr));
     this.redoArr = [];
@@ -171,14 +171,12 @@ class App extends React.Component {
   };
 
   handleUndo = () => {
-    // There must be an undo array after handleSession()
-
     if (this.undoArr.length > 1) {
       // pushes the last element of undoArr in redoArr
       this.redoArr.push(this.undoArr.pop());
-      // change the state pf the categories. Is used for displaying checkbox value.
       let previousCategories = this.undoArr[this.undoArr.length - 1];
-
+      
+      // change the state of the categories. Is used for displaying checkbox value.
       this.setState({
         soundCategory: previousCategories.soundCategory,
         textCategory: previousCategories.textCategory,
@@ -190,7 +188,7 @@ class App extends React.Component {
       sessionStorage.setItem('categoriesRedo', JSON.stringify(this.redoArr));
     }
   };
-
+  //Called onClick of redo button. Pop the last element from redo stack and pushes to undo stack.
   handleRedo = () => {
     if (this.redoArr.length > 0) {
       this.undoArr.push(this.redoArr.pop());
@@ -209,50 +207,26 @@ class App extends React.Component {
       sessionStorage.setItem('categoriesRedo', JSON.stringify(this.redoArr));
     }
   };
-
-  // not used at the moment
-  getCheckboxCategories = () => {
-    //let undoArr = JSON.parse(sessionStorage.getItem('categoriesUndo'));
-    let redoArr = JSON.parse(sessionStorage.getItem('categoriesRedo'));
-
-    let categoriesItem = redoArr ? redoArr[redoArr.length - 1] : null;
-    // console.log(categoriesItem);
-
-    console.log(categoriesItem);
-
-    if (categoriesItem)
-      return [
-        categoriesItem.soundCategory,
-        categoriesItem.textCategory,
-        categoriesItem.pictureCategory
-      ];
-  };
-
+  
+//Save a new favourite combination if different from previous saved favourite combination
   handleFavorite = () => {
-    /* if (localStorage.getItem('combinations')) {
-      localStorage.removeItem('combinations');
-      this.setState({ combinations: [] });
-    } */
-
-    let previousCombination = JSON.parse(localStorage.getItem('combinations'));
-
+    let previousCombination = JSON.parse(localStorage.getItem('favoriteCombination'));
     const combination = {
       selectedTab: this.state.selectedTab,
       soundCategory: this.state.soundCategory,
       textCategory: this.state.textCategory,
       pictureCategory: this.state.pictureCategory
     };
-
     if (JSON.stringify(previousCombination) !== JSON.stringify(combination)) {
-      localStorage.setItem('combinations', JSON.stringify(combination));
+      localStorage.setItem('favoriteCombination', JSON.stringify(combination));
       this.setState({
         isFavoriteSaved: true
       });
     }
   };
-
+//Set the app state to visualize the favourite combination if different from current visualizing combination
   getFavorite = () => {
-    let newCombination = JSON.parse(localStorage.getItem('combinations'));
+    let newCombination = JSON.parse(localStorage.getItem('favoriteCombination'));
 
     const combination = {
       selectedTab: this.state.selectedTab,
@@ -272,12 +246,12 @@ class App extends React.Component {
   };
 
   //Fetching of text if has not been fetched already
-  //The logic works as intended and the behavior can be monitored in the browser console
-
+  //The logic works as intended and the behavior can be monitored in the network tool of the browser
   fetchText() {
     let filename =
       this.state.textCategory.toLowerCase() + '_' + this.state.selectedTab;
-    let key = 'text_data_' + filename; //The id of the data in the saved resources
+    //The id of the data in the saved resources
+    let key = 'text_data_' + filename; 
     if (this.state.saved_resources[key] === undefined) {
       //If data doesn´t exist in the saved resources, fetch
       console.log('Fetching text data...');
@@ -286,10 +260,6 @@ class App extends React.Component {
         .then(
           result => {
             console.log('Text Data retrieved from server');
-            //this.state.saved_resources[key] = [result.title, result.text];
-            /*this.setState({
-              saved_resources : this.state.saved_resources,
-            });*/
             let tmp_data = [key, [result.title, result.text]];
             this.tmp_fetched_data['text'] = tmp_data;
             this.updateFetchedData();
@@ -304,14 +274,11 @@ class App extends React.Component {
       this.tmp_fetched_data['text'] = tmp_data;
       this.updateFetchedData();
     }
-    //this.tmp_fetched_data["text"]= tmp_data;
-    //this.updateFetchedData();
   }
   //Metod for fetching of pictures, similar behavior of fetchText()
   fetchPictures = () => {
     //The filename of the picture on server
-    let filename =
-      this.state.pictureCategory.toLowerCase() + '_' + this.state.selectedTab;
+    let filename = this.state.pictureCategory.toLowerCase() + '_' + this.state.selectedTab;
     let key = 'image_data_' + filename;
     if (this.state.saved_resources[key] === undefined) {
       console.log('Fetching Picture data...');
@@ -323,10 +290,6 @@ class App extends React.Component {
               console.log('Picture data not found on Server');
             } else {
               console.log('Picture Data retrieved from server with success!');
-              /*this.state.saved_resources[key] = result;
-              this.setState({
-                saved_resources : this.state.saved_resources,
-              });*/
               let tmp_data = [key, result];
               this.tmp_fetched_data['picture'] = tmp_data;
               this.updateFetchedData();
@@ -342,9 +305,8 @@ class App extends React.Component {
       this.tmp_fetched_data['picture'] = tmp_data;
       this.updateFetchedData();
     }
-    // this.tmp_fetched_data["picture"] = tmp_data;
-    // this.updateFetchedData();
   };
+  //Props down data to be visualized in mainDisplay
   sendDataToVisualize() {
     if (
       this.state.selectedTab === null ||
@@ -368,9 +330,9 @@ class App extends React.Component {
       return [picture_data, text_data];
     } else return null;
   }
+
   render() {
     this.createStartScreenData();
-    //this.previous_selected_tab = this.state.selectedTab;
     console.log('rendering...');
     return (
       <div className='app'>
@@ -421,5 +383,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;

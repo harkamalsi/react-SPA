@@ -1,6 +1,5 @@
 
 .tabdisplay {
-  /*border: red dashed 1px;*/
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

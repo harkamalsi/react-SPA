@@ -1,6 +1,7 @@
 import React from 'react';
 import './Button.css';
 
+//Functional component button with propriety of displaying the status by beeing enabled or disabled.
 function Button(props) {
   return (
     <button
@@ -10,11 +11,10 @@ function Button(props) {
       disabled={props.handleDisabled}
     >
       <div className='inner-btn-container'>
-        {true && <i class='material-icons'>{props.icon}</i>}
+        {true && <i className='material-icons'>{props.icon}</i>}
         {true && <span>{props.text}</span>}
       </div>
     </button>
   );
 }
-
 export default Button;

@@ -16,20 +16,17 @@ main {
 
 .tabs-bar {
   grid-area: tab;
-  /*background-color: orange;*/
   height: 100%;
 }
 
 .maindisp {
   grid-area: main;
-  /*background-color: red;*/
   height: 100%;
   min-height: 45vh;
 }
 
 .sidebar-category {
   grid-area: cat;
-  /* background-color: aquamarine; */
   height: 100%;
 }
 
@@ -39,10 +36,8 @@ main {
 }
 
 .grid-container {
-  /*border: black dashed 1px;*/
   height: 100%;
   width: 100%;
-  /*width: 70vw;*/
   display: grid;
   grid-template-areas: 'tab tab tab'
     'main main cat'
@@ -50,7 +45,6 @@ main {
 
   grid-template-rows: 15vh auto 7vh;
   grid-template-columns: auto auto 18vw;
-  /*background-color: #2196F3;*/
   padding: 5px 10px;
   margin: 0;
 
@@ -102,24 +96,12 @@ main {
     justify-content: center;
   }
 
-  /*   .undo-redo-buttons {
-    position:absolute;    
-  }
-
-  #undo{
-    margin-right: 300px;
-  }
- */
-
-
   form>label {
     padding: 15px;
   }
-
-
 }
 
-/*bredden til iphone x/8/7/6 = 375px */
+/*breadth of iphone x/8/7/6 = 375px */
 @media only screen and (max-width:376px) and (orientation: portrait) {
 
   .grid-container {
