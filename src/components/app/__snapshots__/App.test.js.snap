@@ -72,48 +72,14 @@ exports[`Testing app renders correctly 1`] = `
         className="maindisp"
       >
         <div
-          className="maindisplay"
+          className="welcomemsg"
         >
-          <div>
-            <h2>
-              Velkommen! 
-            </h2>
-            <p>
-              Vennligst velg tre kategorier per medietype i vindu til høyre.
-            </p>
-            <div
-              className="sound"
-            >
-              <audio
-                autoPlay={true}
-                className="soundPlayer"
-                controls={true}
-                loop={true}
-                preload="auto"
-                type="audio/mpeg"
-              />
-            </div>
-          </div>
-          <div
-            className="favorite-buttons"
-          >
-            <button
-              className="btn delete"
-              onClick={[Function]}
-            >
-              <h3>
-                Hent favoritt kombinasjon
-              </h3>
-            </button>
-            <button
-              className="btn favorite"
-              onClick={[Function]}
-            >
-              <h3>
-                Lagre Kombinasjon
-              </h3>
-            </button>
-          </div>
+          <h2>
+            Velkommen!
+          </h2>
+          <p>
+            Vennligst velg tre kategorier per medietype i vindu til høyre og trykk på en tab for å lage en kombinasjon.
+          </p>
         </div>
       </div>
       <div
@@ -122,126 +88,6 @@ exports[`Testing app renders correctly 1`] = `
         <div
           className="sidebar"
         >
-          <h3>
-            Kategorier
-          </h3>
-          <div
-            className="choice-form"
-          >
-            <h3>
-              Sound
-            </h3>
-            <form>
-              <label>
-                <input
-                  checked={true}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Nature"
-                />
-                Nature
-              </label>
-              <label>
-                <input
-                  checked={false}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Piano"
-                />
-                Piano
-              </label>
-              <label>
-                <input
-                  checked={false}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="City Life"
-                />
-                City Life
-              </label>
-            </form>
-          </div>
-          <div
-            className="choice-form"
-          >
-            <h3>
-              Text
-            </h3>
-            <form>
-              <label>
-                <input
-                  checked={true}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Christmas"
-                />
-                Christmas
-              </label>
-              <label>
-                <input
-                  checked={false}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Valentine"
-                />
-                Valentine
-              </label>
-              <label>
-                <input
-                  checked={false}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Get Well"
-                />
-                Get Well
-              </label>
-            </form>
-          </div>
-          <div
-            className="choice-form"
-          >
-            <h3>
-              Picture
-            </h3>
-            <form>
-              <label>
-                <input
-                  checked={true}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Dogs"
-                />
-                Dogs
-              </label>
-              <label>
-                <input
-                  checked={false}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Cats"
-                />
-                Cats
-              </label>
-              <label>
-                <input
-                  checked={false}
-                  name="category"
-                  onChange={[Function]}
-                  type="radio"
-                  value="Rats"
-                />
-                Rats
-              </label>
-            </form>
-          </div>
           <div
             className="undo-redo-buttons"
           >
@@ -255,7 +101,7 @@ exports[`Testing app renders correctly 1`] = `
                 className="inner-btn-container"
               >
                 <i
-                  class="material-icons"
+                  className="material-icons"
                 >
                   undo
                 </i>
@@ -274,12 +120,174 @@ exports[`Testing app renders correctly 1`] = `
                 className="inner-btn-container"
               >
                 <i
-                  class="material-icons"
+                  className="material-icons"
                 >
                   redo
                 </i>
                 <span>
                   Gjenta
+                </span>
+              </div>
+            </button>
+          </div>
+          <h3>
+            Kategorier
+          </h3>
+          <div
+            className="choice-form"
+          >
+            <h3>
+              Lyd
+            </h3>
+            <form>
+              <label>
+                <input
+                  checked={true}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Naturen"
+                />
+                Naturen
+              </label>
+              <label>
+                <input
+                  checked={false}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Piano"
+                />
+                Piano
+              </label>
+              <label>
+                <input
+                  checked={false}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="By liv"
+                />
+                By liv
+              </label>
+            </form>
+          </div>
+          <div
+            className="choice-form"
+          >
+            <h3>
+              Tekst
+            </h3>
+            <form>
+              <label>
+                <input
+                  checked={true}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Emosjoner"
+                />
+                Emosjoner
+              </label>
+              <label>
+                <input
+                  checked={false}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Farger"
+                />
+                Farger
+              </label>
+              <label>
+                <input
+                  checked={false}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Dyr"
+                />
+                Dyr
+              </label>
+            </form>
+          </div>
+          <div
+            className="choice-form"
+          >
+            <h3>
+              Bilder
+            </h3>
+            <form>
+              <label>
+                <input
+                  checked={true}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Dyr"
+                />
+                Dyr
+              </label>
+              <label>
+                <input
+                  checked={false}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Biler"
+                />
+                Biler
+              </label>
+              <label>
+                <input
+                  checked={false}
+                  name="category"
+                  onChange={[Function]}
+                  type="radio"
+                  value="Utenomjordisk"
+                />
+                Utenomjordisk
+              </label>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        className="favorite"
+      >
+        <div>
+          <div
+            className="favorite-buttons"
+          >
+            <button
+              className="btn favorite-get"
+              disabled={true}
+              onClick={[Function]}
+            >
+              <div
+                className="inner-btn-container"
+              >
+                <i
+                  className="material-icons"
+                />
+                <span>
+                  Hent kombinasjon
+                </span>
+              </div>
+            </button>
+            <button
+              className="btn favorite-set"
+              disabled={true}
+              onClick={[Function]}
+            >
+              <div
+                className="inner-btn-container"
+              >
+                <i
+                  className="material-icons"
+                />
+                <span>
+                  Lagre kombinasjon
                 </span>
               </div>
             </button>
