@@ -1,5 +1,6 @@
 import React from 'react';
-//import music from '../../assets/sounds/';
+
+import './AudioPlayer.css' 
 import piano1 from '../../assets/sounds/piano/1.mp3';
 import piano2 from '../../assets/sounds/piano/2.mp3';
 import piano3 from '../../assets/sounds/piano/3.mp3';
@@ -13,7 +14,6 @@ import citylife2 from '../../assets/sounds/citylife/2.mp3';
 import citylife3 from '../../assets/sounds/citylife/3.mp3';
 import citylife4 from '../../assets/sounds/citylife/4.mp3';
 
-//music + Math.ceil(Math.random()*4) + '.mp3'
 
 const pianoSongs = [piano1, piano2, piano3, piano4];
 const natureSounds = [nature1, nature2, nature3, nature4];

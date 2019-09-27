@@ -58,9 +58,9 @@ const Maindisplay = props => {
     else{ 
   return(
     <div>
-    <div className ="title" dangerouslySetInnerHTML ={{__html: props.data[1][0]}}></div>
+    <div className="title" dangerouslySetInnerHTML ={{__html: props.data[1][0]}}></div>
     <div className="picture" dangerouslySetInnerHTML ={{__html: props.data[0]}}></div>
-    <div className="Text" dangerouslySetInnerHTML ={{__html: props.data[1][1]}}></div>
+    <div className="text" dangerouslySetInnerHTML ={{__html: props.data[1][1]}}></div>
     <AudioPlayer
         soundTrack={props.selectedTab}
         soundCategory={props.soundCategory}
