@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/react-spa/static/css/main.2e19762f.chunk.css",
-    "main.js": "/react-spa/static/js/main.045a5238.chunk.js",
-    "main.js.map": "/react-spa/static/js/main.045a5238.chunk.js.map",
-    "runtime~main.js": "/react-spa/static/js/runtime~main.7f3be2ab.js",
-    "runtime~main.js.map": "/react-spa/static/js/runtime~main.7f3be2ab.js.map",
-    "static/js/2.7e3e216b.chunk.js": "/react-spa/static/js/2.7e3e216b.chunk.js",
-    "static/js/2.7e3e216b.chunk.js.map": "/react-spa/static/js/2.7e3e216b.chunk.js.map",
-    "index.html": "/react-spa/index.html",
-    "precache-manifest.96d9caa1b8a0eed3a18caf4c00a882a2.js": "/react-spa/precache-manifest.96d9caa1b8a0eed3a18caf4c00a882a2.js",
-    "service-worker.js": "/react-spa/service-worker.js",
-    "static/css/main.2e19762f.chunk.css.map": "/react-spa/static/css/main.2e19762f.chunk.css.map",
-    "static/media/1.mp3": "/react-spa/static/media/1.fcc7e341.mp3",
-    "static/media/2.mp3": "/react-spa/static/media/2.8b58876a.mp3",
-    "static/media/3.mp3": "/react-spa/static/media/3.dcd6b18a.mp3",
-    "static/media/4.mp3": "/react-spa/static/media/4.f4f48c37.mp3",
-    "static/media/loading.svg": "/react-spa/static/media/loading.09cfe256.svg"
+    "main.css": "/react-SPA/static/css/main.2e19762f.chunk.css",
+    "main.js": "/react-SPA/static/js/main.61f69de6.chunk.js",
+    "main.js.map": "/react-SPA/static/js/main.61f69de6.chunk.js.map",
+    "runtime~main.js": "/react-SPA/static/js/runtime~main.41d38f3d.js",
+    "runtime~main.js.map": "/react-SPA/static/js/runtime~main.41d38f3d.js.map",
+    "static/js/2.7e3e216b.chunk.js": "/react-SPA/static/js/2.7e3e216b.chunk.js",
+    "static/js/2.7e3e216b.chunk.js.map": "/react-SPA/static/js/2.7e3e216b.chunk.js.map",
+    "index.html": "/react-SPA/index.html",
+    "precache-manifest.a791ac8310293f115af8d4f37d0de15f.js": "/react-SPA/precache-manifest.a791ac8310293f115af8d4f37d0de15f.js",
+    "service-worker.js": "/react-SPA/service-worker.js",
+    "static/css/main.2e19762f.chunk.css.map": "/react-SPA/static/css/main.2e19762f.chunk.css.map",
+    "static/media/1.mp3": "/react-SPA/static/media/1.fcc7e341.mp3",
+    "static/media/2.mp3": "/react-SPA/static/media/2.8b58876a.mp3",
+    "static/media/3.mp3": "/react-SPA/static/media/3.dcd6b18a.mp3",
+    "static/media/4.mp3": "/react-SPA/static/media/4.f4f48c37.mp3",
+    "static/media/loading.svg": "/react-SPA/static/media/loading.09cfe256.svg"
   }
 }
