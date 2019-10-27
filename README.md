@@ -1,7 +1,7 @@
 # IT2810 - Gruppe 2 - Prosjekt 2 
 
 
-[Link til prosjektet på ntnu sin server](http://it2810-02.idi.ntnu.no/prosjekt2/ "Prosjekt 2 Gruppe 2 Galleri")
+[Link til prosjektet på ntnu sin server](https://harkamalsi.github.io/react-SPA/)
 
 ## Forhåndskrav
 For å kjøre prosjektet lokalt, trengs Node.js og NPM. NPM følger med når en laster ned Node.js: https://nodejs.org/en/download/
